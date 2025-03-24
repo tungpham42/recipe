@@ -117,8 +117,9 @@ const translations = {
     "Post a comment": "Đăng bình luận",
     "Add a comment": "Thêm bình luận",
     "Describe your recipe": "Mô tả công thức của bạn",
-    "List ingredients, one per line": "Liệt kê nguyên liệu, mỗi dòng một",
-    "List steps, one per line": "Liệt kê các bước, mỗi dòng một",
+    "List ingredients, one per line":
+      "Liệt kê nguyên liệu, mỗi dòng một nguyên liệu",
+    "List steps, one per line": "Liệt kê các bước, mỗi dòng một bước",
     "Select a category": "Chọn một danh mục",
   },
 };
