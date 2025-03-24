@@ -5,7 +5,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Container } from "react-bootstrap"; // Remove Form import since it’s no longer needed here
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import AddRecipe from "./pages/AddRecipe";
@@ -16,6 +16,7 @@ import Profile from "./pages/Profile";
 import EditRecipe from "./pages/EditRecipe";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import { LanguageProvider } from "./context/LanguageContext"; // No need for useLanguage here
 import AdminPanel from "./pages/AdminPanel";
 import Footer from "./components/Footer";
 
@@ -24,7 +25,7 @@ const ProtectedRoute = ({ children }) => {
   return currentUser ? children : <Navigate to="/login" />;
 };
 
-function App() {
+function AppContent() {
   return (
     <Router>
       <Header />
@@ -70,6 +71,14 @@ function App() {
       </Container>
       <Footer />
     </Router>
+  );
+}
+
+function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }
 

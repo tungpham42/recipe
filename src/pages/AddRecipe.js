@@ -3,6 +3,7 @@ import { db, auth } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUtensils,
@@ -22,6 +23,7 @@ const AddRecipe = () => {
   const [imageFile, setImageFile] = useState(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const CLOUDINARY_CLOUD_NAME = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
   const CLOUDINARY_UPLOAD_PRESET =
@@ -71,34 +73,35 @@ const AddRecipe = () => {
       });
       navigate("/");
     } catch (err) {
-      setError(err.message || "Failed to add recipe.");
+      setError(err.message || t("Failed to add recipe."));
     }
   };
 
   return (
     <div className="bg-white p-4 rounded shadow-sm">
       <h2>
-        <FontAwesomeIcon icon={faUtensils} className="me-2" /> Add a Recipe
+        <FontAwesomeIcon icon={faUtensils} className="me-2" />{" "}
+        {t("Add a Recipe")}
       </h2>
       {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>
             <FontAwesomeIcon icon={faUtensils} className="me-1" />
-            Title
+            {t("Title")}
           </Form.Label>
           <Form.Control
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            placeholder="Recipe title"
+            placeholder={t("Recipe title")}
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
             <FontAwesomeIcon icon={faUtensils} className="me-1" />
-            Description
+            {t("Description")}
           </Form.Label>
           <Form.Control
             as="textarea"
@@ -106,13 +109,13 @@ const AddRecipe = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
-            placeholder="Describe your recipe"
+            placeholder={t("Describe your recipe")}
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
             <FontAwesomeIcon icon={faList} className="me-1" />
-            Ingredients
+            {t("Ingredients")}
           </Form.Label>
           <Form.Control
             as="textarea"
@@ -120,13 +123,13 @@ const AddRecipe = () => {
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
             required
-            placeholder="List ingredients, one per line"
+            placeholder={t("List ingredients, one per line")}
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
             <FontAwesomeIcon icon={faRoute} className="me-1" />
-            Steps
+            {t("Steps")}
           </Form.Label>
           <Form.Control
             as="textarea"
@@ -134,30 +137,30 @@ const AddRecipe = () => {
             value={steps}
             onChange={(e) => setSteps(e.target.value)}
             required
-            placeholder="List steps, one per line"
+            placeholder={t("List steps, one per line")}
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
             <FontAwesomeIcon icon={faTags} className="me-1" />
-            Category
+            {t("Category")}
           </Form.Label>
           <Form.Select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             required
           >
-            <option value="">Select a category</option>
-            <option value="Breakfast">Breakfast</option>
-            <option value="Lunch">Lunch</option>
-            <option value="Dinner">Dinner</option>
-            <option value="Dessert">Dessert</option>
+            <option value="">{t("Select a category")}</option>
+            <option value="Breakfast">{t("Breakfast")}</option>
+            <option value="Lunch">{t("Lunch")}</option>
+            <option value="Dinner">{t("Dinner")}</option>
+            <option value="Dessert">{t("Dessert")}</option>
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
             <FontAwesomeIcon icon={faImage} className="me-1" />
-            Recipe Image (optional)
+            {t("Recipe Image (optional)")}
           </Form.Label>
           <Form.Control
             type="file"
@@ -167,7 +170,7 @@ const AddRecipe = () => {
         </Form.Group>
         <Button type="submit" variant="primary">
           <FontAwesomeIcon icon={faPlus} className="me-1" />
-          Add Recipe
+          {t("Add Recipe")}
         </Button>
       </Form>
     </div>

@@ -5,6 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import { Card, ListGroup, Form, Button, ListGroupItem } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useLanguage } from "../context/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPencilAlt,
@@ -19,6 +20,7 @@ const RecipeDetail = () => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const { currentUser } = useContext(AuthContext);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -64,7 +66,7 @@ const RecipeDetail = () => {
     }
   };
 
-  if (!recipe) return <div className="text-center">Loading...</div>;
+  if (!recipe) return <div className="text-center">{t("Loading...")}</div>;
 
   const isOwner = currentUser && recipe.userId === currentUser.uid;
 
@@ -86,7 +88,7 @@ const RecipeDetail = () => {
         <Card.Title className="mb-3">{recipe.title}</Card.Title>
         <Card.Text className="mb-4">{recipe.description}</Card.Text>
         <h5>
-          <FontAwesomeIcon icon={faList} className="me-2" /> Ingredients
+          <FontAwesomeIcon icon={faList} className="me-2" /> {t("Ingredients")}
         </h5>
         <ListGroup variant="flush" className="mb-4">
           {recipe.ingredients.map((item, index) => (
@@ -94,7 +96,7 @@ const RecipeDetail = () => {
           ))}
         </ListGroup>
         <h5>
-          <FontAwesomeIcon icon={faRoute} className="me-2" /> Steps
+          <FontAwesomeIcon icon={faRoute} className="me-2" /> {t("Steps")}
         </h5>
         <ListGroup variant="flush" className="mb-4">
           {recipe.steps.map((step, index) => (
@@ -108,11 +110,12 @@ const RecipeDetail = () => {
             variant="warning"
             className="mb-4"
           >
-            <FontAwesomeIcon icon={faPencilAlt} className="me-1" /> Edit Recipe
+            <FontAwesomeIcon icon={faPencilAlt} className="me-1" />{" "}
+            {t("Edit Recipe")}
           </Button>
         )}
         <h5>
-          <FontAwesomeIcon icon={faComment} className="me-2" /> Comments
+          <FontAwesomeIcon icon={faComment} className="me-2" /> {t("Comments")}
         </h5>
         <ListGroup variant="flush" className="mb-4">
           {comments.map((comment) => (
@@ -129,12 +132,13 @@ const RecipeDetail = () => {
                 rows={3}
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
-                placeholder="Add a comment..."
+                placeholder={t("Add a comment...")}
                 required
               />
             </Form.Group>
             <Button type="submit" variant="primary">
-              <FontAwesomeIcon icon={faComment} className="me-1" /> Post Comment
+              <FontAwesomeIcon icon={faComment} className="me-1" />{" "}
+              {t("Post Comment")}
             </Button>
           </Form>
         )}

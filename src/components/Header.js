@@ -1,10 +1,11 @@
 import React from "react";
-import { Navbar, Nav, Button, Container } from "react-bootstrap";
+import { Navbar, Nav, Button, Container, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useLanguage } from "../context/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -19,6 +20,7 @@ import {
 
 const Header = () => {
   const { currentUser } = useContext(AuthContext);
+  const { t, language, setLanguage } = useLanguage();
 
   const handleLogout = () => {
     signOut(auth);
@@ -30,52 +32,64 @@ const Header = () => {
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          <FontAwesomeIcon icon={faUtensils} className="me-2" /> Recipe Sharing
+          <FontAwesomeIcon icon={faUtensils} className="me-2" />{" "}
+          {t("Recipe Sharing")}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">
               <FontAwesomeIcon icon={faHome} className="me-1" />
-              Home
+              {t("Home")}
             </Nav.Link>
             {currentUser && (
               <Nav.Link as={Link} to="/add-recipe">
                 <FontAwesomeIcon icon={faPlus} className="me-1" />
-                Add Recipe
+                {t("Add Recipe")}
               </Nav.Link>
             )}
             {currentUser && (
               <Nav.Link as={Link} to="/profile">
                 <FontAwesomeIcon icon={faUser} className="me-1" />
-                Profile
+                {t("Profile")}
               </Nav.Link>
             )}
             {isAdmin && (
               <Nav.Link as={Link} to="/admin">
                 <FontAwesomeIcon icon={faTools} className="me-1" />
-                Admin
+                {t("Admin")}
               </Nav.Link>
             )}
           </Nav>
-          <Nav>
+          <Nav className="align-items-left">
             {currentUser ? (
               <Button variant="outline-light" onClick={handleLogout}>
                 <FontAwesomeIcon icon={faSignOutAlt} className="me-1" />
-                Logout
+                {t("Logout")}
               </Button>
             ) : (
               <>
                 <Nav.Link as={Link} to="/login">
                   <FontAwesomeIcon icon={faSignInAlt} className="me-1" />
-                  Login
+                  {t("Login")}
                 </Nav.Link>
                 <Nav.Link as={Link} to="/register">
                   <FontAwesomeIcon icon={faUserPlus} className="me-1" />
-                  Register
+                  {t("Register")}
                 </Nav.Link>
               </>
             )}
+            {/* Language Switcher */}
+            <div className="d-flex align-items-left ms-1">
+              <Form.Select
+                style={{ width: "120px" }}
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+              >
+                <option value="vi">Tiếng Việt</option>
+                <option value="en">English</option>
+              </Form.Select>
+            </div>
           </Nav>
         </Navbar.Collapse>
       </Container>

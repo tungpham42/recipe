@@ -5,11 +5,13 @@ import { Card, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useLanguage } from "../context/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPencilAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
+  const { t } = useLanguage();
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -29,12 +31,13 @@ const Profile = () => {
     fetchUserRecipes();
   }, [currentUser]);
 
-  if (!currentUser) return <div>Please log in to view your profile.</div>;
+  if (!currentUser)
+    return <div>{t("Please log in to view your profile.")}</div>;
 
   return (
     <div>
       <h2>
-        <FontAwesomeIcon icon={faUser} className="me-2" /> My Recipes
+        <FontAwesomeIcon icon={faUser} className="me-2" /> {t("My Recipes")}
       </h2>
       <Row>
         {recipes.map((recipe) => (
@@ -58,7 +61,7 @@ const Profile = () => {
                     variant="primary"
                   >
                     <FontAwesomeIcon icon={faEye} className="me-1" />
-                    View
+                    {t("View")}
                   </Button>
                   <Button
                     as={Link}
@@ -66,7 +69,7 @@ const Profile = () => {
                     variant="warning"
                   >
                     <FontAwesomeIcon icon={faPencilAlt} className="me-1" />
-                    Edit
+                    {t("Edit")}
                   </Button>
                 </div>
               </Card.Body>

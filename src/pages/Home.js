@@ -5,11 +5,13 @@ import { Card, Button, Row, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUtensils, faEye } from "@fortawesome/free-solid-svg-icons";
+import { useLanguage } from "../context/LanguageContext";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("");
+  const { t } = useLanguage();
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -34,7 +36,8 @@ const Home = () => {
   return (
     <div>
       <h2>
-        <FontAwesomeIcon icon={faUtensils} className="me-2" /> Explore Recipes
+        <FontAwesomeIcon icon={faUtensils} className="me-2" />{" "}
+        {t("Explore Recipes")}
       </h2>
       <Form className="mb-4 p-3 bg-white shadow-sm rounded">
         <Row>
@@ -42,9 +45,10 @@ const Home = () => {
             <Form.Group className="mb-3 mb-md-0 position-relative">
               <Form.Control
                 type="text"
-                placeholder="Search recipes..."
+                placeholder={t("Search recipes...")}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
               />
               <FontAwesomeIcon
                 icon={faSearch}
@@ -63,11 +67,11 @@ const Home = () => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option value="">All Categories</option>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Dessert">Dessert</option>
+                <option value="">{t("All Categories")}</option>
+                <option value="Breakfast">{t("Breakfast")}</option>
+                <option value="Lunch">{t("Lunch")}</option>
+                <option value="Dinner">{t("Dinner")}</option>
+                <option value="Dessert">{t("Dessert")}</option>
               </Form.Select>
             </Form.Group>
           </Col>
@@ -90,7 +94,7 @@ const Home = () => {
                 <Card.Text>{recipe.description.slice(0, 100)}...</Card.Text>
                 <Button as={Link} to={`/recipe/${recipe.id}`} variant="primary">
                   <FontAwesomeIcon icon={faEye} className="me-1" />
-                  View Recipe
+                  {t("View Recipe")}
                 </Button>
               </Card.Body>
             </Card>

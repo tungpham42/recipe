@@ -5,6 +5,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useLanguage } from "../context/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUtensils,
@@ -27,6 +28,7 @@ const EditRecipe = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
+  const { t } = useLanguage();
 
   const CLOUDINARY_CLOUD_NAME = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
   const CLOUDINARY_UPLOAD_PRESET =
@@ -49,11 +51,11 @@ const EditRecipe = () => {
         setCategory(data.category || "");
         setExistingImageUrl(data.imageUrl || "");
       } else {
-        setError("Recipe not found.");
+        setError(t("Recipe not found."));
       }
     };
     fetchRecipe();
-  }, [id, currentUser, navigate]);
+  }, [id, currentUser, navigate, t]);
 
   const handleImageUpload = async (file) => {
     const formData = new FormData();
@@ -99,34 +101,35 @@ const EditRecipe = () => {
       });
       navigate(`/recipe/${id}`);
     } catch (err) {
-      setError(err.message || "Failed to update recipe.");
+      setError(err.message || t("Failed to update recipe."));
     }
   };
 
   return (
     <div className="bg-white p-4 rounded shadow-sm">
       <h2>
-        <FontAwesomeIcon icon={faUtensils} className="me-2" /> Edit Recipe
+        <FontAwesomeIcon icon={faUtensils} className="me-2" />{" "}
+        {t("Edit Recipe")}
       </h2>
       {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>
             <FontAwesomeIcon icon={faUtensils} className="me-1" />
-            Title
+            {t("Title")}
           </Form.Label>
           <Form.Control
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            placeholder="Recipe title"
+            placeholder={t("Recipe title")}
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
             <FontAwesomeIcon icon={faUtensils} className="me-1" />
-            Description
+            {t("Description")}
           </Form.Label>
           <Form.Control
             as="textarea"
@@ -134,13 +137,13 @@ const EditRecipe = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
-            placeholder="Describe your recipe"
+            placeholder={t("Describe your recipe")}
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
             <FontAwesomeIcon icon={faList} className="me-1" />
-            Ingredients
+            {t("Ingredients")}
           </Form.Label>
           <Form.Control
             as="textarea"
@@ -148,13 +151,13 @@ const EditRecipe = () => {
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
             required
-            placeholder="List ingredients, one per line"
+            placeholder={t("List ingredients, one per line")}
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
             <FontAwesomeIcon icon={faRoute} className="me-1" />
-            Steps
+            {t("Steps")}
           </Form.Label>
           <Form.Control
             as="textarea"
@@ -162,30 +165,30 @@ const EditRecipe = () => {
             value={steps}
             onChange={(e) => setSteps(e.target.value)}
             required
-            placeholder="List steps, one per line"
+            placeholder={t("List steps, one per line")}
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
             <FontAwesomeIcon icon={faTags} className="me-1" />
-            Category
+            {t("Category")}
           </Form.Label>
           <Form.Select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             required
           >
-            <option value="">Select a category</option>
-            <option value="Breakfast">Breakfast</option>
-            <option value="Lunch">Lunch</option>
-            <option value="Dinner">Dinner</option>
-            <option value="Dessert">Dessert</option>
+            <option value="">{t("Select a category")}</option>
+            <option value="Breakfast">{t("Breakfast")}</option>
+            <option value="Lunch">{t("Lunch")}</option>
+            <option value="Dinner">{t("Dinner")}</option>
+            <option value="Dessert">{t("Dessert")}</option>
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
             <FontAwesomeIcon icon={faImage} className="me-1" />
-            Recipe Image (optional)
+            {t("Recipe Image (optional)")}
           </Form.Label>
           {existingImageUrl && (
             <div className="mb-2">
@@ -204,7 +207,7 @@ const EditRecipe = () => {
         </Form.Group>
         <Button type="submit" variant="primary">
           <FontAwesomeIcon icon={faSave} className="me-1" />
-          Update Recipe
+          {t("Update Recipe")}
         </Button>
       </Form>
     </div>
