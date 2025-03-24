@@ -21,11 +21,12 @@ import {
   faRoute,
   faSave,
   faTags,
+  faTrash, // Add trash icon for removing image
 } from "@fortawesome/free-solid-svg-icons";
 import { romanizeString } from "../utils"; // Adjust path to your romanizeString function
 
 const EditRecipe = () => {
-  const { slug } = useParams(); // Change from id to slug
+  const { slug } = useParams();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState("");
@@ -34,7 +35,7 @@ const EditRecipe = () => {
   const [imageFile, setImageFile] = useState(null);
   const [existingImageUrl, setExistingImageUrl] = useState("");
   const [error, setError] = useState("");
-  const [recipeId, setRecipeId] = useState(null); // Store the recipe ID
+  const [recipeId, setRecipeId] = useState(null);
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   const { t } = useLanguage();
@@ -50,18 +51,17 @@ const EditRecipe = () => {
         return;
       }
 
-      // Query by slug instead of ID
       const q = query(collection(db, "recipes"), where("slug", "==", slug));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
-        const docSnap = querySnapshot.docs[0]; // Assume slug is unique
+        const docSnap = querySnapshot.docs[0];
         const data = docSnap.data();
         if (data.userId !== currentUser.uid) {
           navigate("/");
           return;
         }
-        setRecipeId(docSnap.id); // Store the ID for updates
+        setRecipeId(docSnap.id);
         setTitle(data.title);
         setDescription(data.description);
         setIngredients(data.ingredients.join("\n"));
@@ -109,6 +109,11 @@ const EditRecipe = () => {
     return `${baseSlug}-${currentId}`;
   };
 
+  const handleRemoveImage = () => {
+    setImageFile(null); // Clear new image file
+    setExistingImageUrl(""); // Clear existing image URL
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!recipeId) {
@@ -132,7 +137,7 @@ const EditRecipe = () => {
         ingredients: ingredients.split("\n"),
         steps: steps.split("\n"),
         category,
-        imageUrl,
+        imageUrl, // This will be empty if the image was removed
         slug: newSlug,
         updatedAt: new Date().toISOString(),
       });
@@ -227,13 +232,21 @@ const EditRecipe = () => {
             <FontAwesomeIcon icon={faImage} className="me-1" />
             {t("Recipe Image (optional)")}
           </Form.Label>
-          {existingImageUrl && (
-            <div className="mb-2">
+          {existingImageUrl && !imageFile && (
+            <div className="mb-2 d-flex align-items-center">
               <img
                 src={existingImageUrl}
                 alt="Current recipe"
                 style={{ maxWidth: "200px", borderRadius: "8px" }}
               />
+              <Button
+                variant="danger"
+                size="sm"
+                className="ms-2"
+                onClick={handleRemoveImage}
+              >
+                <FontAwesomeIcon icon={faTrash} />
+              </Button>
             </div>
           )}
           <Form.Control

@@ -112,7 +112,7 @@ const RecipeDetail = () => {
         {isOwner && (
           <Button
             as={Link}
-            to={`/edit-recipe/${recipe.id}`} // Still using ID here; see notes below
+            to={`/sua-cong-thuc/${recipe.slug}`} // Still using ID here; see notes below
             variant="warning"
             className="mb-4"
           >
