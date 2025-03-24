@@ -33,29 +33,29 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
-            path="/add-recipe"
+            path="/them-cong-thuc"
             element={
               <ProtectedRoute>
                 <AddRecipe />
               </ProtectedRoute>
             }
           />
-          <Route path="/recipe/:id" element={<RecipeDetail />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/cong-thuc/:slug" element={<RecipeDetail />} />
           <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/edit-recipe/:id"
+            path="/sua-cong-thuc/:slug"
             element={
               <ProtectedRoute>
                 <EditRecipe />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/dang-nhap" element={<Login />} />
+          <Route path="/dang-ky" element={<Register />} />
+          <Route
+            path="/ho-so"
+            element={
+              <ProtectedRoute>
+                <Profile />
               </ProtectedRoute>
             }
           />

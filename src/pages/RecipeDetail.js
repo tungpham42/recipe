@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { doc, getDoc, collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { useParams, Link } from "react-router-dom";
 import { Card, ListGroup, Form, Button, ListGroupItem } from "react-bootstrap";
 import { useContext } from "react";
@@ -15,7 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const RecipeDetail = () => {
-  const { id } = useParams();
+  const { slug } = useParams(); // Change from id to slug
   const [recipe, setRecipe] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
@@ -24,15 +24,22 @@ const RecipeDetail = () => {
 
   useEffect(() => {
     const fetchRecipe = async () => {
-      const docRef = doc(db, "recipes", id);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
+      // Query the recipes collection to find a recipe with the matching slug
+      const q = query(collection(db, "recipes"), where("slug", "==", slug));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        // Assuming slug is unique, take the first match
+        const docSnap = querySnapshot.docs[0];
         setRecipe({ id: docSnap.id, ...docSnap.data() });
+      } else {
+        setRecipe(null); // Recipe not found
       }
     };
 
     const fetchComments = async () => {
-      const commentsRef = collection(db, "recipes", id, "comments");
+      if (!recipe) return; // Wait until recipe is fetched
+      const commentsRef = collection(db, "recipes", recipe.id, "comments");
       const querySnapshot = await getDocs(commentsRef);
       const commentData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -41,16 +48,20 @@ const RecipeDetail = () => {
       setComments(commentData);
     };
 
-    fetchRecipe();
-    fetchComments();
-  }, [id]);
+    // Fetch recipe first, then comments
+    fetchRecipe()
+      .then(() => fetchComments())
+      .catch((err) => {
+        console.error("Error fetching recipe or comments:", err);
+      });
+  }, [slug, recipe?.id, recipe]); // Depend on slug and recipe.id to refetch comments when recipe is set
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    if (!currentUser) return;
+    if (!currentUser || !recipe) return;
 
     try {
-      const commentsRef = collection(db, "recipes", id, "comments");
+      const commentsRef = collection(db, "recipes", recipe.id, "comments");
       await addDoc(commentsRef, {
         text: newComment,
         userId: currentUser.uid,
@@ -66,7 +77,8 @@ const RecipeDetail = () => {
     }
   };
 
-  if (!recipe) return <div className="text-center">{t("Loading...")}</div>;
+  if (!recipe)
+    return <div className="text-center">{t("Recipe not found.")}</div>;
 
   const isOwner = currentUser && recipe.userId === currentUser.uid;
 
@@ -100,7 +112,7 @@ const RecipeDetail = () => {
         {isOwner && (
           <Button
             as={Link}
-            to={`/edit-recipe/${recipe.id}`}
+            to={`/edit-recipe/${recipe.id}`} // Still using ID here; see notes below
             variant="warning"
             className="mb-4"
           >

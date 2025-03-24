@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
@@ -15,9 +22,10 @@ import {
   faSave,
   faTags,
 } from "@fortawesome/free-solid-svg-icons";
+import { romanizeString } from "../utils"; // Adjust path to your romanizeString function
 
 const EditRecipe = () => {
-  const { id } = useParams();
+  const { slug } = useParams(); // Change from id to slug
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState("");
@@ -26,6 +34,7 @@ const EditRecipe = () => {
   const [imageFile, setImageFile] = useState(null);
   const [existingImageUrl, setExistingImageUrl] = useState("");
   const [error, setError] = useState("");
+  const [recipeId, setRecipeId] = useState(null); // Store the recipe ID
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   const { t } = useLanguage();
@@ -36,14 +45,23 @@ const EditRecipe = () => {
 
   useEffect(() => {
     const fetchRecipe = async () => {
-      const docRef = doc(db, "recipes", id);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
+      if (!slug) {
+        setError(t("No recipe slug provided."));
+        return;
+      }
+
+      // Query by slug instead of ID
+      const q = query(collection(db, "recipes"), where("slug", "==", slug));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const docSnap = querySnapshot.docs[0]; // Assume slug is unique
         const data = docSnap.data();
         if (data.userId !== currentUser.uid) {
           navigate("/");
           return;
         }
+        setRecipeId(docSnap.id); // Store the ID for updates
         setTitle(data.title);
         setDescription(data.description);
         setIngredients(data.ingredients.join("\n"));
@@ -55,7 +73,7 @@ const EditRecipe = () => {
       }
     };
     fetchRecipe();
-  }, [id, currentUser, navigate, t]);
+  }, [slug, currentUser, navigate, t]);
 
   const handleImageUpload = async (file) => {
     const formData = new FormData();
@@ -71,25 +89,43 @@ const EditRecipe = () => {
         }
       );
       const data = await response.json();
-      if (data.secure_url) {
-        return data.secure_url;
-      } else {
-        throw new Error(data.error?.message || "Image upload failed");
-      }
+      if (data.secure_url) return data.secure_url;
+      throw new Error(data.error?.message || "Image upload failed");
     } catch (err) {
       throw new Error("Error uploading image: " + err.message);
     }
   };
 
+  const generateUniqueSlug = async (baseSlug, currentId) => {
+    const q = query(collection(db, "recipes"), where("slug", "==", baseSlug));
+    const querySnapshot = await getDocs(q);
+
+    const existingDocs = querySnapshot.docs.filter(
+      (doc) => doc.id !== currentId
+    );
+    if (existingDocs.length === 0) {
+      return baseSlug;
+    }
+    return `${baseSlug}-${currentId}`;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!recipeId) {
+      setError(t("No recipe ID available for update."));
+      return;
+    }
+
     try {
       let imageUrl = existingImageUrl;
       if (imageFile) {
         imageUrl = await handleImageUpload(imageFile);
       }
 
-      const recipeRef = doc(db, "recipes", id);
+      const baseSlug = romanizeString(title);
+      const newSlug = await generateUniqueSlug(baseSlug, recipeId);
+
+      const recipeRef = doc(db, "recipes", recipeId);
       await updateDoc(recipeRef, {
         title,
         description,
@@ -97,9 +133,10 @@ const EditRecipe = () => {
         steps: steps.split("\n"),
         category,
         imageUrl,
+        slug: newSlug,
         updatedAt: new Date().toISOString(),
       });
-      navigate(`/recipe/${id}`);
+      navigate(`/cong-thuc/${newSlug}`);
     } catch (err) {
       setError(err.message || t("Failed to update recipe."));
     }

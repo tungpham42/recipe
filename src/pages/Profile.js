@@ -55,7 +55,7 @@ const Profile = () => {
                 <div className="d-flex gap-2">
                   <Button
                     as={Link}
-                    to={`/recipe/${recipe.id}`}
+                    to={`/cong-thuc/${recipe.slug}`}
                     variant="primary"
                   >
                     <FontAwesomeIcon icon={faEye} className="me-1" />
@@ -63,7 +63,7 @@ const Profile = () => {
                   </Button>
                   <Button
                     as={Link}
-                    to={`/edit-recipe/${recipe.id}`}
+                    to={`/sua-cong-thuc/${recipe.slug}`}
                     variant="warning"
                   >
                     <FontAwesomeIcon icon={faPencilAlt} className="me-1" />

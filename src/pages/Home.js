@@ -90,7 +90,7 @@ const Home = () => {
               <Card.Body>
                 <Card.Title>{recipe.title}</Card.Title>
                 <Card.Text>{recipe.description.slice(0, 100)}...</Card.Text>
-                <Button as={Link} to={`/recipe/${recipe.id}`} variant="primary">
+                <Button as={Link} to={`/cong-thuc/${recipe.slug}`} variant="primary">
                   <FontAwesomeIcon icon={faEye} className="me-1" />
                   {t("View Recipe")}
                 </Button>

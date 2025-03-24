@@ -43,13 +43,13 @@ const Header = () => {
               {t("Home")}
             </Nav.Link>
             {currentUser && (
-              <Nav.Link as={Link} to="/add-recipe">
+              <Nav.Link as={Link} to="/them-cong-thuc">
                 <FontAwesomeIcon icon={faPlus} className="me-1" />
                 {t("Add Recipe")}
               </Nav.Link>
             )}
             {currentUser && (
-              <Nav.Link as={Link} to="/profile">
+              <Nav.Link as={Link} to="/ho-so">
                 <FontAwesomeIcon icon={faUser} className="me-1" />
                 {t("Profile")}
               </Nav.Link>
@@ -69,11 +69,11 @@ const Header = () => {
               </Button>
             ) : (
               <>
-                <Nav.Link as={Link} to="/login">
+                <Nav.Link as={Link} to="/dang-nhap">
                   <FontAwesomeIcon icon={faSignInAlt} className="me-1" />
                   {t("Login")}
                 </Nav.Link>
-                <Nav.Link as={Link} to="/register">
+                <Nav.Link as={Link} to="/dang-ky">
                   <FontAwesomeIcon icon={faUserPlus} className="me-1" />
                   {t("Register")}
                 </Nav.Link>

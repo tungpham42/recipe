@@ -30,7 +30,7 @@ const RecipeCard = ({ recipe, onDeleteRecipe, onDeleteComment }) => {
           <div className="d-flex gap-2 mb-3">
             <Button
               as={Link}
-              to={`/edit-recipe/${recipe.id}`}
+              to={`/sua-cong-thuc/${recipe.slug}`}
               variant="warning"
             >
               <FontAwesomeIcon icon={faPencilAlt} className="me-1" />{" "}

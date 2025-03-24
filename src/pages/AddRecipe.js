@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { db, auth } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
@@ -13,6 +20,7 @@ import {
   faPlus,
   faTags,
 } from "@fortawesome/free-solid-svg-icons";
+import { romanizeString } from "../utils"; // Adjust path to your romanizeString function
 
 const AddRecipe = () => {
   const [title, setTitle] = useState("");
@@ -43,14 +51,25 @@ const AddRecipe = () => {
         }
       );
       const data = await response.json();
-      if (data.secure_url) {
-        return data.secure_url;
-      } else {
-        throw new Error(data.error?.message || "Image upload failed");
-      }
+      if (data.secure_url) return data.secure_url;
+      throw new Error(data.error?.message || "Image upload failed");
     } catch (err) {
       throw new Error("Error uploading image: " + err.message);
     }
+  };
+
+  const generateUniqueSlug = async (baseSlug) => {
+    // Check if the base slug already exists
+    const q = query(collection(db, "recipes"), where("slug", "==", baseSlug));
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      return baseSlug; // Slug is unique, return it as-is
+    }
+
+    // If slug exists, append a unique identifier (we’ll use the doc ID later)
+    // For now, generate a temporary slug and refine it after doc creation
+    return baseSlug + "-temp-" + Math.random().toString(36).substring(2, 8);
   };
 
   const handleSubmit = async (e) => {
@@ -61,17 +80,30 @@ const AddRecipe = () => {
         imageUrl = await handleImageUpload(imageFile);
       }
 
-      await addDoc(collection(db, "recipes"), {
+      // Generate base slug from title
+      const baseSlug = romanizeString(title);
+      let slug = await generateUniqueSlug(baseSlug);
+
+      // Add the recipe to Firestore
+      const docRef = await addDoc(collection(db, "recipes"), {
         title,
         description,
         ingredients: ingredients.split("\n"),
         steps: steps.split("\n"),
         category,
         imageUrl,
+        slug, // Temporary slug
         userId: auth.currentUser.uid,
         createdAt: new Date().toISOString(),
       });
-      navigate("/");
+
+      // If the slug was temporary, update it with the document ID
+      if (slug.includes("-temp-")) {
+        slug = `${baseSlug}-${docRef.id}`;
+        await updateDoc(docRef, { slug }); // Update the slug with the final unique value
+      }
+
+      navigate(`/cong-thuc/${slug}`);
     } catch (err) {
       setError(err.message || t("Failed to add recipe."));
     }
