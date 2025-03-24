@@ -125,11 +125,12 @@ h2 {
     255,
     252,
     245,
-    0.8
+    0.64
   ) !important; /* Semi-transparent overlay */
   padding: 2rem !important;
   border-radius: 15px !important;
-  margin-top: 2rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
 }
 
 /* Custom Card Image */
