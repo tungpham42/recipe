@@ -1,126 +1,147 @@
 body {
-  font-family: "Roboto", sans-serif !important;
-  background-color: #f4f7fa !important;
-  color: #333 !important;
+  font-family: "Cabin", sans-serif !important; /* Clean, readable base font */
+  background-color: #fff7e6 !important; /* Warm cream, like parchment */
+  color: #4a2c0f !important; /* Rich brown, like coffee or chocolate */
+  background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M10 2a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 11a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1z" fill="%23f5e1c8" opacity="0.2"/%3E%3C/svg%3E'); /* Subtle texture */
 }
 
 h2 {
-  font-weight: 700 !important;
-  color: #2c3e50 !important;
+  font-family: "Pacifico", cursive !important; /* Handwritten style for warmth */
+  font-weight: 400 !important;
+  color: #e67e22 !important; /* Warm orange, like carrots or citrus */
   margin-bottom: 1.5rem !important;
+  text-shadow: 1px 1px 2px rgba(230, 126, 34, 0.2) !important; /* Soft glow */
 }
 
 /* Card Styling */
 .card {
-  border: none !important;
-  border-radius: 12px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-  transition: transform 0.2s ease-in-out !important;
+  border: 2px solid #f9e4b7 !important; /* Light golden border, like a recipe card */
+  border-radius: 15px !important;
+  box-shadow: 0 4px 12px rgba(74, 44, 15, 0.1) !important; /* Brown-tinted shadow */
+  background-color: #fffcf5 !important; /* Off-white, like a cookbook page */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out !important;
 }
 
 .card:hover {
   transform: translateY(-5px) !important;
+  box-shadow: 0 6px 18px rgba(74, 44, 15, 0.15) !important; /* Deeper shadow on hover */
 }
 
 .card-title {
-  font-size: 1.25rem !important;
-  font-weight: 600 !important;
-  color: #34495e !important;
+  font-family: "Pacifico", cursive !important; /* Playful title */
+  font-size: 1.5rem !important;
+  font-weight: 400 !important;
+  color: #c0392b !important; /* Deep red, like tomato sauce */
 }
 
 .card-text {
   font-size: 0.95rem !important;
-  color: #7f8c8d !important;
+  color: #7f5539 !important; /* Warm brown, like toasted bread */
 }
 
 /* Buttons */
 .btn-primary {
-  background-color: #3498db !important;
-  border-color: #3498db !important;
-  border-radius: 8px !important;
-  padding: 0.5rem 1.5rem !important;
+  background-color: #27ae60 !important; /* Fresh green, like basil */
+  border-color: #27ae60 !important;
+  border-radius: 10px !important;
+  padding: 0.6rem 1.8rem !important;
   font-weight: 500 !important;
-  transition: background-color 0.3s ease !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
 }
 
 .btn-primary:hover {
-  background-color: #2980b9 !important;
-  border-color: #2980b9 !important;
+  background-color: #219653 !important; /* Darker green */
+  border-color: #219653 !important;
+  transform: scale(1.05) !important; /* Slight pop effect */
 }
 
 .btn-warning {
-  background-color: #f1c40f !important;
-  border-color: #f1c40f !important;
+  background-color: #e67e22 !important; /* Warm orange, like spices */
+  border-color: #e67e22 !important;
   color: #fff !important;
-  border-radius: 8px !important;
-  padding: 0.5rem 1.5rem !important;
+  border-radius: 10px !important;
+  padding: 0.6rem 1.8rem !important;
   font-weight: 500 !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
 }
 
 .btn-warning:hover {
-  background-color: #d4ac0d !important;
-  border-color: #d4ac0d !important;
+  background-color: #d35400 !important; /* Deeper orange */
+  border-color: #d35400 !important;
+  transform: scale(1.05) !important;
 }
 
 /* Navbar */
 .navbar {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  background-color: #f39c12 !important; /* Bright orange, like a chef’s apron */
+  box-shadow: 0 2px 8px rgba(74, 44, 15, 0.15) !important;
 }
 
 .navbar-brand {
-  font-weight: 700 !important;
-  font-size: 1.5rem !important;
+  font-family: "Pacifico", cursive !important;
+  font-weight: 400 !important;
+  font-size: 1.8rem !important;
+  color: #fff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2) !important;
 }
 
 .nav-link {
   font-weight: 500 !important;
-  color: #ecf0f1 !important;
+  color: #fff !important;
   transition: color 0.3s ease !important;
 }
 
 .nav-link:hover {
-  color: #3498db !important;
+  color: #ffeaa7 !important; /* Light yellow, like butter */
 }
 
 /* Forms */
 .form-control {
-  border-radius: 8px !important;
-  border: 1px solid #dcdcdc !important;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 10px !important;
+  border: 1px solid #e8d5a9 !important; /* Soft beige border */
+  background-color: #fffef0 !important; /* Very light cream */
+  box-shadow: inset 0 1px 3px rgba(74, 44, 15, 0.05) !important;
+  font-size: 1rem !important;
 }
 
 .form-control:focus {
-  border-color: #3498db !important;
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5) !important;
+  border-color: #e67e22 !important; /* Orange focus */
+  box-shadow: 0 0 5px rgba(230, 126, 34, 0.5) !important;
 }
 
 /* Alerts */
 .alert {
-  border-radius: 8px !important;
+  border-radius: 10px !important;
   font-weight: 500 !important;
+  background-color: #fadbd8 !important; /* Light pinkish-red for errors */
+  border-color: #e74c3c !important; /* Red border */
+  color: #c0392b !important;
 }
 
 /* Container */
 .container {
   max-width: 1200px !important;
+  background-color: rgba(
+    255,
+    252,
+    245,
+    0.8
+  ) !important; /* Semi-transparent overlay */
+  padding: 2rem !important;
+  border-radius: 15px !important;
+  margin-top: 2rem !important;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .card {
-    margin-bottom: 1rem !important;
-  }
-  .btn {
-    width: 100% !important;
-    margin-bottom: 0.5rem !important;
-  }
-}
+/* Custom Card Image */
 .custom-card-img {
   background-size: cover;
   background-position: center;
   width: 100%;
   padding-top: 56.25%; /* 16:9 aspect ratio */
   position: relative;
+  border-top-left-radius: 15px !important;
+  border-top-right-radius: 15px !important;
+  border-bottom: 3px solid #f1c40f !important; /* Yellow accent, like a bookmark */
 }
 
 .custom-card-img::before {
@@ -132,4 +153,22 @@ h2 {
   height: 100%;
   background-size: cover;
   background-position: center;
+  opacity: 0.9 !important; /* Slight overlay for warmth */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 1.5rem !important;
+  }
+  .btn {
+    width: 100% !important;
+    margin-bottom: 0.75rem !important;
+  }
+  h2 {
+    font-size: 1.75rem !important;
+  }
+  .navbar-brand {
+    font-size: 1.5rem !important;
+  }
 }
