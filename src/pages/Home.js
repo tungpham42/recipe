@@ -79,15 +79,13 @@ const Home = () => {
       </Form>
       <Row>
         {filteredRecipes.map((recipe) => (
-          <Col md={4} key={recipe.id} className="mb-4">
+          <Col lg={4} md={6} key={recipe.id} className="mb-4">
             <Card>
               {recipe.imageUrl && (
-                <Card.Img
-                  variant="top"
-                  src={recipe.imageUrl}
-                  alt={recipe.title}
-                  style={{ height: "200px", objectFit: "cover" }}
-                />
+                <div
+                  className="custom-card-img rounded-top"
+                  style={{ backgroundImage: `url(${recipe.imageUrl})` }}
+                ></div>
               )}
               <Card.Body>
                 <Card.Title>{recipe.title}</Card.Title>

@@ -73,16 +73,10 @@ const RecipeDetail = () => {
   return (
     <Card className="p-4">
       {recipe.imageUrl && (
-        <Card.Img
-          variant="top"
-          src={recipe.imageUrl}
-          alt={recipe.title}
-          style={{
-            maxHeight: "400px",
-            objectFit: "cover",
-            borderRadius: "12px 12px 0 0",
-          }}
-        />
+        <div
+          className="custom-card-img rounded-top"
+          style={{ backgroundImage: `url(${recipe.imageUrl})` }}
+        ></div>
       )}
       <Card.Body>
         <Card.Title className="mb-3">{recipe.title}</Card.Title>
