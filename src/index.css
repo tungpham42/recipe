@@ -265,7 +265,8 @@ h2 {
   transition: all 0.2s ease-in-out !important;
 }
 
-.custom-pagination .pagination-item:hover {
+.custom-pagination .pagination-item:hover,
+.custom-pagination .pagination-nav:hover {
   background-color: #e67e22 !important; /* Warm orange on hover */
   border-color: #d35400 !important; /* Deeper orange */
   color: #fff !important;

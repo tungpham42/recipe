@@ -148,7 +148,7 @@ const AdminPanel = () => {
   const { recipes, error, deleteRecipe, deleteComment } = useAdminRecipes();
 
   const [currentPage, setCurrentPage] = useState(1); // Add this state
-  const itemsPerPage = 6;
+  const itemsPerPage = 12;
 
   const isAdmin = currentUser && currentUser.email === "tung.42@gmail.com";
 

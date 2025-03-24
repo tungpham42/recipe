@@ -16,7 +16,7 @@ const Profile = () => {
   const [recipes, setRecipes] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1); // Add this state
-  const itemsPerPage = 6;
+  const itemsPerPage = 12;
 
   useEffect(() => {
     const fetchUserRecipes = async () => {

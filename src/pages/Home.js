@@ -14,7 +14,7 @@ const Home = () => {
   const [category, setCategory] = useState("");
   const { t } = useLanguage();
   const [currentPage, setCurrentPage] = useState(1); // Add this state
-  const itemsPerPage = 6;
+  const itemsPerPage = 12;
 
   useEffect(() => {
     const fetchRecipes = async () => {
