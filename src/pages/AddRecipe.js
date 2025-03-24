@@ -3,6 +3,15 @@ import { db, auth } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUtensils,
+  faImage,
+  faList,
+  faRoute,
+  faPlus,
+  faTags,
+} from "@fortawesome/free-solid-svg-icons";
 
 const AddRecipe = () => {
   const [title, setTitle] = useState("");
@@ -33,7 +42,7 @@ const AddRecipe = () => {
       );
       const data = await response.json();
       if (data.secure_url) {
-        return data.secure_url; // Return the Cloudinary image URL
+        return data.secure_url;
       } else {
         throw new Error(data.error?.message || "Image upload failed");
       }
@@ -68,11 +77,16 @@ const AddRecipe = () => {
 
   return (
     <div className="bg-white p-4 rounded shadow-sm">
-      <h2>Add a Recipe</h2>
+      <h2>
+        <FontAwesomeIcon icon={faUtensils} className="me-2" /> Add a Recipe
+      </h2>
       {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Title</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faUtensils} className="me-1" />
+            Title
+          </Form.Label>
           <Form.Control
             type="text"
             value={title}
@@ -82,7 +96,10 @@ const AddRecipe = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Description</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faUtensils} className="me-1" />
+            Description
+          </Form.Label>
           <Form.Control
             as="textarea"
             rows={3}
@@ -93,7 +110,10 @@ const AddRecipe = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Ingredients</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faList} className="me-1" />
+            Ingredients
+          </Form.Label>
           <Form.Control
             as="textarea"
             rows={5}
@@ -104,7 +124,10 @@ const AddRecipe = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Steps</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faRoute} className="me-1" />
+            Steps
+          </Form.Label>
           <Form.Control
             as="textarea"
             rows={5}
@@ -115,7 +138,10 @@ const AddRecipe = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Category</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faTags} className="me-1" />
+            Category
+          </Form.Label>
           <Form.Select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -129,7 +155,10 @@ const AddRecipe = () => {
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Recipe Image (optional)</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faImage} className="me-1" />
+            Recipe Image (optional)
+          </Form.Label>
           <Form.Control
             type="file"
             accept="image/*"
@@ -137,6 +166,7 @@ const AddRecipe = () => {
           />
         </Form.Group>
         <Button type="submit" variant="primary">
+          <FontAwesomeIcon icon={faPlus} className="me-1" />
           Add Recipe
         </Button>
       </Form>

@@ -5,6 +5,8 @@ import { Card, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faPencilAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
@@ -31,7 +33,9 @@ const Profile = () => {
 
   return (
     <div>
-      <h2>My Recipes</h2>
+      <h2>
+        <FontAwesomeIcon icon={faUser} className="me-2" /> My Recipes
+      </h2>
       <Row>
         {recipes.map((recipe) => (
           <Col md={4} key={recipe.id} className="mb-4">
@@ -53,6 +57,7 @@ const Profile = () => {
                     to={`/recipe/${recipe.id}`}
                     variant="primary"
                   >
+                    <FontAwesomeIcon icon={faEye} className="me-1" />
                     View
                   </Button>
                   <Button
@@ -60,6 +65,7 @@ const Profile = () => {
                     to={`/edit-recipe/${recipe.id}`}
                     variant="warning"
                   >
+                    <FontAwesomeIcon icon={faPencilAlt} className="me-1" />
                     Edit
                   </Button>
                 </div>

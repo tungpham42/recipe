@@ -5,6 +5,15 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUtensils,
+  faImage,
+  faList,
+  faRoute,
+  faSave,
+  faTags,
+} from "@fortawesome/free-solid-svg-icons";
 
 const EditRecipe = () => {
   const { id } = useParams();
@@ -96,11 +105,16 @@ const EditRecipe = () => {
 
   return (
     <div className="bg-white p-4 rounded shadow-sm">
-      <h2>Edit Recipe</h2>
+      <h2>
+        <FontAwesomeIcon icon={faUtensils} className="me-2" /> Edit Recipe
+      </h2>
       {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Title</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faUtensils} className="me-1" />
+            Title
+          </Form.Label>
           <Form.Control
             type="text"
             value={title}
@@ -110,7 +124,10 @@ const EditRecipe = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Description</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faUtensils} className="me-1" />
+            Description
+          </Form.Label>
           <Form.Control
             as="textarea"
             rows={3}
@@ -121,7 +138,10 @@ const EditRecipe = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Ingredients</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faList} className="me-1" />
+            Ingredients
+          </Form.Label>
           <Form.Control
             as="textarea"
             rows={5}
@@ -132,7 +152,10 @@ const EditRecipe = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Steps</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faRoute} className="me-1" />
+            Steps
+          </Form.Label>
           <Form.Control
             as="textarea"
             rows={5}
@@ -143,7 +166,10 @@ const EditRecipe = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Category</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faTags} className="me-1" />
+            Category
+          </Form.Label>
           <Form.Select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -157,7 +183,10 @@ const EditRecipe = () => {
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Recipe Image (optional)</Form.Label>
+          <Form.Label>
+            <FontAwesomeIcon icon={faImage} className="me-1" />
+            Recipe Image (optional)
+          </Form.Label>
           {existingImageUrl && (
             <div className="mb-2">
               <img
@@ -174,6 +203,7 @@ const EditRecipe = () => {
           />
         </Form.Group>
         <Button type="submit" variant="primary">
+          <FontAwesomeIcon icon={faSave} className="me-1" />
           Update Recipe
         </Button>
       </Form>

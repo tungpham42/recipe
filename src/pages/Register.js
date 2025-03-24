@@ -3,6 +3,12 @@ import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Form, Button, Alert, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faLock,
+  faUserPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +36,10 @@ const Register = () => {
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleRegister}>
           <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
+            <Form.Label>
+              <FontAwesomeIcon icon={faEnvelope} className="me-1" />
+              Email
+            </Form.Label>
             <Form.Control
               type="email"
               value={email}
@@ -40,7 +49,10 @@ const Register = () => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>
+              <FontAwesomeIcon icon={faLock} className="me-1" />
+              Password
+            </Form.Label>
             <Form.Control
               type="password"
               value={password}
@@ -50,6 +62,7 @@ const Register = () => {
             />
           </Form.Group>
           <Button type="submit" variant="primary" className="w-100">
+            <FontAwesomeIcon icon={faUserPlus} className="me-1" />
             Register
           </Button>
         </Form>

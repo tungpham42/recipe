@@ -3,6 +3,8 @@ import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Card, Button, Row, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faUtensils, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
@@ -31,16 +33,27 @@ const Home = () => {
 
   return (
     <div>
-      <h2>Explore Recipes</h2>
+      <h2>
+        <FontAwesomeIcon icon={faUtensils} className="me-2" /> Explore Recipes
+      </h2>
       <Form className="mb-4 p-3 bg-white shadow-sm rounded">
         <Row>
           <Col md={8}>
-            <Form.Group className="mb-3 mb-md-0">
+            <Form.Group className="mb-3 mb-md-0 position-relative">
               <Form.Control
                 type="text"
                 placeholder="Search recipes..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="position-absolute"
+                style={{
+                  right: "20px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                }}
               />
             </Form.Group>
           </Col>
@@ -76,6 +89,7 @@ const Home = () => {
                 <Card.Title>{recipe.title}</Card.Title>
                 <Card.Text>{recipe.description.slice(0, 100)}...</Card.Text>
                 <Button as={Link} to={`/recipe/${recipe.id}`} variant="primary">
+                  <FontAwesomeIcon icon={faEye} className="me-1" />
                   View Recipe
                 </Button>
               </Card.Body>

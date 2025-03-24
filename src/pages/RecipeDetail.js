@@ -5,6 +5,13 @@ import { useParams, Link } from "react-router-dom";
 import { Card, ListGroup, Form, Button, ListGroupItem } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPencilAlt,
+  faComment,
+  faList,
+  faRoute,
+} from "@fortawesome/free-solid-svg-icons";
 
 const RecipeDetail = () => {
   const { id } = useParams();
@@ -78,13 +85,17 @@ const RecipeDetail = () => {
       <Card.Body>
         <Card.Title className="mb-3">{recipe.title}</Card.Title>
         <Card.Text className="mb-4">{recipe.description}</Card.Text>
-        <h5>Ingredients</h5>
+        <h5>
+          <FontAwesomeIcon icon={faList} className="me-2" /> Ingredients
+        </h5>
         <ListGroup variant="flush" className="mb-4">
           {recipe.ingredients.map((item, index) => (
             <ListGroupItem key={index}>{item}</ListGroupItem>
           ))}
         </ListGroup>
-        <h5>Steps</h5>
+        <h5>
+          <FontAwesomeIcon icon={faRoute} className="me-2" /> Steps
+        </h5>
         <ListGroup variant="flush" className="mb-4">
           {recipe.steps.map((step, index) => (
             <ListGroupItem key={index}>{step}</ListGroupItem>
@@ -97,10 +108,12 @@ const RecipeDetail = () => {
             variant="warning"
             className="mb-4"
           >
-            Edit Recipe
+            <FontAwesomeIcon icon={faPencilAlt} className="me-1" /> Edit Recipe
           </Button>
         )}
-        <h5>Comments</h5>
+        <h5>
+          <FontAwesomeIcon icon={faComment} className="me-2" /> Comments
+        </h5>
         <ListGroup variant="flush" className="mb-4">
           {comments.map((comment) => (
             <ListGroupItem key={comment.id} className="py-3">
@@ -121,7 +134,7 @@ const RecipeDetail = () => {
               />
             </Form.Group>
             <Button type="submit" variant="primary">
-              Post Comment
+              <FontAwesomeIcon icon={faComment} className="me-1" /> Post Comment
             </Button>
           </Form>
         )}

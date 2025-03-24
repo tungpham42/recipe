@@ -16,6 +16,8 @@ import Profile from "./pages/Profile";
 import EditRecipe from "./pages/EditRecipe";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import AdminPanel from "./pages/AdminPanel";
+import Footer from "./components/Footer";
 
 const ProtectedRoute = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
@@ -56,8 +58,17 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminPanel />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Container>
+      <Footer />
     </Router>
   );
 }
