@@ -17,17 +17,17 @@ const RecipeCard = ({ recipe, onDeleteRecipe, onDeleteComment }) => {
   const { t } = useLanguage();
   return (
     <Col lg={4} md={6} className="mb-4">
-      <Card>
+      <Card className="d-flex flex-column h-100">
         {recipe.imageUrl && (
           <div
             className="custom-card-img rounded-top"
             style={{ backgroundImage: `url(${recipe.imageUrl})` }}
           ></div>
         )}
-        <Card.Body>
+        <Card.Body className="d-flex flex-column">
           <Card.Title>{recipe.title}</Card.Title>
           <Card.Text>{recipe.description.slice(0, 100)}...</Card.Text>
-          <div className="d-flex gap-2 mb-3">
+          <div className="mt-auto d-flex justify-content-start gap-3">
             <Button
               as={Link}
               to={`/sua-cong-thuc/${recipe.slug}`}

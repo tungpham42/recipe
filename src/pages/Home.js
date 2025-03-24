@@ -80,20 +80,26 @@ const Home = () => {
       <Row>
         {filteredRecipes.map((recipe) => (
           <Col lg={4} md={6} key={recipe.id} className="mb-4">
-            <Card>
+            <Card className="d-flex flex-column h-100">
               {recipe.imageUrl && (
                 <div
                   className="custom-card-img rounded-top"
                   style={{ backgroundImage: `url(${recipe.imageUrl})` }}
                 ></div>
               )}
-              <Card.Body>
+              <Card.Body className="d-flex flex-column">
                 <Card.Title>{recipe.title}</Card.Title>
                 <Card.Text>{recipe.description.slice(0, 100)}...</Card.Text>
-                <Button as={Link} to={`/cong-thuc/${recipe.slug}`} variant="primary">
-                  <FontAwesomeIcon icon={faEye} className="me-1" />
-                  {t("View Recipe")}
-                </Button>
+                <div className="mt-auto d-flex justify-content-start gap-3">
+                  <Button
+                    as={Link}
+                    to={`/cong-thuc/${recipe.slug}`}
+                    variant="primary"
+                  >
+                    <FontAwesomeIcon icon={faEye} className="me-1" />
+                    {t("View Recipe")}
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           </Col>
