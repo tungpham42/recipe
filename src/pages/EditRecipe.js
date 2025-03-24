@@ -233,7 +233,7 @@ const EditRecipe = () => {
             {t("Recipe Image (optional)")}
           </Form.Label>
           {existingImageUrl && !imageFile && (
-            <div className="mb-2 d-flex align-items-center">
+            <div className="mb-2 d-flex align-items-start">
               <img
                 src={existingImageUrl}
                 alt="Current recipe"
