@@ -10,28 +10,32 @@ const AddRecipe = () => {
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
   const [category, setCategory] = useState("");
-  const [imageFile, setImageFile] = useState(null); // State for file input
+  const [imageFile, setImageFile] = useState(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const FREEIMAGE_API_KEY = process.env.REACT_APP_FREEIMAGE_API_KEY; // Replace with your freeimage.host API key
+  const CLOUDINARY_CLOUD_NAME = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
+  const CLOUDINARY_UPLOAD_PRESET =
+    process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 
   const handleImageUpload = async (file) => {
     const formData = new FormData();
-    formData.append("key", FREEIMAGE_API_KEY);
-    formData.append("source", file);
-    formData.append("format", "json");
+    formData.append("file", file);
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
 
     try {
-      const response = await fetch("https://freeimage.host/api/1/upload", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       const data = await response.json();
-      if (data.status_code === 200) {
-        return data.image.url; // Return the hosted image URL
+      if (data.secure_url) {
+        return data.secure_url; // Return the Cloudinary image URL
       } else {
-        throw new Error(data.error.message || "Image upload failed");
+        throw new Error(data.error?.message || "Image upload failed");
       }
     } catch (err) {
       throw new Error("Error uploading image: " + err.message);
@@ -43,7 +47,7 @@ const AddRecipe = () => {
     try {
       let imageUrl = "";
       if (imageFile) {
-        imageUrl = await handleImageUpload(imageFile); // Upload image and get URL
+        imageUrl = await handleImageUpload(imageFile);
       }
 
       await addDoc(collection(db, "recipes"), {
@@ -52,7 +56,7 @@ const AddRecipe = () => {
         ingredients: ingredients.split("\n"),
         steps: steps.split("\n"),
         category,
-        imageUrl, // Save the hosted image URL
+        imageUrl,
         userId: auth.currentUser.uid,
         createdAt: new Date().toISOString(),
       });

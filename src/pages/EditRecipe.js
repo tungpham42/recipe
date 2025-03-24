@@ -13,13 +13,15 @@ const EditRecipe = () => {
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
   const [category, setCategory] = useState("");
-  const [imageFile, setImageFile] = useState(null); // State for new image file
-  const [existingImageUrl, setExistingImageUrl] = useState(""); // Existing image URL
+  const [imageFile, setImageFile] = useState(null);
+  const [existingImageUrl, setExistingImageUrl] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
 
-  const FREEIMAGE_API_KEY = process.env.REACT_APP_FREEIMAGE_API_KEY; // Replace with your freeimage.host API key
+  const CLOUDINARY_CLOUD_NAME = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
+  const CLOUDINARY_UPLOAD_PRESET =
+    process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -36,7 +38,7 @@ const EditRecipe = () => {
         setIngredients(data.ingredients.join("\n"));
         setSteps(data.steps.join("\n"));
         setCategory(data.category || "");
-        setExistingImageUrl(data.imageUrl || ""); // Load existing image URL
+        setExistingImageUrl(data.imageUrl || "");
       } else {
         setError("Recipe not found.");
       }
@@ -46,20 +48,22 @@ const EditRecipe = () => {
 
   const handleImageUpload = async (file) => {
     const formData = new FormData();
-    formData.append("key", FREEIMAGE_API_KEY);
-    formData.append("source", file);
-    formData.append("format", "json");
+    formData.append("file", file);
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
 
     try {
-      const response = await fetch("https://freeimage.host/api/1/upload", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       const data = await response.json();
-      if (data.status_code === 200) {
-        return data.image.url; // Return the hosted image URL
+      if (data.secure_url) {
+        return data.secure_url;
       } else {
-        throw new Error(data.error.message || "Image upload failed");
+        throw new Error(data.error?.message || "Image upload failed");
       }
     } catch (err) {
       throw new Error("Error uploading image: " + err.message);
@@ -71,7 +75,7 @@ const EditRecipe = () => {
     try {
       let imageUrl = existingImageUrl;
       if (imageFile) {
-        imageUrl = await handleImageUpload(imageFile); // Upload new image if provided
+        imageUrl = await handleImageUpload(imageFile);
       }
 
       const recipeRef = doc(db, "recipes", id);
@@ -81,7 +85,7 @@ const EditRecipe = () => {
         ingredients: ingredients.split("\n"),
         steps: steps.split("\n"),
         category,
-        imageUrl, // Update with new or existing image URL
+        imageUrl,
         updatedAt: new Date().toISOString(),
       });
       navigate(`/recipe/${id}`);
