@@ -6,12 +6,15 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUtensils, faEye } from "@fortawesome/free-solid-svg-icons";
 import { useLanguage } from "../context/LanguageContext";
+import Pagination from "../components/Pagination";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("");
   const { t } = useLanguage();
+  const [currentPage, setCurrentPage] = useState(1); // Add this state
+  const itemsPerPage = 6;
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -32,6 +35,13 @@ const Home = () => {
     const matchesCategory = category ? recipe.category === category : true;
     return matchesSearch && matchesCategory;
   });
+
+  const indexOfLastRecipe = currentPage * itemsPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
+  const currentRecipes = filteredRecipes.slice(
+    indexOfFirstRecipe,
+    indexOfLastRecipe
+  );
 
   return (
     <div>
@@ -78,7 +88,7 @@ const Home = () => {
         </Row>
       </Form>
       <Row>
-        {filteredRecipes.map((recipe) => (
+        {currentRecipes.map((recipe) => (
           <Col lg={4} md={6} key={recipe.id} className="mb-4">
             <Card className="d-flex flex-column h-100">
               {recipe.imageUrl && (
@@ -105,6 +115,12 @@ const Home = () => {
           </Col>
         ))}
       </Row>
+      <Pagination
+        itemsPerPage={itemsPerPage}
+        totalItems={filteredRecipes.length}
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 };

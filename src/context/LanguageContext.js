@@ -61,6 +61,8 @@ const translations = {
     "List ingredients, one per line": "List ingredients, one per line",
     "List steps, one per line": "List steps, one per line",
     "Select a category": "Select a category",
+    Previous: "Previous",
+    Next: "Next",
   },
   vi: {
     Home: "Trang chủ",
@@ -121,6 +123,8 @@ const translations = {
       "Liệt kê nguyên liệu, mỗi dòng một nguyên liệu",
     "List steps, one per line": "Liệt kê các bước, mỗi dòng một bước",
     "Select a category": "Chọn một danh mục",
+    Previous: "Trước",
+    Next: "Sau",
   },
 };
 

@@ -12,6 +12,7 @@ import {
   faTools,
   faCommentSlash,
 } from "@fortawesome/free-solid-svg-icons";
+import Pagination from "../components/Pagination";
 
 const RecipeCard = ({ recipe, onDeleteRecipe, onDeleteComment }) => {
   const { t } = useLanguage();
@@ -146,10 +147,17 @@ const AdminPanel = () => {
   const { t } = useLanguage();
   const { recipes, error, deleteRecipe, deleteComment } = useAdminRecipes();
 
+  const [currentPage, setCurrentPage] = useState(1); // Add this state
+  const itemsPerPage = 6;
+
   const isAdmin = currentUser && currentUser.email === "tung.42@gmail.com";
 
   if (!currentUser) return <Navigate to="/login" />;
   if (!isAdmin) return <div>{t("Unauthorized access.")}</div>;
+
+  const indexOfLastRecipe = currentPage * itemsPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
+  const currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
 
   return (
     <div>
@@ -159,7 +167,7 @@ const AdminPanel = () => {
       </h2>
       {error && <Alert variant="danger">{error}</Alert>}
       <Row>
-        {recipes.map((recipe) => (
+        {currentRecipes.map((recipe) => (
           <RecipeCard
             key={recipe.id}
             recipe={recipe}
@@ -168,6 +176,12 @@ const AdminPanel = () => {
           />
         ))}
       </Row>
+      <Pagination
+        itemsPerPage={itemsPerPage}
+        totalItems={recipes.length}
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 };

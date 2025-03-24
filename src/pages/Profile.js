@@ -8,11 +8,15 @@ import { AuthContext } from "../context/AuthContext";
 import { useLanguage } from "../context/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPencilAlt, faUser } from "@fortawesome/free-solid-svg-icons";
+import Pagination from "../components/Pagination";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const { t } = useLanguage();
   const [recipes, setRecipes] = useState([]);
+
+  const [currentPage, setCurrentPage] = useState(1); // Add this state
+  const itemsPerPage = 6;
 
   useEffect(() => {
     const fetchUserRecipes = async () => {
@@ -34,13 +38,17 @@ const Profile = () => {
   if (!currentUser)
     return <div>{t("Please log in to view your profile.")}</div>;
 
+  const indexOfLastRecipe = currentPage * itemsPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
+  const currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+
   return (
     <div>
       <h2>
         <FontAwesomeIcon icon={faUser} className="me-2" /> {t("My Recipes")}
       </h2>
       <Row>
-        {recipes.map((recipe) => (
+        {currentRecipes.map((recipe) => (
           <Col lg={4} md={6} key={recipe.id} className="mb-4">
             <Card className="d-flex flex-column h-100">
               {recipe.imageUrl && (
@@ -75,6 +83,12 @@ const Profile = () => {
           </Col>
         ))}
       </Row>
+      <Pagination
+        itemsPerPage={itemsPerPage}
+        totalItems={recipes.length}
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 };

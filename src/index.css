@@ -172,3 +172,107 @@ h2 {
     font-size: 1.5rem !important;
   }
 }
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem !important;
+  padding: 0.5rem !important;
+  background-color: #fffcf5 !important; /* Off-white, like a cookbook page */
+  border-radius: 15px !important;
+  box-shadow: 0 4px 12px rgba(74, 44, 15, 0.1) !important; /* Brown-tinted shadow */
+}
+
+/* Pagination items (numbers) */
+.custom-pagination .page-item {
+  margin: 0 0.3rem !important;
+  border-radius: 10px !important;
+  background-color: #f9e4b7 !important; /* Light golden, like a recipe card */
+  border: 1px solid #e67e22 !important; /* Warm orange border */
+  color: #4a2c0f !important; /* Rich brown text */
+  font-family: "Cabin", sans-serif !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.custom-pagination .pagination-item:hover {
+  background-color: #e67e22 !important; /* Warm orange on hover */
+  border-color: #d35400 !important; /* Deeper orange */
+  color: #fff !important;
+  transform: scale(1.1) !important; /* Slight pop effect */
+}
+
+.custom-pagination .pagination-item.active {
+  background-color: #c0392b !important; /* Deep red, like tomato sauce */
+  border-color: #c0392b !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  transform: scale(1.15) !important; /* Slightly larger when active */
+}
+
+/* Previous/Next buttons */
+.custom-pagination .pagination-nav {
+  margin: 0 0.5rem !important;
+  padding: 0.6rem 1.2rem !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+  font-family: "Cabin", sans-serif !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+}
+
+.custom-pagination .pagination-nav:hover:not(.disabled) {
+  transform: scale(1.05) !important; /* Slight pop effect */
+}
+
+.custom-pagination .pagination-nav.disabled {
+  background-color: #f9e4b7 !important; /* Light golden when disabled */
+  border-color: #e8d5a9 !important; /* Soft beige */
+  color: #7f5539 !important; /* Warm brown */
+  opacity: 0.7 !important;
+  cursor: not-allowed !important;
+}
+
+/* Ensure proper spacing and alignment */
+.custom-pagination .page-item {
+  display: flex;
+  align-items: center;
+}
+.custom-pagination .page-link {
+  padding: 0.5rem 0.8rem !important;
+  background-color: transparent !important;
+  border: none !important;
+  color: #4a2c0f !important;
+}
+.custom-pagination .pagination-nav {
+  display: flex;
+  align-items: center;
+}
+.custom-pagination .active > .page-link,
+.custom-pagination .page-link.active {
+  color: #fff !important;
+  background-color: #c0392b !important; /* Deep red, like tomato sauce */
+  border-color: #c0392b !important;
+}
+.custom-pagination .disabled > .page-link,
+.custom-pagination .page-link.disabled {
+  color: #7f5539 !important; /* Warm brown */
+  background-color: #f9e4b7 !important; /* Light golden */
+  border-color: #f9e4b7 !important; /* Soft beige */
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .custom-pagination {
+    flex-wrap: wrap !important;
+    padding: 0.75rem !important;
+  }
+
+  .custom-pagination .pagination-item {
+    margin: 0.2rem !important;
+    padding: 0.5rem 0.8rem !important;
+  }
+
+  .custom-pagination .pagination-nav {
+    margin: 0.2rem 0.4rem !important;
+    padding: 0.5rem 1rem !important;
+  }
+}
