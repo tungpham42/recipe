@@ -94,7 +94,7 @@ const Login = () => {
         </Form>
         <Button
           variant="outline-danger"
-          className="w-100"
+          className="w-100 mt-2"
           onClick={handleGoogleLogin}
         >
           <FontAwesomeIcon icon={faGoogle} className="me-1" />

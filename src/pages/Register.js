@@ -112,7 +112,7 @@ const Register = () => {
         </Form>
         <Button
           variant="outline-danger"
-          className="w-100"
+          className="w-100 mt-2"
           onClick={handleGoogleRegister}
         >
           <FontAwesomeIcon icon={faGoogle} className="me-1" />
