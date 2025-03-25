@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
 } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import AddRecipe from "./pages/AddRecipe";
@@ -20,13 +20,35 @@ import { LanguageProvider } from "./context/LanguageContext";
 import AdminPanel from "./pages/AdminPanel";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound"; // Add this import
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 const ProtectedRoute = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
-  return currentUser ? children : <Navigate to="/login" />;
+  return currentUser ? children : <Navigate to="/dang-nhap" />;
 };
+const AppContent = () => {
+  const [showButton, setShowButton] = useState(false);
+  useEffect(() => {
+    const handleScrollResize = () => {
+      setShowButton(window.scrollY > 148);
+    };
 
-function AppContent() {
+    window.addEventListener("scroll", handleScrollResize);
+    window.addEventListener("resize", handleScrollResize);
+    handleScrollResize(); // Initial call
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollResize);
+      window.removeEventListener("resize", handleScrollResize);
+    };
+  }, []);
+
+  // Smooth scroll to top
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <Router>
       <Header />
@@ -73,9 +95,25 @@ function AppContent() {
         </Routes>
       </Container>
       <Footer />
+      {showButton && (
+        <Button
+          variant="primary"
+          onClick={scrollToTop}
+          className="position-fixed d-flex align-items-center justify-content-center"
+          style={{
+            width: "2.5rem",
+            height: "3.5rem",
+            bottom: "25px",
+            right: "25px",
+            fontSize: "1.25rem",
+          }}
+        >
+          <FontAwesomeIcon icon={faChevronUp} />
+        </Button>
+      )}
     </Router>
   );
-}
+};
 
 function App() {
   return (
