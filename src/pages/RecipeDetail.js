@@ -132,7 +132,10 @@ const RecipeDetail = () => {
         </h5>
         <ListGroup variant="flush" className="mb-4">
           {recipe.ingredients.map((item, index) => (
-            <ListGroupItem key={index}>{item}</ListGroupItem>
+            <ListGroupItem key={index}>
+              <span className="item-number">{index + 1}</span>
+              {item}
+            </ListGroupItem>
           ))}
         </ListGroup>
         <h5>
@@ -140,7 +143,10 @@ const RecipeDetail = () => {
         </h5>
         <ListGroup variant="flush" className="mb-4">
           {recipe.steps.map((step, index) => (
-            <ListGroupItem key={index}>{step}</ListGroupItem>
+            <ListGroupItem key={index}>
+              <span className="item-number">{index + 1}</span>
+              {step}
+            </ListGroupItem>
           ))}
         </ListGroup>
         {isOwner && (

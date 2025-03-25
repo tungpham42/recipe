@@ -366,3 +366,26 @@ h2 {
     padding: 1rem 0 !important; /* Add padding inside collapsed menu */
   }
 }
+/* Item Number Styling (for ingredients and steps) */
+.item-number {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  background-color: #f1c40f !important;
+  color: #4a2c0f !important;
+  font-family: "Pacifico", cursive !important;
+  font-size: 0.9rem !important;
+  font-weight: 400 !important;
+  border-radius: 50% !important;
+  margin-right: 0.75rem !important;
+  box-shadow: 0 2px 4px rgba(74, 44, 15, 0.2) !important;
+  transition: transform 0.2s ease, background-color 0.2s ease !important;
+}
+
+.item-number:hover {
+  background-color: #e67e22 !important;
+  color: #fff !important;
+  transform: scale(1.1) !important;
+}
