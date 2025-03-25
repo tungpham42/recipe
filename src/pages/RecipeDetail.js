@@ -10,6 +10,8 @@ import {
   Button,
   ListGroupItem,
   Alert,
+  Row,
+  Col,
 } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
@@ -20,6 +22,10 @@ import {
   faComment,
   faList,
   faRoute,
+  faUtensils,
+  faEye,
+  faChevronLeft,
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 const RecipeDetail = () => {
@@ -27,39 +33,63 @@ const RecipeDetail = () => {
   const [recipe, setRecipe] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [relatedRecipes, setRelatedRecipes] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3; // Show 3 related recipes per page
   const { currentUser } = useContext(AuthContext);
   const { t } = useLanguage();
 
   useEffect(() => {
-    const fetchRecipe = async () => {
-      const q = query(collection(db, "recipes"), where("slug", "==", slug));
-      const querySnapshot = await getDocs(q);
+    const fetchData = async () => {
+      try {
+        const recipeQuery = query(
+          collection(db, "recipes"),
+          where("slug", "==", slug)
+        );
+        const recipeSnapshot = await getDocs(recipeQuery);
 
-      if (!querySnapshot.empty) {
-        const docSnap = querySnapshot.docs[0];
-        setRecipe({ id: docSnap.id, ...docSnap.data() });
-      } else {
-        setRecipe(null);
+        if (recipeSnapshot.empty) {
+          setRecipe(null);
+          return;
+        }
+
+        const recipeDoc = recipeSnapshot.docs[0];
+        const recipeData = { id: recipeDoc.id, ...recipeDoc.data() };
+        setRecipe(recipeData);
+
+        const commentsRef = collection(
+          db,
+          "recipes",
+          recipeData.id,
+          "comments"
+        );
+        const commentsSnapshot = await getDocs(commentsRef);
+        const commentData = commentsSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setComments(commentData);
+
+        if (recipeData.category) {
+          const relatedQuery = query(
+            collection(db, "recipes"),
+            where("category", "==", recipeData.category),
+            where("slug", "!=", slug)
+          );
+          const relatedSnapshot = await getDocs(relatedQuery);
+          const relatedData = relatedSnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setRelatedRecipes(relatedData);
+        }
+      } catch (err) {
+        console.error("Error fetching data:", err);
       }
     };
 
-    const fetchComments = async () => {
-      if (!recipe) return;
-      const commentsRef = collection(db, "recipes", recipe.id, "comments");
-      const querySnapshot = await getDocs(commentsRef);
-      const commentData = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setComments(commentData);
-    };
-
-    fetchRecipe()
-      .then(() => fetchComments())
-      .catch((err) => {
-        console.error("Error fetching recipe or comments:", err);
-      });
-  }, [slug, recipe?.id, recipe]);
+    fetchData();
+  }, [slug]);
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -82,6 +112,24 @@ const RecipeDetail = () => {
     }
   };
 
+  // Pagination logic
+  const totalPages = Math.ceil(relatedRecipes.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentRelatedRecipes = relatedRecipes.slice(startIndex, endIndex);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   if (!recipe)
     return (
       <div className="text-center">
@@ -101,101 +149,164 @@ const RecipeDetail = () => {
   const isOwner = currentUser && recipe.userId === currentUser.uid;
 
   return (
-    <Card className="p-4">
-      <Helmet>
-        <title>
-          {recipe.title} - {t("Recipe App")}
-        </title>
-        <meta
-          property="og:title"
-          content={recipe.title + " - " + t("Recipe App")}
-        />
-        <meta
-          property="og:description"
-          content={recipe.description.slice(0, 150) + "..."}
-        />
+    <div>
+      <Card className="p-4 mb-4">
+        <Helmet>
+          <title>
+            {recipe.title} - {t("Recipe App")}
+          </title>
+          <meta
+            property="og:title"
+            content={recipe.title + " - " + t("Recipe App")}
+          />
+          <meta
+            property="og:description"
+            content={recipe.description.slice(0, 150) + "..."}
+          />
+          {recipe.imageUrl && (
+            <meta property="og:image" content={recipe.imageUrl} />
+          )}
+        </Helmet>
         {recipe.imageUrl && (
-          <meta property="og:image" content={recipe.imageUrl} />
+          <div
+            className="custom-card-img rounded-top"
+            style={{ backgroundImage: `url(${recipe.imageUrl})` }}
+          ></div>
         )}
-      </Helmet>
-      {recipe.imageUrl && (
-        <div
-          className="custom-card-img rounded-top"
-          style={{ backgroundImage: `url(${recipe.imageUrl})` }}
-        ></div>
-      )}
-      <Card.Body>
-        <Card.Title className="mb-3">{recipe.title}</Card.Title>
-        <Card.Text className="mb-4">{recipe.description}</Card.Text>
-        <h5>
-          <FontAwesomeIcon icon={faList} className="me-2" /> {t("Ingredients")}
-        </h5>
-        <ListGroup variant="flush" className="mb-4">
-          {recipe.ingredients.map((item, index) => (
-            <ListGroupItem key={index}>
-              <span className="item-number">{index + 1}</span>
-              {item}
-            </ListGroupItem>
-          ))}
-        </ListGroup>
-        <h5>
-          <FontAwesomeIcon icon={faRoute} className="me-2" /> {t("Steps")}
-        </h5>
-        <ListGroup variant="flush" className="mb-4">
-          {recipe.steps.map((step, index) => (
-            <ListGroupItem key={index}>
-              <span className="item-number">{index + 1}</span>
-              {step}
-            </ListGroupItem>
-          ))}
-        </ListGroup>
-        {isOwner && (
-          <Button
-            as={Link}
-            to={`/sua-cong-thuc/${recipe.slug}`}
-            variant="warning"
-            className="mb-4"
-          >
-            <FontAwesomeIcon icon={faPencilAlt} className="me-1" />{" "}
-            {t("Edit Recipe")}
-          </Button>
-        )}
-        <h5>
-          <FontAwesomeIcon icon={faComment} className="me-2" /> {t("Comments")}
-        </h5>
-        {comments.length === 0 ? (
-          <Alert variant="info" className="mb-4">
-            {t("No comments yet.")}
-          </Alert>
-        ) : (
+        <Card.Body>
+          <Card.Title className="mb-3">{recipe.title}</Card.Title>
+          <Card.Text className="mb-4">{recipe.description}</Card.Text>
+          <h5>
+            <FontAwesomeIcon icon={faList} className="me-2" />{" "}
+            {t("Ingredients")}
+          </h5>
           <ListGroup variant="flush" className="mb-4">
-            {comments.map((comment) => (
-              <ListGroupItem key={comment.id} className="py-3">
-                {comment.text}
+            {recipe.ingredients.map((item, index) => (
+              <ListGroupItem key={index}>
+                <span className="item-number">{index + 1}</span>
+                {item}
               </ListGroupItem>
             ))}
           </ListGroup>
-        )}
-        {currentUser && (
-          <Form onSubmit={handleCommentSubmit}>
-            <Form.Group className="mb-3">
-              <Form.Control
-                as="textarea"
-                rows={3}
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                placeholder={t("Add a comment...")}
-                required
-              />
-            </Form.Group>
-            <Button type="submit" variant="primary">
-              <FontAwesomeIcon icon={faComment} className="me-1" />{" "}
-              {t("Post Comment")}
+          <h5>
+            <FontAwesomeIcon icon={faRoute} className="me-2" /> {t("Steps")}
+          </h5>
+          <ListGroup variant="flush" className="mb-4">
+            {recipe.steps.map((step, index) => (
+              <ListGroupItem key={index}>
+                <span className="item-number">{index + 1}</span>
+                {step}
+              </ListGroupItem>
+            ))}
+          </ListGroup>
+          {isOwner && (
+            <Button
+              as={Link}
+              to={`/sua-cong-thuc/${recipe.slug}`}
+              variant="warning"
+              className="mb-4"
+            >
+              <FontAwesomeIcon icon={faPencilAlt} className="me-1" />{" "}
+              {t("Edit Recipe")}
             </Button>
-          </Form>
-        )}
-      </Card.Body>
-    </Card>
+          )}
+          <h5>
+            <FontAwesomeIcon icon={faComment} className="me-2" />{" "}
+            {t("Comments")}
+          </h5>
+          {comments.length === 0 ? (
+            <Alert variant="info" className="mb-4">
+              {t("No comments yet.")}
+            </Alert>
+          ) : (
+            <ListGroup variant="flush" className="mb-4">
+              {comments.map((comment) => (
+                <ListGroupItem key={comment.id} className="py-3">
+                  {comment.text}
+                </ListGroupItem>
+              ))}
+            </ListGroup>
+          )}
+          {currentUser && (
+            <Form onSubmit={handleCommentSubmit}>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  placeholder={t("Add a comment...")}
+                  required
+                />
+              </Form.Group>
+              <Button type="submit" variant="primary">
+                <FontAwesomeIcon icon={faComment} className="me-1" />{" "}
+                {t("Post Comment")}
+              </Button>
+            </Form>
+          )}
+        </Card.Body>
+      </Card>
+
+      {relatedRecipes.length > 0 && (
+        <div className="mb-4">
+          <h5>
+            <FontAwesomeIcon icon={faUtensils} className="me-2" />{" "}
+            {t("Related Recipes")}
+          </h5>
+          <Row>
+            {currentRelatedRecipes.map((related) => (
+              <Col lg={4} md={4} key={related.id} className="mb-4">
+                <Card className="d-flex flex-column h-100">
+                  {related.imageUrl && (
+                    <div
+                      className="custom-card-img rounded-top"
+                      style={{ backgroundImage: `url(${related.imageUrl})` }}
+                    ></div>
+                  )}
+                  <Card.Body className="d-flex flex-column">
+                    <Card.Title>{related.title}</Card.Title>
+                    <Card.Text>
+                      {related.description.slice(0, 100)}...
+                    </Card.Text>
+                    <div className="mt-auto d-flex justify-content-start gap-3">
+                      <Button
+                        as={Link}
+                        to={`/cong-thuc/${related.slug}`}
+                        variant="primary"
+                      >
+                        <FontAwesomeIcon icon={faEye} className="me-1" />
+                        {t("View Recipe")}
+                      </Button>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+          {totalPages > 1 && (
+            <div className="d-flex justify-content-between align-items-center my-0 related-pagination">
+              <Button
+                variant="outline-primary"
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+              >
+                <FontAwesomeIcon icon={faChevronLeft} className="me-1" />
+                {t("Previous")}
+              </Button>
+              <Button
+                variant="outline-primary"
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+              >
+                {t("Next")}
+                <FontAwesomeIcon icon={faChevronRight} className="ms-1" />
+              </Button>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 };
 

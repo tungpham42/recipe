@@ -77,6 +77,7 @@ const translations = {
       "View your personal recipe collection!",
     "Create an account to share your recipes!":
       "Create an account to share your recipes!",
+    "Related Recipes": "Related Recipes",
   },
   vi: {
     Home: "Trang chủ",
@@ -155,6 +156,7 @@ const translations = {
       "Xem bộ sưu tập công thức cá nhân của bạn!",
     "Create an account to share your recipes!":
       "Tạo tài khoản để chia sẻ công thức của bạn!",
+    "Related Recipes": "Công thức khác",
   },
 };
 
