@@ -63,6 +63,8 @@ const translations = {
     "Select a category": "Select a category",
     Previous: "Previous",
     Next: "Next",
+    "No recipes found.": "No recipes found.",
+    "No comments yet.": "No comments yet.",
   },
   vi: {
     Home: "Trang chủ",
@@ -125,6 +127,8 @@ const translations = {
     "Select a category": "Chọn một danh mục",
     Previous: "Trước",
     Next: "Sau",
+    "No recipes found.": "Không có công thức nào.",
+    "No comments yet.": "Chưa có bình luận nào.",
   },
 };
 

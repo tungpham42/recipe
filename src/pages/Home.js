@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { Card, Button, Row, Col, Form } from "react-bootstrap";
+import { Card, Button, Row, Col, Form, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUtensils, faEye } from "@fortawesome/free-solid-svg-icons";
@@ -13,7 +13,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("");
   const { t } = useLanguage();
-  const [currentPage, setCurrentPage] = useState(1); // Add this state
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
 
   useEffect(() => {
@@ -87,40 +87,46 @@ const Home = () => {
           </Col>
         </Row>
       </Form>
-      <Row>
-        {currentRecipes.map((recipe) => (
-          <Col lg={4} md={6} key={recipe.id} className="mb-4">
-            <Card className="d-flex flex-column h-100">
-              {recipe.imageUrl && (
-                <div
-                  className="custom-card-img rounded-top"
-                  style={{ backgroundImage: `url(${recipe.imageUrl})` }}
-                ></div>
-              )}
-              <Card.Body className="d-flex flex-column">
-                <Card.Title>{recipe.title}</Card.Title>
-                <Card.Text>{recipe.description.slice(0, 100)}...</Card.Text>
-                <div className="mt-auto d-flex justify-content-start gap-3">
-                  <Button
-                    as={Link}
-                    to={`/cong-thuc/${recipe.slug}`}
-                    variant="primary"
-                  >
-                    <FontAwesomeIcon icon={faEye} className="me-1" />
-                    {t("View Recipe")}
-                  </Button>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-      <Pagination
-        itemsPerPage={itemsPerPage}
-        totalItems={filteredRecipes.length}
-        currentPage={currentPage}
-        onPageChange={setCurrentPage}
-      />
+      {currentRecipes.length === 0 ? (
+        <Alert variant="info">{t("No recipes found.")}</Alert>
+      ) : (
+        <>
+          <Row>
+            {currentRecipes.map((recipe) => (
+              <Col lg={4} md={6} key={recipe.id} className="mb-4">
+                <Card className="d-flex flex-column h-100">
+                  {recipe.imageUrl && (
+                    <div
+                      className="custom-card-img rounded-top"
+                      style={{ backgroundImage: `url(${recipe.imageUrl})` }}
+                    ></div>
+                  )}
+                  <Card.Body className="d-flex flex-column">
+                    <Card.Title>{recipe.title}</Card.Title>
+                    <Card.Text>{recipe.description.slice(0, 100)}...</Card.Text>
+                    <div className="mt-auto d-flex justify-content-start gap-3">
+                      <Button
+                        as={Link}
+                        to={`/cong-thuc/${recipe.slug}`}
+                        variant="primary"
+                      >
+                        <FontAwesomeIcon icon={faEye} className="me-1" />
+                        {t("View Recipe")}
+                      </Button>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            totalItems={filteredRecipes.length}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          />
+        </>
+      )}
     </div>
   );
 };

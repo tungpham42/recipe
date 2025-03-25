@@ -146,8 +146,7 @@ const AdminPanel = () => {
   const { currentUser } = useContext(AuthContext);
   const { t } = useLanguage();
   const { recipes, error, deleteRecipe, deleteComment } = useAdminRecipes();
-
-  const [currentPage, setCurrentPage] = useState(1); // Add this state
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
 
   const isAdmin = currentUser && currentUser.email === "tung.42@gmail.com";
@@ -166,22 +165,28 @@ const AdminPanel = () => {
         {t("Admin Panel - Manage Recipes")}
       </h2>
       {error && <Alert variant="danger">{error}</Alert>}
-      <Row>
-        {currentRecipes.map((recipe) => (
-          <RecipeCard
-            key={recipe.id}
-            recipe={recipe}
-            onDeleteRecipe={deleteRecipe}
-            onDeleteComment={deleteComment}
+      {currentRecipes.length === 0 ? (
+        <Alert variant="info">{t("No recipes found.")}</Alert>
+      ) : (
+        <>
+          <Row>
+            {currentRecipes.map((recipe) => (
+              <RecipeCard
+                key={recipe.id}
+                recipe={recipe}
+                onDeleteRecipe={deleteRecipe}
+                onDeleteComment={deleteComment}
+              />
+            ))}
+          </Row>
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            totalItems={recipes.length}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
           />
-        ))}
-      </Row>
-      <Pagination
-        itemsPerPage={itemsPerPage}
-        totalItems={recipes.length}
-        currentPage={currentPage}
-        onPageChange={setCurrentPage}
-      />
+        </>
+      )}
     </div>
   );
 };

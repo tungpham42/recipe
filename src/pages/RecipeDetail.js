@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { useParams, Link } from "react-router-dom";
-import { Card, ListGroup, Form, Button, ListGroupItem } from "react-bootstrap";
+import {
+  Card,
+  ListGroup,
+  Form,
+  Button,
+  ListGroupItem,
+  Alert,
+} from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useLanguage } from "../context/LanguageContext";
@@ -15,7 +22,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const RecipeDetail = () => {
-  const { slug } = useParams(); // Change from id to slug
+  const { slug } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
@@ -24,21 +31,19 @@ const RecipeDetail = () => {
 
   useEffect(() => {
     const fetchRecipe = async () => {
-      // Query the recipes collection to find a recipe with the matching slug
       const q = query(collection(db, "recipes"), where("slug", "==", slug));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
-        // Assuming slug is unique, take the first match
         const docSnap = querySnapshot.docs[0];
         setRecipe({ id: docSnap.id, ...docSnap.data() });
       } else {
-        setRecipe(null); // Recipe not found
+        setRecipe(null);
       }
     };
 
     const fetchComments = async () => {
-      if (!recipe) return; // Wait until recipe is fetched
+      if (!recipe) return;
       const commentsRef = collection(db, "recipes", recipe.id, "comments");
       const querySnapshot = await getDocs(commentsRef);
       const commentData = querySnapshot.docs.map((doc) => ({
@@ -48,13 +53,12 @@ const RecipeDetail = () => {
       setComments(commentData);
     };
 
-    // Fetch recipe first, then comments
     fetchRecipe()
       .then(() => fetchComments())
       .catch((err) => {
         console.error("Error fetching recipe or comments:", err);
       });
-  }, [slug, recipe?.id, recipe]); // Depend on slug and recipe.id to refetch comments when recipe is set
+  }, [slug, recipe?.id, recipe]);
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -112,7 +116,7 @@ const RecipeDetail = () => {
         {isOwner && (
           <Button
             as={Link}
-            to={`/sua-cong-thuc/${recipe.slug}`} // Still using ID here; see notes below
+            to={`/sua-cong-thuc/${recipe.slug}`}
             variant="warning"
             className="mb-4"
           >
@@ -123,13 +127,19 @@ const RecipeDetail = () => {
         <h5>
           <FontAwesomeIcon icon={faComment} className="me-2" /> {t("Comments")}
         </h5>
-        <ListGroup variant="flush" className="mb-4">
-          {comments.map((comment) => (
-            <ListGroupItem key={comment.id} className="py-3">
-              {comment.text}
-            </ListGroupItem>
-          ))}
-        </ListGroup>
+        {comments.length === 0 ? (
+          <Alert variant="info" className="mb-4">
+            {t("No comments yet.")}
+          </Alert>
+        ) : (
+          <ListGroup variant="flush" className="mb-4">
+            {comments.map((comment) => (
+              <ListGroupItem key={comment.id} className="py-3">
+                {comment.text}
+              </ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
         {currentUser && (
           <Form onSubmit={handleCommentSubmit}>
             <Form.Group className="mb-3">
