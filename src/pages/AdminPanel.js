@@ -4,7 +4,15 @@ import { db } from "../firebase";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
 import { useLanguage } from "../context/LanguageContext";
-import { Card, Button, Row, Col, Alert, ListGroup } from "react-bootstrap";
+import {
+  Card,
+  Button,
+  Row,
+  Col,
+  Alert,
+  ListGroup,
+  Form,
+} from "react-bootstrap";
 import { Navigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -83,22 +91,15 @@ const useAdminRecipes = () => {
           async (recipeDoc) => {
             const recipeId = recipeDoc.id;
             const recipeData = recipeDoc.data();
-
             const commentsRef = collection(db, "recipes", recipeId, "comments");
             const commentSnapshot = await getDocs(commentsRef);
             const commentsData = commentSnapshot.docs.map((commentDoc) => ({
               id: commentDoc.id,
               ...commentDoc.data(),
             }));
-
-            return {
-              id: recipeId,
-              ...recipeData,
-              comments: commentsData,
-            };
+            return { id: recipeId, ...recipeData, comments: commentsData };
           }
         );
-
         const recipeData = await Promise.all(recipeDataPromises);
         setRecipes(recipeData);
       } catch (err) {
@@ -148,6 +149,7 @@ const AdminPanel = () => {
   const { t } = useLanguage();
   const { recipes, error, deleteRecipe, deleteComment } = useAdminRecipes();
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortOption, setSortOption] = useState("alphabetAsc");
   const itemsPerPage = 12;
 
   const isAdmin = currentUser && currentUser.email === "tung.42@gmail.com";
@@ -183,9 +185,36 @@ const AdminPanel = () => {
       </div>
     );
 
+  const sortRecipes = (recipesToSort) => {
+    let sortedRecipes = [...recipesToSort];
+    if (sortOption === "alphabetAsc") {
+      sortedRecipes.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortOption === "alphabetDesc") {
+      sortedRecipes.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (sortOption === "dateAsc") {
+      sortedRecipes.sort(
+        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+      );
+    } else if (sortOption === "dateDesc") {
+      sortedRecipes.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+    }
+    return sortedRecipes;
+  };
+
+  const sortedRecipes = sortRecipes(recipes);
   const indexOfLastRecipe = currentPage * itemsPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
-  const currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  const currentRecipes = sortedRecipes.slice(
+    indexOfFirstRecipe,
+    indexOfLastRecipe
+  );
+
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);
+    setCurrentPage(1);
+  };
 
   return (
     <div>
@@ -202,10 +231,21 @@ const AdminPanel = () => {
           content={t("Manage all recipes as an admin.")}
         />
       </Helmet>
-      <h2>
-        <FontAwesomeIcon icon={faTools} className="me-2" />{" "}
-        {t("Admin Panel - Manage Recipes")}
-      </h2>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="mb-0">
+          <FontAwesomeIcon icon={faTools} className="me-2" />
+          {t("Admin Panel - Manage Recipes")}
+        </h2>
+        <Form.Group className="ms-3" style={{ minWidth: "200px" }}>
+          <Form.Select value={sortOption} onChange={handleSortChange}>
+            <option value="">{t("Sort by...")}</option>
+            <option value="alphabetAsc">{t("Alphabetical (A-Z)")}</option>
+            <option value="alphabetDesc">{t("Alphabetical (Z-A)")}</option>
+            <option value="dateAsc">{t("Date (Oldest First)")}</option>
+            <option value="dateDesc">{t("Date (Newest First)")}</option>
+          </Form.Select>
+        </Form.Group>
+      </div>
       {error && <Alert variant="danger">{error}</Alert>}
       {currentRecipes.length === 0 ? (
         <Alert variant="info">{t("No recipes found.")}</Alert>
@@ -223,7 +263,7 @@ const AdminPanel = () => {
           </Row>
           <Pagination
             itemsPerPage={itemsPerPage}
-            totalItems={recipes.length}
+            totalItems={sortedRecipes.length}
             currentPage={currentPage}
             onPageChange={setCurrentPage}
           />

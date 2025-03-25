@@ -97,7 +97,7 @@ h2 {
 
 /* Forms (Input and Select) */
 .form-control,
-.form-select {
+.form-select:not(.language-switcher) {
   border-radius: 10px !important;
   border: 1px solid #e8d5a9 !important; /* Soft beige border */
   background-color: #fffef0 !important; /* Very light cream */
@@ -107,14 +107,14 @@ h2 {
 }
 
 .form-control:focus,
-.form-select:focus {
+.form-select:not(.language-switcher):focus {
   border-color: #e67e22 !important; /* Orange focus */
   box-shadow: 0 0 5px rgba(230, 126, 34, 0.5) !important;
   outline: none !important; /* Remove default outline */
 }
 
 /* Ensure dropdown arrow matches the theme */
-.form-select {
+.form-select:not(.language-switcher) {
   appearance: none !important; /* Remove default arrow */
   background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="%234a2c0f" viewBox="0 0 16 16"%3E%3Cpath d="M8 12L0 4h16z"/%3E%3C/svg%3E') !important; /* Custom brown arrow */
   background-repeat: no-repeat !important;

@@ -13,6 +13,7 @@ const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("");
+  const [sortOption, setSortOption] = useState("alphabetAsc");
   const { t } = useLanguage();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
@@ -31,7 +32,25 @@ const Home = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [category]);
+  }, [category, sortOption]);
+
+  const sortRecipes = (recipesToSort) => {
+    let sortedRecipes = [...recipesToSort];
+    if (sortOption === "alphabetAsc") {
+      sortedRecipes.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortOption === "alphabetDesc") {
+      sortedRecipes.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (sortOption === "dateAsc") {
+      sortedRecipes.sort(
+        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+      );
+    } else if (sortOption === "dateDesc") {
+      sortedRecipes.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+    }
+    return sortedRecipes;
+  };
 
   const filteredRecipes = recipes.filter((recipe) => {
     const matchesSearch = recipe.title
@@ -41,15 +60,21 @@ const Home = () => {
     return matchesSearch && matchesCategory;
   });
 
+  const sortedRecipes = sortRecipes(filteredRecipes);
   const indexOfLastRecipe = currentPage * itemsPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
-  const currentRecipes = filteredRecipes.slice(
+  const currentRecipes = sortedRecipes.slice(
     indexOfFirstRecipe,
     indexOfLastRecipe
   );
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);
     setCurrentPage(1);
   };
 
@@ -74,7 +99,7 @@ const Home = () => {
       </h2>
       <Form className="mb-4 p-3 bg-white shadow-sm rounded">
         <Row>
-          <Col md={8}>
+          <Col md={6}>
             <Form.Group className="mb-3 mb-md-0 position-relative">
               <Form.Control
                 type="text"
@@ -94,7 +119,7 @@ const Home = () => {
               />
             </Form.Group>
           </Col>
-          <Col md={4}>
+          <Col md={3}>
             <Form.Group>
               <Form.Select value={category} onChange={handleCategoryChange}>
                 <option value="">{t("All Categories")}</option>
@@ -102,6 +127,17 @@ const Home = () => {
                 <option value="Lunch">{t("Lunch")}</option>
                 <option value="Dinner">{t("Dinner")}</option>
                 <option value="Dessert">{t("Dessert")}</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
+          <Col md={3} className="mt-3 mt-sm-3 mt-md-0 mt-lg-0 mt-xl-0">
+            <Form.Group>
+              <Form.Select value={sortOption} onChange={handleSortChange}>
+                <option value="">{t("Sort by...")}</option>
+                <option value="alphabetAsc">{t("Alphabetical (A-Z)")}</option>
+                <option value="alphabetDesc">{t("Alphabetical (Z-A)")}</option>
+                <option value="dateAsc">{t("Date (Oldest First)")}</option>
+                <option value="dateDesc">{t("Date (Newest First)")}</option>
               </Form.Select>
             </Form.Group>
           </Col>
@@ -141,7 +177,7 @@ const Home = () => {
           </Row>
           <Pagination
             itemsPerPage={itemsPerPage}
-            totalItems={filteredRecipes.length}
+            totalItems={sortedRecipes.length}
             currentPage={currentPage}
             onPageChange={setCurrentPage}
           />

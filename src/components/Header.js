@@ -82,6 +82,7 @@ const Header = () => {
             {/* Language Switcher */}
             <div className="d-flex align-items-left">
               <Form.Select
+                className="language-switcher"
                 style={{ width: "120px" }}
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}

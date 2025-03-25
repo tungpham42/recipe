@@ -83,6 +83,11 @@ const translations = {
     "Sorry, the page you are looking for does not exist or has been moved.":
       "Sorry, the page you are looking for does not exist or has been moved.",
     "Back to Home": "Back to Home",
+    "Sort by...": "Sort by...",
+    "Alphabetical (A-Z)": "Alphabetical (A-Z)",
+    "Alphabetical (Z-A)": "Alphabetical (Z-A)",
+    "Date (Oldest First)": "Date (Oldest First)",
+    "Date (Newest First)": "Date (Newest First)",
   },
   vi: {
     Home: "Trang chủ",
@@ -167,6 +172,11 @@ const translations = {
     "Sorry, the page you are looking for does not exist or has been moved.":
       "Xin lỗi, trang bạn đang tìm không tồn tại hoặc đã được chuyển đi.",
     "Back to Home": "Quay về trang chủ",
+    "Sort by...": "Sắp xếp theo...",
+    "Alphabetical (A-Z)": "Theo thứ tự chữ cái (A-Z)",
+    "Alphabetical (Z-A)": "Theo thứ tự chữ cái (Z-A)",
+    "Date (Oldest First)": "Ngày (Cũ nhất trước)",
+    "Date (Newest First)": "Ngày (Mới nhất trước)",
   },
 };
 
