@@ -92,7 +92,7 @@ const translations = {
     Logout: "Đăng xuất",
     Login: "Đăng nhập",
     Register: "Đăng ký",
-    "Recipe Sharing": "Chia sẻ công thức",
+    "Recipe Sharing": "Chia sẻ món ăn",
     "My Recipes": "Công thức của tôi",
     View: "Xem",
     Edit: "Chỉnh sửa",
