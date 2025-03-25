@@ -237,9 +237,10 @@ h2 {
     font-size: 1.5rem !important;
   }
 }
-@media (max-width: 992px) {
+@media (max-width: 991px) {
   .btn-outline-light {
     margin-bottom: 0.75rem !important;
+    width: fit-content !important;
   }
 }
 /* Pagination */
