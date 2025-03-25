@@ -28,6 +28,11 @@ const Home = () => {
     fetchRecipes();
   }, []);
 
+  // Add useEffect to reset currentPage when category changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [category]);
+
   const filteredRecipes = recipes.filter((recipe) => {
     const matchesSearch = recipe.title
       .toLowerCase()
@@ -42,6 +47,12 @@ const Home = () => {
     indexOfFirstRecipe,
     indexOfLastRecipe
   );
+
+  // Handle category change with page reset
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+    setCurrentPage(1); // This line is redundant due to the useEffect above, but can be kept for clarity
+  };
 
   return (
     <div>
@@ -75,7 +86,7 @@ const Home = () => {
             <Form.Group>
               <Form.Select
                 value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                onChange={handleCategoryChange} // Updated to use new handler
               >
                 <option value="">{t("All Categories")}</option>
                 <option value="Breakfast">{t("Breakfast")}</option>
