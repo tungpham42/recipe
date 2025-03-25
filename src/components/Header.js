@@ -63,7 +63,11 @@ const Header = () => {
           </Nav>
           <Nav className="align-items-left">
             {currentUser ? (
-              <Button variant="outline-light" onClick={handleLogout}>
+              <Button
+                variant="outline-light"
+                onClick={handleLogout}
+                className="me-2"
+              >
                 <FontAwesomeIcon icon={faSignOutAlt} className="me-1" />
                 {t("Logout")}
               </Button>
@@ -73,14 +77,14 @@ const Header = () => {
                   <FontAwesomeIcon icon={faSignInAlt} className="me-1" />
                   {t("Login")}
                 </Nav.Link>
-                <Nav.Link as={Link} to="/dang-ky">
+                <Nav.Link as={Link} to="/dang-ky" className="me-2">
                   <FontAwesomeIcon icon={faUserPlus} className="me-1" />
                   {t("Register")}
                 </Nav.Link>
               </>
             )}
             {/* Language Switcher */}
-            <div className="d-flex align-items-left ms-1">
+            <div className="d-flex align-items-left">
               <Form.Select
                 style={{ width: "120px" }}
                 value={language}
