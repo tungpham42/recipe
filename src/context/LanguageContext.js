@@ -88,6 +88,12 @@ const translations = {
     "Alphabetical (Z-A)": "Alphabetical (Z-A)",
     "Date (Oldest First)": "Date (Oldest First)",
     "Date (Newest First)": "Date (Newest First)",
+    "Register with Google": "Register with Google",
+    "Login with Google": "Login with Google",
+    "Failed to register with Google. Try again.":
+      "Failed to register with Google. Try again.",
+    "Failed to login with Google. Try again.":
+      "Failed to login with Google. Try again.",
   },
   vi: {
     Home: "Trang chủ",
@@ -177,6 +183,12 @@ const translations = {
     "Alphabetical (Z-A)": "Theo thứ tự chữ cái (Z-A)",
     "Date (Oldest First)": "Ngày (Cũ nhất trước)",
     "Date (Newest First)": "Ngày (Mới nhất trước)",
+    "Register with Google": "Đăng ký với Google",
+    "Login with Google": "Đăng nhập với Google",
+    "Failed to register with Google. Try again.":
+      "Đăng ký với Google thất bại. Thử lại.",
+    "Failed to login with Google. Try again.":
+      "Đăng nhập với Google thất bại. Thử lại.",
   },
 };
 

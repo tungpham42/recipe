@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { auth } from "../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, googleProvider } from "../firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { Form, Button, Alert, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
@@ -11,6 +11,7 @@ import {
   faLock,
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,13 +20,22 @@ const Login = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
 
-  const handleLogin = async (e) => {
+  const handleEmailLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
     } catch (err) {
       setError(t("Invalid email or password."));
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      navigate("/");
+    } catch (err) {
+      setError(t("Failed to login with Google. Try again."));
     }
   };
 
@@ -50,7 +60,7 @@ const Login = () => {
       <Card style={{ width: "100%", maxWidth: "400px" }} className="p-4">
         <h2 className="text-center">{t("Login")}</h2>
         {error && <Alert variant="danger">{error}</Alert>}
-        <Form onSubmit={handleLogin}>
+        <Form onSubmit={handleEmailLogin}>
           <Form.Group className="mb-3">
             <Form.Label>
               <FontAwesomeIcon icon={faEnvelope} className="me-1" />
@@ -77,11 +87,19 @@ const Login = () => {
               placeholder={t("Enter your password")}
             />
           </Form.Group>
-          <Button type="submit" variant="primary" className="w-100">
+          <Button type="submit" variant="primary" className="w-100 mb-2">
             <FontAwesomeIcon icon={faSignInAlt} className="me-1" />
             {t("Login")}
           </Button>
         </Form>
+        <Button
+          variant="outline-danger"
+          className="w-100"
+          onClick={handleGoogleLogin}
+        >
+          <FontAwesomeIcon icon={faGoogle} className="me-1" />
+          {t("Login with Google")}
+        </Button>
       </Card>
     </div>
   );

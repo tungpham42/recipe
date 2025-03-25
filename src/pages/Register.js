@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { auth } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, googleProvider } from "../firebase";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { Form, Button, Alert, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
@@ -11,6 +11,7 @@ import {
   faLock,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ const Register = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
 
-  const handleRegister = async (e) => {
+  const handleEmailRegister = async (e) => {
     e.preventDefault();
     if (password !== repeatPassword) {
       setError(t("Passwords do not match."));
@@ -31,6 +32,15 @@ const Register = () => {
       navigate("/");
     } catch (err) {
       setError(t("Failed to register. Try again."));
+    }
+  };
+
+  const handleGoogleRegister = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      navigate("/");
+    } catch (err) {
+      setError(t("Failed to register with Google. Try again."));
     }
   };
 
@@ -55,7 +65,7 @@ const Register = () => {
       <Card style={{ width: "100%", maxWidth: "400px" }} className="p-4">
         <h2 className="text-center">{t("Register")}</h2>
         {error && <Alert variant="danger">{error}</Alert>}
-        <Form onSubmit={handleRegister}>
+        <Form onSubmit={handleEmailRegister}>
           <Form.Group className="mb-3">
             <Form.Label>
               <FontAwesomeIcon icon={faEnvelope} className="me-1" />
@@ -95,11 +105,19 @@ const Register = () => {
               placeholder={t("Repeat your password")}
             />
           </Form.Group>
-          <Button type="submit" variant="primary" className="w-100">
+          <Button type="submit" variant="primary" className="w-100 mb-2">
             <FontAwesomeIcon icon={faUserPlus} className="me-1" />
             {t("Register")}
           </Button>
         </Form>
+        <Button
+          variant="outline-danger"
+          className="w-100"
+          onClick={handleGoogleRegister}
+        >
+          <FontAwesomeIcon icon={faGoogle} className="me-1" />
+          {t("Register with Google")}
+        </Button>
       </Card>
     </div>
   );

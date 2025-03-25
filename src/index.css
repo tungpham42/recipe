@@ -55,6 +55,20 @@ h2 {
   transform: scale(1.05) !important; /* Slight pop effect */
 }
 
+.btn-outline-danger {
+  color: #fff !important;
+  background-color: #e74c3c !important; /* Red, like a chili pepper */
+  border-color: #e74c3c !important;
+  border-radius: 10px !important;
+  padding: 0.6rem 1.8rem !important;
+  font-weight: 500 !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+.btn-outline-danger:hover {
+  transform: scale(1.05) !important; /* Slight pop effect */
+}
+
 .btn-warning {
   background-color: #e67e22 !important; /* Warm orange, like spices */
   border-color: #e67e22 !important;
