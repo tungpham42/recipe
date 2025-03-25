@@ -40,13 +40,16 @@ h2 {
 }
 
 /* Buttons */
+.btn {
+  border-radius: 10px !important;
+  padding: 0.6rem 1.2rem !important;
+  font-weight: 500 !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
 .btn-primary {
   background-color: #27ae60 !important; /* Fresh green, like basil */
   border-color: #27ae60 !important;
-  border-radius: 10px !important;
-  padding: 0.6rem 1.8rem !important;
-  font-weight: 500 !important;
-  transition: background-color 0.3s ease, transform 0.2s ease !important;
 }
 
 .btn-primary:hover {
@@ -59,10 +62,6 @@ h2 {
   color: #fff !important;
   background-color: #e74c3c !important; /* Red, like a chili pepper */
   border-color: #e74c3c !important;
-  border-radius: 10px !important;
-  padding: 0.6rem 1.8rem !important;
-  font-weight: 500 !important;
-  transition: background-color 0.3s ease, transform 0.2s ease !important;
 }
 
 .btn-outline-danger:hover {
@@ -73,10 +72,6 @@ h2 {
   background-color: #e67e22 !important; /* Warm orange, like spices */
   border-color: #e67e22 !important;
   color: #fff !important;
-  border-radius: 10px !important;
-  padding: 0.6rem 1.8rem !important;
-  font-weight: 500 !important;
-  transition: background-color 0.3s ease, transform 0.2s ease !important;
 }
 
 .btn-warning:hover {
