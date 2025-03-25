@@ -101,7 +101,6 @@ const AppContent = () => {
           onClick={scrollToTop}
           className="position-fixed d-flex align-items-center justify-content-center"
           style={{
-            width: "2.5rem",
             height: "3.5rem",
             bottom: "25px",
             right: "25px",

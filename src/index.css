@@ -270,7 +270,7 @@ h2 {
   color: #4a2c0f !important; /* Rich brown text */
   font-family: "Cabin", sans-serif !important;
   font-weight: 500 !important;
-  transition: all 0.2s ease-in-out !important;
+  transition: transform 0.3s ease !important;
 }
 
 .custom-pagination .pagination-item:hover,
@@ -297,7 +297,7 @@ h2 {
   color: #fff !important;
   font-family: "Cabin", sans-serif !important;
   font-weight: 500 !important;
-  transition: all 0.3s ease !important;
+  transition: transform 0.3s ease !important;
 }
 
 .custom-pagination .pagination-nav:hover:not(.disabled) {
@@ -314,8 +314,9 @@ h2 {
 
 /* Ensure proper spacing and alignment */
 .custom-pagination .page-item {
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 .custom-pagination .page-link,
 .related-pagination .btn-outline-primary {
@@ -325,8 +326,8 @@ h2 {
   color: #4a2c0f !important;
 }
 .custom-pagination .pagination-nav {
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  align-items: center !important;
 }
 .custom-pagination .active > .page-link,
 .custom-pagination .page-link.active {
@@ -396,4 +397,11 @@ h2 {
   background-color: #e67e22 !important;
   color: #fff !important;
   transform: scale(1.1) !important;
+}
+.page-link {
+  color: #4a2c0f !important;
+  font-weight: 500 !important;
+  transition: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
