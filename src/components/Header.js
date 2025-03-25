@@ -61,13 +61,9 @@ const Header = () => {
               </Nav.Link>
             )}
           </Nav>
-          <Nav className="align-items-left">
+          <Nav className="align-items-left justify-content-between gap-2">
             {currentUser ? (
-              <Button
-                variant="outline-light"
-                onClick={handleLogout}
-                className="me-2"
-              >
+              <Button variant="outline-light" onClick={handleLogout}>
                 <FontAwesomeIcon icon={faSignOutAlt} className="me-1" />
                 {t("Logout")}
               </Button>
@@ -77,7 +73,7 @@ const Header = () => {
                   <FontAwesomeIcon icon={faSignInAlt} className="me-1" />
                   {t("Login")}
                 </Nav.Link>
-                <Nav.Link as={Link} to="/dang-ky" className="me-2">
+                <Nav.Link as={Link} to="/dang-ky">
                   <FontAwesomeIcon icon={faUserPlus} className="me-1" />
                   {t("Register")}
                 </Nav.Link>
