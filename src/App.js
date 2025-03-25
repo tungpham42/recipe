@@ -19,6 +19,7 @@ import { AuthContext } from "./context/AuthContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import AdminPanel from "./pages/AdminPanel";
 import Footer from "./components/Footer";
+import NotFound from "./pages/NotFound"; // Add this import
 
 const ProtectedRoute = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
@@ -67,6 +68,8 @@ function AppContent() {
               </ProtectedRoute>
             }
           />
+          <Route path="*" element={<NotFound />} />{" "}
+          {/* Add this catch-all route */}
         </Routes>
       </Container>
       <Footer />

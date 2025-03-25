@@ -78,6 +78,11 @@ const translations = {
     "Create an account to share your recipes!":
       "Create an account to share your recipes!",
     "Related Recipes": "Related Recipes",
+    "Recipe not found.": "Recipe not found.",
+    "404 - Page Not Found": "404 - Page Not Found",
+    "Sorry, the page you are looking for does not exist or has been moved.":
+      "Sorry, the page you are looking for does not exist or has been moved.",
+    "Back to Home": "Back to Home",
   },
   vi: {
     Home: "Trang chủ",
@@ -157,6 +162,11 @@ const translations = {
     "Create an account to share your recipes!":
       "Tạo tài khoản để chia sẻ công thức của bạn!",
     "Related Recipes": "Công thức khác",
+    "Recipe not found.": "Không tìm thấy công thức.",
+    "404 - Page Not Found": "404 - Trang không tồn tại",
+    "Sorry, the page you are looking for does not exist or has been moved.":
+      "Xin lỗi, trang bạn đang tìm không tồn tại hoặc đã được chuyển đi.",
+    "Back to Home": "Quay về trang chủ",
   },
 };
 
