@@ -16,8 +16,14 @@ const Profile = () => {
   const { t } = useLanguage();
   const [recipes, setRecipes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortOption, setSortOption] = useState("alphabetAsc");
+  const [sortOption, setSortOption] = useState(
+    () => localStorage.getItem("profileSortOption") || "alphabetAsc"
+  );
   const itemsPerPage = 12;
+
+  useEffect(() => {
+    localStorage.setItem("profileSortOption", sortOption);
+  }, [sortOption]);
 
   useEffect(() => {
     const fetchUserRecipes = async () => {

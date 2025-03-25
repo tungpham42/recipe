@@ -149,8 +149,14 @@ const AdminPanel = () => {
   const { t } = useLanguage();
   const { recipes, error, deleteRecipe, deleteComment } = useAdminRecipes();
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortOption, setSortOption] = useState("alphabetAsc");
+  const [sortOption, setSortOption] = useState(
+    () => localStorage.getItem("adminSortOption") || "alphabetAsc"
+  );
   const itemsPerPage = 12;
+
+  useEffect(() => {
+    localStorage.setItem("adminSortOption", sortOption);
+  }, [sortOption]);
 
   const isAdmin = currentUser && currentUser.email === "tung.42@gmail.com";
 

@@ -13,10 +13,16 @@ const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("");
-  const [sortOption, setSortOption] = useState("alphabetAsc");
+  const [sortOption, setSortOption] = useState(
+    () => localStorage.getItem("homeSortOption") || "alphabetAsc"
+  );
   const { t } = useLanguage();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+
+  useEffect(() => {
+    localStorage.setItem("homeSortOption", sortOption);
+  }, [sortOption]);
 
   useEffect(() => {
     const fetchRecipes = async () => {
