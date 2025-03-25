@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Form, Button, Alert, Card } from "react-bootstrap";
@@ -14,20 +15,17 @@ import {
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState(""); // New state for repeat password
+  const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { t } = useLanguage();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
-    // Check if passwords match
     if (password !== repeatPassword) {
       setError(t("Passwords do not match."));
       return;
     }
-
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       navigate("/");
@@ -41,6 +39,19 @@ const Register = () => {
       className="d-flex justify-content-center align-items-center"
       style={{ minHeight: "80vh" }}
     >
+      <Helmet>
+        <title>
+          {t("Register")} - {t("Recipe App")}
+        </title>
+        <meta
+          property="og:title"
+          content={t("Register") + " - " + t("Recipe App")}
+        />
+        <meta
+          property="og:description"
+          content={t("Create an account to share your recipes!")}
+        />
+      </Helmet>
       <Card style={{ width: "100%", maxWidth: "400px" }} className="p-4">
         <h2 className="text-center">{t("Register")}</h2>
         {error && <Alert variant="danger">{error}</Alert>}

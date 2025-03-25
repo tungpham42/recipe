@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { db } from "../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { Card, Button, Row, Col, Alert } from "react-bootstrap";
@@ -35,7 +36,22 @@ const Profile = () => {
   }, [currentUser]);
 
   if (!currentUser)
-    return <div>{t("Please log in to view your profile.")}</div>;
+    return (
+      <div>
+        <Helmet>
+          <title>
+            {t("Please log in to view your profile.")} - {t("Recipe App")}
+          </title>
+          <meta
+            property="og:title"
+            content={
+              t("Please log in to view your profile.") + " - " + t("Recipe App")
+            }
+          />
+        </Helmet>
+        {t("Please log in to view your profile.")}
+      </div>
+    );
 
   const indexOfLastRecipe = currentPage * itemsPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
@@ -43,6 +59,19 @@ const Profile = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>
+          {t("My Recipes")} - {t("Recipe App")}
+        </title>
+        <meta
+          property="og:title"
+          content={t("My Recipes") + " - " + t("Recipe App")}
+        />
+        <meta
+          property="og:description"
+          content={t("View your personal recipe collection!")}
+        />
+      </Helmet>
       <h2>
         <FontAwesomeIcon icon={faUser} className="me-2" /> {t("My Recipes")}
       </h2>

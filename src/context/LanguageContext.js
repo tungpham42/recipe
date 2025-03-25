@@ -65,6 +65,18 @@ const translations = {
     Next: "Next",
     "No recipes found.": "No recipes found.",
     "No comments yet.": "No comments yet.",
+    "Recipe App": "Recipe Sharing Platform",
+    "Update your recipe details.": "Update your recipe details.",
+    "Share your favorite recipe with the world!":
+      "Share your favorite recipe with the world!",
+    "Discover and share amazing recipes!":
+      "Discover and share amazing recipes!",
+    "Log in to access your recipes!": "Log in to access your recipes!",
+    "Manage all recipes as an admin.": "Manage all recipes as an admin.",
+    "View your personal recipe collection!":
+      "View your personal recipe collection!",
+    "Create an account to share your recipes!":
+      "Create an account to share your recipes!",
   },
   vi: {
     Home: "Trang chủ",
@@ -129,6 +141,20 @@ const translations = {
     Next: "Sau",
     "No recipes found.": "Không có công thức nào.",
     "No comments yet.": "Chưa có bình luận nào.",
+    "Recipe App": "Nền tảng chia sẻ công thức nấu ăn",
+    "Update your recipe details.":
+      "Cập nhật thông tin chi tiết về công thức của bạn.",
+    "Share your favorite recipe with the world!":
+      "Chia sẻ công thức yêu thích của bạn với thế giới!",
+    "Discover and share amazing recipes!":
+      "Khám phá và chia sẻ những công thức tuyệt vời!",
+    "Log in to access your recipes!": "Đăng nhập để xem công thức của bạn!",
+    "Manage all recipes as an admin.":
+      "Quản lý tất cả công thức như một quản trị viên.",
+    "View your personal recipe collection!":
+      "Xem bộ sưu tập công thức cá nhân của bạn!",
+    "Create an account to share your recipes!":
+      "Tạo tài khoản để chia sẻ công thức của bạn!",
   },
 };
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Form, Button, Alert, Card } from "react-bootstrap";
@@ -33,6 +34,19 @@ const Login = () => {
       className="d-flex justify-content-center align-items-center"
       style={{ minHeight: "80vh" }}
     >
+      <Helmet>
+        <title>
+          {t("Login")} - {t("Recipe App")}
+        </title>
+        <meta
+          property="og:title"
+          content={t("Login") + " - " + t("Recipe App")}
+        />
+        <meta
+          property="og:description"
+          content={t("Log in to access your recipes!")}
+        />
+      </Helmet>
       <Card style={{ width: "100%", maxWidth: "400px" }} className="p-4">
         <h2 className="text-center">{t("Login")}</h2>
         {error && <Alert variant="danger">{error}</Alert>}

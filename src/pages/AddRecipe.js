@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { db, auth } from "../firebase";
 import {
   collection,
@@ -20,7 +21,7 @@ import {
   faPlus,
   faTags,
 } from "@fortawesome/free-solid-svg-icons";
-import { romanizeString } from "../utils"; // Adjust path to your romanizeString function
+import { romanizeString } from "../utils";
 
 const AddRecipe = () => {
   const [title, setTitle] = useState("");
@@ -59,16 +60,12 @@ const AddRecipe = () => {
   };
 
   const generateUniqueSlug = async (baseSlug) => {
-    // Check if the base slug already exists
     const q = query(collection(db, "recipes"), where("slug", "==", baseSlug));
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.empty) {
-      return baseSlug; // Slug is unique, return it as-is
+      return baseSlug;
     }
-
-    // If slug exists, append a unique identifier (we’ll use the doc ID later)
-    // For now, generate a temporary slug and refine it after doc creation
     return baseSlug + "-temp-" + Math.random().toString(36).substring(2, 8);
   };
 
@@ -80,11 +77,9 @@ const AddRecipe = () => {
         imageUrl = await handleImageUpload(imageFile);
       }
 
-      // Generate base slug from title
       const baseSlug = romanizeString(title);
       let slug = await generateUniqueSlug(baseSlug);
 
-      // Add the recipe to Firestore
       const docRef = await addDoc(collection(db, "recipes"), {
         title,
         description,
@@ -92,15 +87,14 @@ const AddRecipe = () => {
         steps: steps.split("\n"),
         category,
         imageUrl,
-        slug, // Temporary slug
+        slug,
         userId: auth.currentUser.uid,
         createdAt: new Date().toISOString(),
       });
 
-      // If the slug was temporary, update it with the document ID
       if (slug.includes("-temp-")) {
         slug = `${baseSlug}-${docRef.id}`;
-        await updateDoc(docRef, { slug }); // Update the slug with the final unique value
+        await updateDoc(docRef, { slug });
       }
 
       navigate(`/cong-thuc/${slug}`);
@@ -111,6 +105,19 @@ const AddRecipe = () => {
 
   return (
     <div className="bg-white p-4 rounded shadow-sm">
+      <Helmet>
+        <title>
+          {t("Add a Recipe")} - {t("Recipe App")}
+        </title>
+        <meta
+          property="og:title"
+          content={t("Add a Recipe") + " - " + t("Recipe App")}
+        />
+        <meta
+          property="og:description"
+          content={t("Share your favorite recipe with the world!")}
+        />
+      </Helmet>
       <h2>
         <FontAwesomeIcon icon={faUtensils} className="me-2" />{" "}
         {t("Add a Recipe")}

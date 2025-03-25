@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Card, Button, Row, Col, Form, Alert } from "react-bootstrap";
@@ -28,7 +29,6 @@ const Home = () => {
     fetchRecipes();
   }, []);
 
-  // Add useEffect to reset currentPage when category changes
   useEffect(() => {
     setCurrentPage(1);
   }, [category]);
@@ -48,14 +48,26 @@ const Home = () => {
     indexOfLastRecipe
   );
 
-  // Handle category change with page reset
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
-    setCurrentPage(1); // This line is redundant due to the useEffect above, but can be kept for clarity
+    setCurrentPage(1);
   };
 
   return (
     <div>
+      <Helmet>
+        <title>
+          {t("Explore Recipes")} - {t("Recipe App")}
+        </title>
+        <meta
+          property="og:title"
+          content={t("Explore Recipes") + " - " + t("Recipe App")}
+        />
+        <meta
+          property="og:description"
+          content={t("Discover and share amazing recipes!")}
+        />
+      </Helmet>
       <h2>
         <FontAwesomeIcon icon={faUtensils} className="me-2" />{" "}
         {t("Explore Recipes")}
@@ -84,10 +96,7 @@ const Home = () => {
           </Col>
           <Col md={4}>
             <Form.Group>
-              <Form.Select
-                value={category}
-                onChange={handleCategoryChange} // Updated to use new handler
-              >
+              <Form.Select value={category} onChange={handleCategoryChange}>
                 <option value="">{t("All Categories")}</option>
                 <option value="Breakfast">{t("Breakfast")}</option>
                 <option value="Lunch">{t("Lunch")}</option>

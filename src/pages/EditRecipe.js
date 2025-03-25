@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { db } from "../firebase";
 import {
   collection,
@@ -21,9 +22,9 @@ import {
   faRoute,
   faSave,
   faTags,
-  faTrash, // Add trash icon for removing image
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import { romanizeString } from "../utils"; // Adjust path to your romanizeString function
+import { romanizeString } from "../utils";
 
 const EditRecipe = () => {
   const { slug } = useParams();
@@ -110,8 +111,8 @@ const EditRecipe = () => {
   };
 
   const handleRemoveImage = () => {
-    setImageFile(null); // Clear new image file
-    setExistingImageUrl(""); // Clear existing image URL
+    setImageFile(null);
+    setExistingImageUrl("");
   };
 
   const handleSubmit = async (e) => {
@@ -137,7 +138,7 @@ const EditRecipe = () => {
         ingredients: ingredients.split("\n"),
         steps: steps.split("\n"),
         category,
-        imageUrl, // This will be empty if the image was removed
+        imageUrl,
         slug: newSlug,
         updatedAt: new Date().toISOString(),
       });
@@ -149,6 +150,25 @@ const EditRecipe = () => {
 
   return (
     <div className="bg-white p-4 rounded shadow-sm">
+      <Helmet>
+        <title>
+          {t("Edit Recipe")}: {title || "Loading..."} - {t("Recipe App")}
+        </title>
+        <meta
+          property="og:title"
+          content={
+            t("Edit Recipe") +
+            ": " +
+            (title || "Loading...") +
+            " - " +
+            t("Recipe App")
+          }
+        />
+        <meta
+          property="og:description"
+          content={t("Update your recipe details.")}
+        />
+      </Helmet>
       <h2>
         <FontAwesomeIcon icon={faUtensils} className="me-2" />{" "}
         {t("Edit Recipe")}

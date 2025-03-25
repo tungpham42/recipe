@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Helmet } from "react-helmet";
 import { db } from "../firebase";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
@@ -151,8 +152,36 @@ const AdminPanel = () => {
 
   const isAdmin = currentUser && currentUser.email === "tung.42@gmail.com";
 
-  if (!currentUser) return <Navigate to="/login" />;
-  if (!isAdmin) return <div>{t("Unauthorized access.")}</div>;
+  if (!currentUser)
+    return (
+      <>
+        <Helmet>
+          <title>
+            {t("Login")} - {t("Recipe App")}
+          </title>
+          <meta
+            property="og:title"
+            content={t("Login") + " - " + t("Recipe App")}
+          />
+        </Helmet>
+        <Navigate to="/login" />
+      </>
+    );
+  if (!isAdmin)
+    return (
+      <div>
+        <Helmet>
+          <title>
+            {t("Unauthorized access.")} - {t("Recipe App")}
+          </title>
+          <meta
+            property="og:title"
+            content={t("Unauthorized access.") + " - " + t("Recipe App")}
+          />
+        </Helmet>
+        {t("Unauthorized access.")}
+      </div>
+    );
 
   const indexOfLastRecipe = currentPage * itemsPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
@@ -160,6 +189,19 @@ const AdminPanel = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>
+          {t("Admin Panel - Manage Recipes")} - {t("Recipe App")}
+        </title>
+        <meta
+          property="og:title"
+          content={t("Admin Panel - Manage Recipes") + " - " + t("Recipe App")}
+        />
+        <meta
+          property="og:description"
+          content={t("Manage all recipes as an admin.")}
+        />
+      </Helmet>
       <h2>
         <FontAwesomeIcon icon={faTools} className="me-2" />{" "}
         {t("Admin Panel - Manage Recipes")}

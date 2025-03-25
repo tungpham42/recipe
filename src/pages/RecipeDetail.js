@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { db } from "../firebase";
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { useParams, Link } from "react-router-dom";
@@ -82,12 +83,41 @@ const RecipeDetail = () => {
   };
 
   if (!recipe)
-    return <div className="text-center">{t("Recipe not found.")}</div>;
+    return (
+      <div className="text-center">
+        <Helmet>
+          <title>
+            {t("Recipe not found.")} - {t("Recipe App")}
+          </title>
+          <meta
+            property="og:title"
+            content={t("Recipe not found.") + " - " + t("Recipe App")}
+          />
+        </Helmet>
+        {t("Recipe not found.")}
+      </div>
+    );
 
   const isOwner = currentUser && recipe.userId === currentUser.uid;
 
   return (
     <Card className="p-4">
+      <Helmet>
+        <title>
+          {recipe.title} - {t("Recipe App")}
+        </title>
+        <meta
+          property="og:title"
+          content={recipe.title + " - " + t("Recipe App")}
+        />
+        <meta
+          property="og:description"
+          content={recipe.description.slice(0, 150) + "..."}
+        />
+        {recipe.imageUrl && (
+          <meta property="og:image" content={recipe.imageUrl} />
+        )}
+      </Helmet>
       {recipe.imageUrl && (
         <div
           className="custom-card-img rounded-top"
