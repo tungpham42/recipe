@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Card, Button, Row, Col, Form, Alert } from "react-bootstrap";

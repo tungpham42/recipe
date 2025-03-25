@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { db } from "../firebase";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
