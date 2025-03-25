@@ -1,9 +1,8 @@
 [build]
-  command = "npm run build" # Adjust to your build script
-  publish = "build"         # Directory with static assets
-  functions = "netlify/functions" # Functions directory
+  command = "npm run build"
+  publish = "build"
 
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/render"
+  to = "/index.html"
   status = 200
