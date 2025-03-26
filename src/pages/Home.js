@@ -38,7 +38,7 @@ const Home = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [category, sortOption]);
+  }, [searchTerm, category, sortOption]);
 
   const sortRecipes = (recipesToSort) => {
     let sortedRecipes = [...recipesToSort];
