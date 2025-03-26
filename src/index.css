@@ -13,6 +13,10 @@ h2 {
   text-shadow: 1px 1px 2px rgba(230, 126, 34, 0.2) !important; /* Soft glow */
 }
 
+a {
+  color: #e67e22 !important;
+}
+
 /* Card Styling */
 .card {
   border: 2px solid #f9e4b7 !important; /* Light golden border, like a recipe card */
