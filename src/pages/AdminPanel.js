@@ -20,6 +20,7 @@ import {
   faTrash,
   faTools,
   faCommentSlash,
+  faComments,
 } from "@fortawesome/free-solid-svg-icons";
 import Pagination from "../components/Pagination";
 
@@ -52,7 +53,22 @@ const RecipeCard = ({ recipe, onDeleteRecipe, onDeleteComment }) => {
           </div>
           {recipe.comments && recipe.comments.length > 0 && (
             <>
-              <h6>{t("Comments")}</h6>
+              <h6
+                className="mt-3 mb-2"
+                style={{
+                  color: "#495057",
+                  fontWeight: "600",
+                  borderBottom: "2px solid #e9ecef",
+                  paddingBottom: "5px",
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faComments}
+                  className="me-2"
+                  style={{ color: "#6c757d" }}
+                />
+                {t("Comments")}
+              </h6>
               <ListGroup variant="flush">
                 {recipe.comments.map((comment) => (
                   <ListGroup.Item
