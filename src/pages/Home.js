@@ -36,6 +36,7 @@ const Home = () => {
     fetchRecipes();
   }, []);
 
+  // Reset current page when search term, category, or sort option changes
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, category, sortOption]);
@@ -74,14 +75,16 @@ const Home = () => {
     indexOfLastRecipe
   );
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
-    setCurrentPage(1);
   };
 
   const handleSortChange = (e) => {
     setSortOption(e.target.value);
-    setCurrentPage(1);
   };
 
   return (
@@ -111,7 +114,7 @@ const Home = () => {
                 type="text"
                 placeholder={t("Search recipes...")}
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={handleSearchChange}
                 onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
               />
               <FontAwesomeIcon
