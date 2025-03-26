@@ -26,6 +26,7 @@ import {
   faEye,
   faChevronLeft,
   faChevronRight,
+  faTag, // Added for category icon
 } from "@fortawesome/free-solid-svg-icons";
 
 const RecipeDetail = () => {
@@ -35,7 +36,7 @@ const RecipeDetail = () => {
   const [newComment, setNewComment] = useState("");
   const [relatedRecipes, setRelatedRecipes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3; // Show 3 related recipes per page
+  const itemsPerPage = 3;
   const { currentUser } = useContext(AuthContext);
   const { t } = useLanguage();
 
@@ -112,7 +113,6 @@ const RecipeDetail = () => {
     }
   };
 
-  // Pagination logic
   const totalPages = Math.ceil(relatedRecipes.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -175,7 +175,16 @@ const RecipeDetail = () => {
         )}
         <Card.Body>
           <Card.Title className="mb-3">{recipe.title}</Card.Title>
-          <Card.Text className="mb-4">{recipe.description}</Card.Text>
+          <Card.Text className="mb-2">{recipe.description}</Card.Text>
+          {/* Added Category Display */}
+          {recipe.category && (
+            <h6 className="mb-4" style={{ color: "#27ae60" }}>
+              <FontAwesomeIcon icon={faTag} className="me-2" />
+              <span style={{ fontStyle: "italic", fontWeight: "500" }}>
+                {t(recipe.category)}
+              </span>
+            </h6>
+          )}
           <h5>
             <FontAwesomeIcon icon={faList} className="me-2" />{" "}
             {t("Ingredients")}
