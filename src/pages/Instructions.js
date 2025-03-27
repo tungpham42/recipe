@@ -27,7 +27,7 @@ const instructionsTranslations = {
           "Welcome to the Recipe Sharing Platform! Whether you're a food enthusiast looking to share your culinary creations or someone searching for new recipes to try, this guide will help you navigate our features with ease.",
       },
       {
-        heading: "1. Create an Account",
+        heading: "Create an Account",
         content:
           "To start sharing your own recipes and commenting on others, you'll need an account. Here's how:",
         list: [
@@ -37,7 +37,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "2. Log In",
+        heading: "Log In",
         content: "If you already have an account, logging in is simple:",
         list: [
           "Click <strong>Login</strong> in the navigation bar.",
@@ -46,7 +46,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "3. Explore Recipes",
+        heading: "Explore Recipes",
         content: "Discover a variety of recipes from our community:",
         list: [
           "Use the <strong>Search bar</strong> on the homepage to find recipes by name.",
@@ -55,7 +55,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "4. Add a Recipe",
+        heading: "Add a Recipe",
         content: "Share your favorite dishes with the world:",
         list: [
           "Click <strong>Add Recipe</strong> in the navigation bar (you must be logged in).",
@@ -64,7 +64,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "5. Manage Your Recipes",
+        heading: "Manage Your Recipes",
         content: "Keep your recipe collection organized:",
         list: [
           "Go to <strong>My Recipes</strong> in the navigation bar to see all your posted recipes.",
@@ -73,7 +73,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "6. Engage with the Community",
+        heading: "Engage with the Community",
         content: "Interact with other food lovers:",
         list: [
           "On a recipe page, scroll to the <strong>Comments</strong> section.",
@@ -82,7 +82,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "7. Need Help?",
+        heading: "Need Help?",
         content:
           "If you have questions or run into issues, we're here to assist:",
         list: [
@@ -103,7 +103,7 @@ const instructionsTranslations = {
           "Chào mừng bạn đến với Nền tảng Chia sẻ Công thức! Dù bạn là một người yêu thích ẩm thực muốn chia sẻ các sáng tạo nấu nướng của mình hay chỉ đơn giản là tìm kiếm các công thức mới để thử, hướng dẫn này sẽ giúp bạn dễ dàng khám phá các tính năng của chúng tôi.",
       },
       {
-        heading: "1. Tạo Tài khoản",
+        heading: "Tạo Tài khoản",
         content:
           "Để bắt đầu chia sẻ công thức của riêng bạn và bình luận về công thức của người khác, bạn cần một tài khoản. Đây là cách thực hiện:",
         list: [
@@ -113,7 +113,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "2. Đăng nhập",
+        heading: "Đăng nhập",
         content: "Nếu bạn đã có tài khoản, việc đăng nhập rất đơn giản:",
         list: [
           "Nhấn vào <strong>Đăng nhập</strong> trên thanh điều hướng.",
@@ -122,7 +122,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "3. Khám phá Công thức",
+        heading: "Khám phá Công thức",
         content: "Khám phá nhiều công thức đa dạng từ cộng đồng của chúng tôi:",
         list: [
           "Sử dụng <strong>Thanh tìm kiếm</strong> trên trang chủ để tìm công thức theo tên.",
@@ -131,7 +131,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "4. Thêm Công thức",
+        heading: "Thêm Công thức",
         content: "Chia sẻ những món ăn yêu thích của bạn với mọi người:",
         list: [
           "Nhấn vào <strong>Thêm Công thức</strong> trên thanh điều hướng (bạn phải đăng nhập).",
@@ -140,7 +140,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "5. Quản lý Công thức của Bạn",
+        heading: "Quản lý Công thức của Bạn",
         content: "Giữ bộ sưu tập công thức của bạn gọn gàng:",
         list: [
           "Vào <strong>Công thức của Tôi</strong> trên thanh điều hướng để xem tất cả công thức bạn đã đăng.",
@@ -149,7 +149,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "6. Tương tác với Cộng đồng",
+        heading: "Tương tác với Cộng đồng",
         content: "Giao lưu với những người yêu ẩm thực khác:",
         list: [
           "Trên trang công thức, kéo xuống phần <strong>Bình luận</strong>.",
@@ -158,7 +158,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "7. Cần Giúp đỡ?",
+        heading: "Cần Giúp đỡ?",
         content:
           "Nếu bạn có câu hỏi hoặc gặp vấn đề, chúng tôi luôn sẵn sàng hỗ trợ:",
         list: [
@@ -179,7 +179,7 @@ const instructionsTranslations = {
           "Bienvenue sur la Plateforme de Partage de Recettes ! Que vous soyez un passionné de cuisine souhaitant partager vos créations culinaires ou quelqu’un cherchant de nouvelles recettes à essayer, ce guide vous aidera à naviguer facilement parmi nos fonctionnalités.",
       },
       {
-        heading: "1. Créer un Compte",
+        heading: "Créer un Compte",
         content:
           "Pour commencer à partager vos propres recettes et commenter celles des autres, vous aurez besoin d’un compte. Voici comment faire :",
         list: [
@@ -189,7 +189,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "2. Se Connecter",
+        heading: "Se Connecter",
         content: "Si vous avez déjà un compte, la connexion est simple :",
         list: [
           "Cliquez sur <strong>Se Connecter</strong> dans la barre de navigation.",
@@ -198,7 +198,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "3. Explorer les Recettes",
+        heading: "Explorer les Recettes",
         content: "Découvrez une variété de recettes de notre communauté :",
         list: [
           "Utilisez la <strong>Barre de recherche</strong> sur la page d’accueil pour trouver des recettes par nom.",
@@ -207,7 +207,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "4. Ajouter une Recette",
+        heading: "Ajouter une Recette",
         content: "Partagez vos plats préférés avec le monde entier :",
         list: [
           "Cliquez sur <strong>Ajouter une Recette</strong> dans la barre de navigation (vous devez être connecté).",
@@ -216,7 +216,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "5. Gérer Vos Recettes",
+        heading: "Gérer Vos Recettes",
         content: "Gardez votre collection de recettes organisée :",
         list: [
           "Allez à <strong>Mes Recettes</strong> dans la barre de navigation pour voir toutes les recettes que vous avez publiées.",
@@ -225,7 +225,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "6. Interagir avec la Communauté",
+        heading: "Interagir avec la Communauté",
         content: "Échangez avec d’autres amateurs de cuisine :",
         list: [
           "Sur une page de recette, descendez jusqu’à la section <strong>Commentaires</strong>.",
@@ -234,7 +234,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "7. Besoin d’Aide ?",
+        heading: "Besoin d’Aide ?",
         content:
           "Si vous avez des questions ou rencontrez des problèmes, nous sommes là pour vous aider :",
         list: [
@@ -255,7 +255,7 @@ const instructionsTranslations = {
           "¡Bienvenido a la Plataforma de Recetas! Ya seas un entusiasta de la comida que desea compartir tus creaciones culinarias o alguien en busca de nuevas recetas para probar, esta guía te ayudará a navegar por nuestras funciones con facilidad.",
       },
       {
-        heading: "1. Crear una Cuenta",
+        heading: "Crear una Cuenta",
         content:
           "Para empezar a compartir tus propias recetas y comentar las de otros, necesitarás una cuenta. Aquí te explicamos cómo:",
         list: [
@@ -265,7 +265,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "2. Iniciar Sesión",
+        heading: "Iniciar Sesión",
         content: "Si ya tienes una cuenta, iniciar sesión es sencillo:",
         list: [
           "Haz clic en <strong>Iniciar Sesión</strong> en la barra de navegación.",
@@ -274,7 +274,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "3. Explorar Recetas",
+        heading: "Explorar Recetas",
         content: "Descubre una variedad de recetas de nuestra comunidad:",
         list: [
           "Usa la <strong>Barra de búsqueda</strong> en la página principal para encontrar recetas por nombre.",
@@ -283,7 +283,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "4. Agregar una Receta",
+        heading: "Agregar una Receta",
         content: "Comparte tus platos favoritos con el mundo:",
         list: [
           "Haz clic en <strong>Agregar Receta</strong> en la barra de navegación (debes estar conectado).",
@@ -292,7 +292,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "5. Gestionar Tus Recetas",
+        heading: "Gestionar Tus Recetas",
         content: "Mantén tu colección de recetas organizada:",
         list: [
           "Ve a <strong>Mis Recetas</strong> en la barra de navegación para ver todas las recetas que has publicado.",
@@ -301,7 +301,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "6. Interactuar con la Comunidad",
+        heading: "Interactuar con la Comunidad",
         content: "Conecta con otros amantes de la comida:",
         list: [
           "En una página de receta, desplázate hasta la sección <strong>Comentarios</strong>.",
@@ -310,7 +310,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "7. ¿Necesitas Ayuda?",
+        heading: "¿Necesitas Ayuda?",
         content:
           "Si tienes preguntas o encuentras problemas, estamos aquí para ayudarte:",
         list: [
@@ -331,7 +331,7 @@ const instructionsTranslations = {
           "Bem-vindo à Plataforma de Receitas! Seja você um entusiasta da culinária querendo compartilhar suas criações ou alguém buscando novas receitas para experimentar, este guia o ajudará a navegar por nossos recursos com facilidade.",
       },
       {
-        heading: "1. Criar uma Conta",
+        heading: "Criar uma Conta",
         content:
           "Para começar a compartilhar suas próprias receitas e comentar as dos outros, você precisará de uma conta. Veja como:",
         list: [
@@ -341,7 +341,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "2. Fazer Login",
+        heading: "Fazer Login",
         content: "Se você já tem uma conta, fazer login é simples:",
         list: [
           "Clique em <strong>Login</strong> na barra de navegação.",
@@ -350,7 +350,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "3. Explorar Receitas",
+        heading: "Explorar Receitas",
         content: "Descubra uma variedade de receitas da nossa comunidade:",
         list: [
           "Use a <strong>Barra de Pesquisa</strong> na página inicial para encontrar receitas por nome.",
@@ -359,7 +359,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "4. Adicionar uma Receita",
+        heading: "Adicionar uma Receita",
         content: "Compartilhe seus pratos favoritos com o mundo:",
         list: [
           "Clique em <strong>Adicionar Receita</strong> na barra de navegação (você deve estar logado).",
@@ -368,7 +368,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "5. Gerenciar Suas Receitas",
+        heading: "Gerenciar Suas Receitas",
         content: "Mantenha sua coleção de receitas organizada:",
         list: [
           "Vá para <strong>Minhas Receitas</strong> na barra de navegação para ver todas as receitas que você postou.",
@@ -377,7 +377,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "6. Interagir com a Comunidade",
+        heading: "Interagir com a Comunidade",
         content: "Converse com outros amantes da culinária:",
         list: [
           "Na página de uma receita, role até a seção <strong>Comentários</strong>.",
@@ -386,7 +386,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "7. Precisa de Ajuda?",
+        heading: "Precisa de Ajuda?",
         content:
           "Se você tiver dúvidas ou enfrentar problemas, estamos aqui para ajudar:",
         list: [
@@ -407,7 +407,7 @@ const instructionsTranslations = {
           "Willkommen auf der Rezeptplattform! Egal, ob Sie ein Kochbegeisterter sind, der seine kulinarischen Kreationen teilen möchte, oder jemand, der neue Rezepte ausprobieren will, dieser Leitfaden hilft Ihnen, unsere Funktionen mühelos zu nutzen.",
       },
       {
-        heading: "1. Ein Konto Erstellen",
+        heading: "Ein Konto Erstellen",
         content:
           "Um Ihre eigenen Rezepte zu teilen und die anderer zu kommentieren, benötigen Sie ein Konto. So geht’s:",
         list: [
@@ -417,7 +417,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "2. Einloggen",
+        heading: "Einloggen",
         content: "Wenn Sie bereits ein Konto haben, ist das Einloggen einfach:",
         list: [
           "Klicken Sie auf <strong>Login</strong> in der Navigationsleiste.",
@@ -426,7 +426,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "3. Rezepte Entdecken",
+        heading: "Rezepte Entdecken",
         content:
           "Entdecken Sie eine Vielzahl von Rezepten aus unserer Gemeinschaft:",
         list: [
@@ -436,7 +436,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "4. Ein Rezept Hinzufügen",
+        heading: "Ein Rezept Hinzufügen",
         content: "Teilen Sie Ihre Lieblingsgerichte mit der Welt:",
         list: [
           "Klicken Sie auf <strong>Rezept Hinzufügen</strong> in der Navigationsleiste (Sie müssen eingeloggt sein).",
@@ -445,7 +445,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "5. Ihre Rezepte Verwalten",
+        heading: "Ihre Rezepte Verwalten",
         content: "Halten Sie Ihre Rezeptsammlung organisiert:",
         list: [
           "Gehen Sie zu <strong>Meine Rezepte</strong> in der Navigationsleiste, um alle Ihre veröffentlichten Rezepte zu sehen.",
@@ -454,7 +454,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "6. Mit der Gemeinschaft Interagieren",
+        heading: "Mit der Gemeinschaft Interagieren",
         content: "Tauschen Sie sich mit anderen Kochliebhabern aus:",
         list: [
           "Scrollen Sie auf einer Rezeptseite zur Sektion <strong>Kommentare</strong>.",
@@ -463,7 +463,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "7. Brauchen Sie Hilfe?",
+        heading: "Brauchen Sie Hilfe?",
         content:
           "Wenn Sie Fragen haben oder auf Probleme stoßen, sind wir für Sie da:",
         list: [
@@ -484,7 +484,7 @@ const instructionsTranslations = {
           "Benvenuto sulla Piattaforma di Condivisione Ricette! Che tu sia un appassionato di cucina desideroso di condividere le tue creazioni culinarie o qualcuno in cerca di nuove ricette da provare, questa guida ti aiuterà a navigare facilmente tra le nostre funzionalità.",
       },
       {
-        heading: "1. Creare un Account",
+        heading: "Creare un Account",
         content:
           "Per iniziare a condividere le tue ricette e commentare quelle degli altri, avrai bisogno di un account. Ecco come fare:",
         list: [
@@ -494,7 +494,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "2. Accedere",
+        heading: "Accedere",
         content: "Se hai già un account, accedere è semplice:",
         list: [
           "Clicca su <strong>Accedi</strong> nella barra di navigazione.",
@@ -503,7 +503,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "3. Esplorare le Ricette",
+        heading: "Esplorare le Ricette",
         content: "Scopri una varietà di ricette dalla nostra comunità:",
         list: [
           "Usa la <strong>Barra di ricerca</strong> nella homepage per trovare ricette per nome.",
@@ -512,7 +512,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "4. Aggiungere una Ricetta",
+        heading: "Aggiungere una Ricetta",
         content: "Condividi i tuoi piatti preferiti con il mondo:",
         list: [
           "Clicca su <strong>Aggiungi Ricetta</strong> nella barra di navigazione (devi essere loggato).",
@@ -521,7 +521,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "5. Gestire le Tue Ricette",
+        heading: "Gestire le Tue Ricette",
         content: "Mantieni organizzata la tua collezione di ricette:",
         list: [
           "Vai su <strong>Le Mie Ricette</strong> nella barra di navigazione per vedere tutte le ricette che hai pubblicato.",
@@ -530,7 +530,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "6. Interagire con la Comunità",
+        heading: "Interagire con la Comunità",
         content: "Connettiti con altri amanti del cibo:",
         list: [
           "Su una pagina di ricetta, scorri fino alla sezione <strong>Commenti</strong>.",
@@ -539,7 +539,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "7. Hai Bisogno di Aiuto?",
+        heading: "Hai Bisogno di Aiuto?",
         content: "Se hai domande o incontri problemi, siamo qui per aiutarti:",
         list: [
           "Contattaci a <a href='mailto:tung.42@gmail.com'>tung.42@gmail.com</a> per supporto.",
@@ -559,7 +559,7 @@ const instructionsTranslations = {
           "Добро пожаловать на Платформу Обмена Рецептами! Будь вы энтузиастом кулинарии, желающим поделиться своими кулинарными шедеврами, или человеком, ищущим новые рецепты для пробы, это руководство поможет вам легко освоить наши функции.",
       },
       {
-        heading: "1. Создать Аккаунт",
+        heading: "Создать Аккаунт",
         content:
           "Чтобы начать делиться своими рецептами и комментировать чужие, вам понадобится аккаунт. Вот как это сделать:",
         list: [
@@ -569,7 +569,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "2. Войти",
+        heading: "Войти",
         content: "Если у вас уже есть аккаунт, вход прост:",
         list: [
           "Нажмите <strong>Войти</strong> в панели навигации.",
@@ -578,7 +578,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "3. Изучить Рецепты",
+        heading: "Изучить Рецепты",
         content: "Откройте для себя множество рецептов от нашего сообщества:",
         list: [
           "Используйте <strong>Строка поиска</strong> на главной странице, чтобы найти рецепты по названию.",
@@ -587,7 +587,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "4. Добавить Рецепт",
+        heading: "Добавить Рецепт",
         content: "Поделитесь своими любимыми блюдами с миром:",
         list: [
           "Нажмите <strong>Добавить Рецепт</strong> в панели навигации (вы должны быть авторизованы).",
@@ -596,7 +596,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "5. Управлять Своими Рецептами",
+        heading: "Управлять Своими Рецептами",
         content: "Держите свою коллекцию рецептов в порядке:",
         list: [
           "Перейдите в <strong>Мои Рецепты</strong> в панели навигации, чтобы увидеть все ваши опубликованные рецепты.",
@@ -605,7 +605,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "6. Взаимодействовать с Сообществом",
+        heading: "Взаимодействовать с Сообществом",
         content: "Общайтесь с другими любителями еды:",
         list: [
           "На странице рецепта прокрутите до раздела <strong>Комментарии</strong>.",
@@ -614,7 +614,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "7. Нужна Помощь?",
+        heading: "Нужна Помощь?",
         content:
           "Если у вас есть вопросы или возникли проблемы, мы готовы помочь:",
         list: [
@@ -635,7 +635,7 @@ const instructionsTranslations = {
           "レシピ共有プラットフォームへようこそ！料理愛好家として自分の創作料理を共有したい方、新しいレシピを試したい方、どちらであっても、このガイドは当プラットフォームの機能を簡単に使いこなすお手伝いをします。",
       },
       {
-        heading: "1. アカウントを作成する",
+        heading: "アカウントを作成する",
         content:
           "自分のレシピを共有したり、他の人のレシピにコメントするには、アカウントが必要です。方法はこちら：",
         list: [
@@ -645,7 +645,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "2. ログインする",
+        heading: "ログインする",
         content: "すでにアカウントをお持ちの場合、ログインは簡単です：",
         list: [
           "ナビゲーションバーで<strong>ログイン</strong>をクリックします。",
@@ -654,7 +654,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "3. レシピを探索する",
+        heading: "レシピを探索する",
         content: "コミュニティからのさまざまなレシピを発見してください：",
         list: [
           "ホームページの<strong>検索バー</strong>を使って名前でレシピを検索します。",
@@ -663,7 +663,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "4. レシピを追加する",
+        heading: "レシピを追加する",
         content: "お気に入りの料理を世界と共有しましょう：",
         list: [
           "ナビゲーションバーで<strong>レシピを追加</strong>をクリックします（ログインが必要です）。",
@@ -672,7 +672,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "5. 自分のレシピを管理する",
+        heading: "自分のレシピを管理する",
         content: "レシピコレクションを整理してください：",
         list: [
           "ナビゲーションバーの<strong>マイレシピ</strong>に移動して、あなたが投稿したすべてのレシピを確認します。",
@@ -681,7 +681,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "6. コミュニティと交流する",
+        heading: "コミュニティと交流する",
         content: "他の料理愛好家と交流しましょう：",
         list: [
           "レシピページで<strong>コメント</strong>セクションまでスクロールします。",
@@ -690,7 +690,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "7. ヘルプが必要ですか？",
+        heading: "ヘルプが必要ですか？",
         content: "質問がある場合や問題に直面した場合、私たちがサポートします：",
         list: [
           "サポートのために<a href='mailto:tung.42@gmail.com'>tung.42@gmail.com</a>までご連絡ください。",
@@ -710,7 +710,7 @@ const instructionsTranslations = {
           "레시피 공유 플랫폼에 오신 것을 환영합니다! 요리 애호가로서 자신의 요리 창작물을 공유하고 싶거나 새로운 레시피를 시도하고 싶은 분이라면, 이 가이드가 플랫폼 기능을 쉽게 탐색하는 데 도움이 될 것입니다.",
       },
       {
-        heading: "1. 계정 만들기",
+        heading: "계정 만들기",
         content:
           "자신의 레시피를 공유하고 다른 사람의 레시피에 댓글을 달기 위해서는 계정이 필요합니다. 방법은 다음과 같습니다:",
         list: [
@@ -720,7 +720,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "2. 로그인",
+        heading: "로그인",
         content: "이미 계정이 있다면 로그인은 간단합니다:",
         list: [
           "네비게이션 바에서 <strong>로그인</strong>을 클릭하세요.",
@@ -729,7 +729,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "3. 레시피 탐색",
+        heading: "레시피 탐색",
         content: "커뮤니티에서 제공하는 다양한 레시피를 발견하세요:",
         list: [
           "홈페이지의 <strong>검색창</strong>을 사용해 이름으로 레시피를 찾으세요.",
@@ -738,7 +738,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "4. 레시피 추가",
+        heading: "레시피 추가",
         content: "좋아하는 요리를 세상과 공유하세요:",
         list: [
           "네비게이션 바에서 <strong>레시피 추가</strong>를 클릭하세요 (로그인 필요).",
@@ -747,7 +747,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "5. 내 레시피 관리",
+        heading: "내 레시피 관리",
         content: "레시피 컬렉션을 정리하세요:",
         list: [
           "네비게이션 바의 <strong>내 레시피</strong>로 이동해 게시한 모든 레시피를 확인하세요.",
@@ -756,7 +756,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "6. 커뮤니티와 소통",
+        heading: "커뮤니티와 소통",
         content: "다른 요리 애호가들과 교류하세요:",
         list: [
           "레시피 페이지에서 <strong>댓글</strong> 섹션으로 스크롤하세요.",
@@ -765,7 +765,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "7. 도움이 필요하세요?",
+        heading: "도움이 필요하세요?",
         content: "질문이 있거나 문제가 생기면 저희가 도와드리겠습니다:",
         list: [
           "지원을 위해 <a href='mailto:tung.42@gmail.com'>tung.42@gmail.com</a>으로 연락 주세요.",
@@ -785,7 +785,7 @@ const instructionsTranslations = {
           "欢迎来到食谱分享平台！无论您是想分享自己烹饪创意的美食爱好者，还是寻找新食谱尝试的人，本指南将帮助您轻松掌握我们的功能。",
       },
       {
-        heading: "1. 创建账户",
+        heading: "创建账户",
         content:
           "要开始分享您自己的食谱并评论他人的食谱，您需要一个账户。操作方法如下：",
         list: [
@@ -795,7 +795,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "2. 登录",
+        heading: "登录",
         content: "如果您已有账户，登录很简单：",
         list: [
           "点击导航栏中的<strong>登录</strong>。",
@@ -804,7 +804,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "3. 探索食谱",
+        heading: "探索食谱",
         content: "发现我们社区中的各种食谱：",
         list: [
           "使用主页上的<strong>搜索栏</strong>按名称查找食谱。",
@@ -813,7 +813,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "4. 添加食谱",
+        heading: "添加食谱",
         content: "与世界分享您喜爱的菜肴：",
         list: [
           "点击导航栏中的<strong>添加食谱</strong>（需登录）。",
@@ -822,7 +822,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "5. 管理您的食谱",
+        heading: "管理您的食谱",
         content: "保持您的食谱收藏井然有序：",
         list: [
           "前往导航栏中的<strong>我的食谱</strong>，查看您发布的所有食谱。",
@@ -831,7 +831,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "6. 与社区互动",
+        heading: "与社区互动",
         content: "与其他美食爱好者交流：",
         list: [
           "在食谱页面上，滚动到<strong>评论</strong>部分。",
@@ -840,7 +840,7 @@ const instructionsTranslations = {
         ],
       },
       {
-        heading: "7. 需要帮助？",
+        heading: "需要帮助？",
         content: "如果您有疑问或遇到问题，我们随时为您提供帮助：",
         list: [
           "通过<a href='mailto:tung.42@gmail.com'>tung.42@gmail.com</a>联系我们以获取支持。",
