@@ -166,7 +166,7 @@ a[href^="tel"],
 }
 
 /* Dropdown Styling */
-.dropdown-toggle:not(#user-dropdown) {
+.dropdown-toggle {
   border-radius: 10px !important;
   border: 1px solid #fff !important; /* Matches outline-light */
   background-color: transparent !important;
@@ -177,14 +177,14 @@ a[href^="tel"],
   transition: background-color 0.3s ease, transform 0.2s ease !important;
 }
 
-.dropdown-toggle:not(#user-dropdown):hover {
+.dropdown-toggle:hover {
   background-color: rgba(
     255,
     234,
     167,
     0.2
   ) !important; /* Light yellow hover */
-  transform: scale(1.05) !important; /* Slight pop effect */
+  transform: scale(1.02) !important; /* Slight pop effect */
 }
 
 .dropdown-menu {
@@ -396,7 +396,7 @@ a[href^="tel"],
 }
 /* Ensure dropdowns fit well on mobile */
 @media (max-width: 768px) {
-  .navbar-nav .dropdown-toggle:not(#user-dropdown) {
+  .navbar-nav .dropdown-toggle {
     padding: 0.4rem 0.8rem !important; /* Smaller padding on mobile */
     font-size: 0.9rem !important; /* Slightly smaller text */
   }

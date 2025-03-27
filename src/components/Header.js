@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, Container, Form, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
@@ -16,7 +16,8 @@ import {
   faSignInAlt,
   faUserPlus,
   faBowlFood,
-  faBook, // Added for Instructions
+  faBook,
+  faGlobe, // Added for language dropdown
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
@@ -28,6 +29,20 @@ const Header = () => {
   };
 
   const isAdmin = currentUser && currentUser.email === "tung.42@gmail.com";
+
+  const languageNames = {
+    vi: "Tiếng Việt",
+    en: "English",
+    fr: "Français",
+    es: "Español",
+    pt: "Português",
+    de: "Deutsch",
+    it: "Italiano",
+    ru: "Русский",
+    ja: "日本語",
+    ko: "한국어",
+    zh: "中文",
+  };
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
@@ -94,27 +109,27 @@ const Header = () => {
                 </Nav.Link>
               </>
             )}
-            {/* Language Switcher */}
-            <div className="d-flex align-items-center">
-              <Form.Select
-                className="language-switcher"
-                style={{ width: "120px" }}
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-              >
-                <option value="vi">Tiếng Việt</option>
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="es">Español</option>
-                <option value="pt">Português</option>
-                <option value="de">Deutsch</option>
-                <option value="it">Italiano</option>
-                <option value="ru">Русский</option>
-                <option value="ja">日本語</option>
-                <option value="ko">한국어</option>
-                <option value="zh">中文</option>
-              </Form.Select>
-            </div>
+            {/* Language Switcher Dropdown */}
+            <NavDropdown
+              title={
+                <>
+                  <FontAwesomeIcon icon={faGlobe} className="me-1" />
+                  {languageNames[language]}
+                </>
+              }
+              id="language-dropdown"
+              align="end"
+            >
+              {Object.entries(languageNames).map(([code, name]) => (
+                <NavDropdown.Item
+                  key={code}
+                  onClick={() => setLanguage(code)}
+                  active={language === code}
+                >
+                  {name}
+                </NavDropdown.Item>
+              ))}
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
