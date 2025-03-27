@@ -23,6 +23,8 @@ import {
   faSave,
   faTags,
   faTrash,
+  faHeading,
+  faFileAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { romanizeString } from "../utils";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
@@ -191,7 +193,7 @@ const EditRecipe = () => {
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>
-            <FontAwesomeIcon icon={faUtensils} className="me-1" />
+            <FontAwesomeIcon icon={faHeading} className="me-1" />
             {t("Title")}
           </Form.Label>
           <Form.Control
@@ -204,7 +206,7 @@ const EditRecipe = () => {
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
-            <FontAwesomeIcon icon={faUtensils} className="me-1" />
+            <FontAwesomeIcon icon={faFileAlt} className="me-1" />
             {t("Description")}
           </Form.Label>
           <Form.Control
