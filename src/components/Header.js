@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav, Button, Container, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom"; // Replace Link with NavLink
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useContext } from "react";
@@ -31,31 +31,31 @@ const Header = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={NavLink} to="/">
           <FontAwesomeIcon icon={faBowlFood} className="me-2" />{" "}
           {t("Recipe Sharing")}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={NavLink} to="/" end>
               <FontAwesomeIcon icon={faHome} className="me-1" />
               {t("Home")}
             </Nav.Link>
             {currentUser && (
-              <Nav.Link as={Link} to="/them-cong-thuc">
+              <Nav.Link as={NavLink} to="/them-cong-thuc">
                 <FontAwesomeIcon icon={faPlus} className="me-1" />
                 {t("Add Recipe")}
               </Nav.Link>
             )}
             {currentUser && (
-              <Nav.Link as={Link} to="/ho-so">
+              <Nav.Link as={NavLink} to="/ho-so">
                 <FontAwesomeIcon icon={faUser} className="me-1" />
                 {t("Profile")}
               </Nav.Link>
             )}
             {isAdmin && (
-              <Nav.Link as={Link} to="/admin">
+              <Nav.Link as={NavLink} to="/admin">
                 <FontAwesomeIcon icon={faTools} className="me-1" />
                 {t("Admin")}
               </Nav.Link>
@@ -69,11 +69,11 @@ const Header = () => {
               </Button>
             ) : (
               <>
-                <Nav.Link as={Link} to="/dang-nhap">
+                <Nav.Link as={NavLink} to="/dang-nhap">
                   <FontAwesomeIcon icon={faSignInAlt} className="me-1" />
                   {t("Login")}
                 </Nav.Link>
-                <Nav.Link as={Link} to="/dang-ky">
+                <Nav.Link as={NavLink} to="/dang-ky">
                   <FontAwesomeIcon icon={faUserPlus} className="me-1" />
                   {t("Register")}
                 </Nav.Link>

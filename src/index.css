@@ -86,9 +86,20 @@ a[href^="tel"] {
 }
 
 /* Navbar */
-.navbar {
+.navbar.navbar-dark.bg-dark {
   background-color: #f39c12 !important; /* Bright orange, like a chef’s apron */
+  background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Crect x="0" y="8" width="20" height="4" fill="%23d4a017" opacity="0.5"/%3E%3C/svg%3E') !important; /* Subtle golden pattern */
+  background-repeat: repeat !important; /* Tile the pattern */
   box-shadow: 0 2px 8px rgba(74, 44, 15, 0.15) !important;
+}
+
+.navbar > .container {
+  background-color: rgba(
+    255,
+    252,
+    245,
+    0.3
+  ) !important; /* Semi-transparent overlay to soften the pattern */
 }
 
 .navbar-brand {
@@ -101,12 +112,34 @@ a[href^="tel"] {
 
 .nav-link {
   font-weight: 500 !important;
-  color: #fff !important;
+  color: #fff !important; /* Default white */
   transition: color 0.3s ease !important;
 }
 
 .nav-link:hover {
   color: #ffeaa7 !important; /* Light yellow, like butter */
+}
+
+/* Active Nav Link Styling */
+.nav-link.active {
+  color: #fff !important; /* White text for contrast */
+  background-color: #e67e2280 !important; /* Warm orange, like spices */
+  border-radius: 8px !important; /* Slightly rounded corners */
+  padding: 0.5rem 1rem !important; /* Consistent padding */
+  font-weight: 600 !important; /* Slightly bolder */
+  box-shadow: 0 2px 4px rgba(74, 44, 15, 0.2) !important; /* Subtle brown shadow */
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+.nav-link.active:hover {
+  color: #fff !important; /* Maintain white on hover */
+  background-color: #d3540080 !important; /* Deeper orange on hover */
+  transform: scale(1.05) !important; /* Slight pop effect */
+}
+
+/* Ensure icons align properly in active state */
+.nav-link.active .fa-icon {
+  color: #fff !important; /* Ensure icons match text color */
 }
 
 /* Forms (Input and Select) */
