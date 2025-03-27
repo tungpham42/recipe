@@ -23,6 +23,7 @@ import NotFound from "./pages/NotFound"; // Add this import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Instructions from "./pages/Instructions";
 
 const ProtectedRoute = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
@@ -91,6 +92,7 @@ const AppContent = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="/huong-dan" element={<Instructions />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />{" "}
           {/* Add this catch-all route */}

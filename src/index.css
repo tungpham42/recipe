@@ -14,7 +14,8 @@ h2 {
 }
 
 a[href^="mailto"],
-a[href^="tel"] {
+a[href^="tel"],
+.card-body .text-primary {
   color: #e67e22 !important;
 }
 
@@ -149,7 +150,7 @@ a[href^="tel"] {
 }
 
 /* Dropdown Styling */
-.dropdown-toggle {
+.dropdown-toggle:not(#user-dropdown) {
   border-radius: 10px !important;
   border: 1px solid #fff !important; /* Matches outline-light */
   background-color: transparent !important;
@@ -160,7 +161,7 @@ a[href^="tel"] {
   transition: background-color 0.3s ease, transform 0.2s ease !important;
 }
 
-.dropdown-toggle:hover {
+.dropdown-toggle:not(#user-dropdown):hover {
   background-color: rgba(
     255,
     234,
@@ -192,6 +193,7 @@ a[href^="tel"] {
 }
 
 .dropdown-item:active,
+.dropdown-item.active,
 .dropdown-item:focus {
   background-color: #e67e22 !important; /* Warm orange when active */
   color: #fff !important; /* White text for contrast */
@@ -378,7 +380,7 @@ a[href^="tel"] {
 }
 /* Ensure dropdowns fit well on mobile */
 @media (max-width: 768px) {
-  .navbar-nav .dropdown-toggle {
+  .navbar-nav .dropdown-toggle:not(#user-dropdown) {
     padding: 0.4rem 0.8rem !important; /* Smaller padding on mobile */
     font-size: 0.9rem !important; /* Slightly smaller text */
   }

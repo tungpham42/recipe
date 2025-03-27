@@ -2,9 +2,12 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Container } from "react-bootstrap";
+import { useLanguage } from "../context/LanguageContext"; // Import the useLanguage hook
 
 const Footer = () => {
+  const { t } = useLanguage(); // Access the translate function from context
   const currentYear = new Date().getFullYear();
+
   return (
     <footer className="text-dark pb-1 mt-4">
       <Container>
@@ -27,6 +30,10 @@ const Footer = () => {
           >
             <FontAwesomeIcon icon={faGithub} className="me-1" />
             MIT License
+          </a>
+          {" | "}
+          <a href="/privacy-policy" className="text-dark text-decoration-none">
+            {t("Privacy Policy")} {/* Translate Privacy Policy */}
           </a>
         </p>
       </Container>

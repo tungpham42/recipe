@@ -1,8 +1,12 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { Helmet } from "react-helmet-async";
 
 const privacyPolicyTranslations = {
-  en: `
+  en: {
+    title: "Privacy Policy",
+    "Recipe App": "Recipe Sharing Platform",
+    html: `
       <div>
         <h1>Privacy Policy</h1>
         <p>Last updated: March 25, 2025</p>
@@ -45,7 +49,11 @@ const privacyPolicyTranslations = {
         <p>If you have questions about this Privacy Policy, contact us at: <a href="mailto:tung.42@gmail.com">tung.42@gmail.com</a>.</p>
       </div>
     `,
-  vi: `
+  },
+  vi: {
+    title: "Chính sách Bảo mật",
+    "Recipe App": "Nền tảng Chia sẻ Công thức",
+    html: `
       <div>
         <h1>Chính sách Bảo mật</h1>
         <p>Cập nhật lần cuối: Ngày 25 tháng 3 năm 2025</p>
@@ -88,7 +96,11 @@ const privacyPolicyTranslations = {
         <p>Nếu bạn có thắc mắc về Chính sách Bảo mật này, liên hệ với chúng tôi tại: <a href="mailto:tung.42@gmail.com">tung.42@gmail.com</a>.</p>
       </div>
     `,
-  fr: `
+  },
+  fr: {
+    title: "Politique de Confidentialité",
+    "Recipe App": "Plateforme de Partage de Recettes",
+    html: `
       <div>
         <h1>Politique de Confidentialité</h1>
         <p>Dernière mise à jour : 25 mars 2025</p>
@@ -131,7 +143,11 @@ const privacyPolicyTranslations = {
         <p>Si vous avez des questions sur cette Politique de Confidentialité, contactez-nous à : <a href="mailto:tung.42@gmail.com">tung.42@gmail.com</a>.</p>
       </div>
     `,
-  es: `
+  },
+  es: {
+    title: "Política de Privacidad",
+    "Recipe App": "Plataforma de Recetas",
+    html: `
       <div>
         <h1>Política de Privacidad</h1>
         <p>Última actualización: 25 de marzo de 2025</p>
@@ -174,7 +190,11 @@ const privacyPolicyTranslations = {
         <p>Si tienes preguntas sobre esta Política de Privacidad, contáctanos en: <a href="mailto:tung.42@gmail.com">tung.42@gmail.com</a>.</p>
       </div>
     `,
-  pt: `
+  },
+  pt: {
+    title: "Política de Privacidade",
+    "Recipe App": "Plataforma de Receitas",
+    html: `
       <div>
         <h1>Política de Privacidade</h1>
         <p>Última atualização: 25 de março de 2025</p>
@@ -217,7 +237,11 @@ const privacyPolicyTranslations = {
         <p>Se tiver dúvidas sobre esta Política de Privacidade, entre em contato conosco em: <a href="mailto:tung.42@gmail.com">tung.42@gmail.com</a>.</p>
       </div>
     `,
-  de: `
+  },
+  de: {
+    title: "Datenschutzrichtlinie",
+    "Recipe App": "Rezeptplattform",
+    html: `
       <div>
         <h1>Datenschutzrichtlinie</h1>
         <p>Zuletzt aktualisiert: 25. März 2025</p>
@@ -260,7 +284,11 @@ const privacyPolicyTranslations = {
         <p>Wenn Sie Fragen zu dieser Datenschutzrichtlinie haben, kontaktieren Sie uns unter: <a href="mailto:tung.42@gmail.com">tung.42@gmail.com</a>.</p>
       </div>
     `,
-  it: `
+  },
+  it: {
+    title: "Informativa sulla Privacy",
+    "Recipe App": "Piattaforma di Condivisione Ricette",
+    html: `
       <div>
         <h1>Politica sulla Privacy</h1>
         <p>Ultimo aggiornamento: 25 marzo 2025</p>
@@ -303,7 +331,11 @@ const privacyPolicyTranslations = {
         <p>Se hai domande su questa Politica sulla Privacy, contattaci a: <a href="mailto:tung.42@gmail.com">tung.42@gmail.com</a>.</p>
       </div>
     `,
-  ru: `
+  },
+  ru: {
+    title: "Политика Конфиденциальности",
+    "Recipe App": "Платформа Обмена Рецептами",
+    html: `
       <div>
         <h1>Политика Конфиденциальности</h1>
         <p>Последнее обновление: 25 марта 2025 года</p>
@@ -346,7 +378,11 @@ const privacyPolicyTranslations = {
         <p>Если у вас есть вопросы по этой Политике Конфиденциальности, свяжитесь с нами по адресу: <a href="mailto:tung.42@gmail.com">tung.42@gmail.com</a>.</p>
       </div>
     `,
-  ja: `
+  },
+  ja: {
+    title: "プライバシーポリシー",
+    "Recipe App": "レシピプラットフォーム",
+    html: `
       <div>
         <h1>プライバシーポリシー</h1>
         <p>最終更新日：2025年3月25日</p>
@@ -389,7 +425,11 @@ const privacyPolicyTranslations = {
         <p>このプライバシーポリシーに関するご質問は、以下までご連絡ください：<a href="mailto:tung.42@gmail.com">tung.42@gmail.com</a>。</p>
       </div>
     `,
-  ko: `
+  },
+  ko: {
+    title: "개인정보 보호정책",
+    "Recipe App": "레시피 공유 플랫폼",
+    html: `
       <div>
         <h1>개인정보 보호정책</h1>
         <p>최종 업데이트: 2025년 3월 25일</p>
@@ -432,7 +472,11 @@ const privacyPolicyTranslations = {
         <p>이 개인정보 보호정책에 대한 질문이 있으면 다음으로 연락 주세요: <a href="mailto:tung.42@gmail.com">tung.42@gmail.com</a>.</p>
       </div>
     `,
-  zh: `
+  },
+  zh: {
+    title: "隐私政策",
+    "Recipe App": "食谱分享平台",
+    html: `
       <div>
         <h1>隐私政策</h1>
         <p>最后更新：2025年3月25日</p>
@@ -475,16 +519,30 @@ const privacyPolicyTranslations = {
         <p>如果您对本隐私政策有任何疑问，请联系我们： <a href="mailto:tung.42@gmail.com">tung.42@gmail.com</a>。</p>
       </div>
     `,
+  },
 };
 
 const PrivacyPolicy = () => {
   const { language } = useLanguage(); // Get current language from context
 
   // Use the translated HTML string for the current language
-  const htmlContent =
-    privacyPolicyTranslations[language] || privacyPolicyTranslations["en"]; // Fallback to English
+  const translation =
+    privacyPolicyTranslations[language] || privacyPolicyTranslations["vi"];
 
-  return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+  return (
+    <>
+      <Helmet>
+        <title>
+          {translation.title} - {translation["Recipe App"]}
+        </title>
+        <meta
+          property="og:title"
+          content={`${translation.title} - ${translation["Recipe App"]}`}
+        />
+      </Helmet>
+      <div dangerouslySetInnerHTML={{ __html: translation.html }} />
+    </>
+  );
 };
 
 export default PrivacyPolicy;

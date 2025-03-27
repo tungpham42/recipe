@@ -94,6 +94,8 @@ const translations = {
       "Failed to register with Google. Try again.",
     "Failed to login with Google. Try again.":
       "Failed to login with Google. Try again.",
+    Instructions: "Instructions",
+    "Privacy Policy": "Privacy Policy",
   },
   vi: {
     Home: "Trang chủ",
@@ -189,6 +191,8 @@ const translations = {
       "Đăng ký với Google thất bại. Thử lại.",
     "Failed to login with Google. Try again.":
       "Đăng nhập với Google thất bại. Thử lại.",
+    Instructions: "Hướng Dẫn",
+    "Privacy Policy": "Chính Sách Bảo Mật",
   },
   fr: {
     Home: "Accueil",
@@ -285,6 +289,8 @@ const translations = {
       "Échec de l'inscription avec Google. Réessayez.",
     "Failed to login with Google. Try again.":
       "Échec de la connexion avec Google. Réessayez.",
+    Instructions: "Instructions",
+    "Privacy Policy": "Politique de confidentialité",
   },
   es: {
     Home: "Inicio",
@@ -380,6 +386,8 @@ const translations = {
       "No se pudo registrar con Google. Intenta de nuevo.",
     "Failed to login with Google. Try again.":
       "No se pudo iniciar sesión con Google. Intenta de nuevo.",
+    Instructions: "Instrucciones",
+    "Privacy Policy": "Política de privacidad",
   },
   pt: {
     Home: "Início",
@@ -474,6 +482,8 @@ const translations = {
       "Falha ao registrar com Google. Tente novamente.",
     "Failed to login with Google. Try again.":
       "Falha ao entrar com Google. Tente novamente.",
+    Instructions: "Instruções",
+    "Privacy Policy": "Política de Privacidade",
   },
   de: {
     Home: "Startseite",
@@ -568,6 +578,8 @@ const translations = {
       "Registrierung mit Google fehlgeschlagen. Versuche es erneut.",
     "Failed to login with Google. Try again.":
       "Anmeldung mit Google fehlgeschlagen. Versuche es erneut.",
+    Instructions: "Anleitung",
+    "Privacy Policy": "Datenschutz",
   },
   it: {
     Home: "Home",
@@ -662,6 +674,8 @@ const translations = {
       "Registrazione con Google fallita. Riprova.",
     "Failed to login with Google. Try again.":
       "Accesso con Google fallito. Riprova.",
+    Instructions: "Istruzioni",
+    "Privacy Policy": "Informativa sulla privacy",
   },
   ru: {
     Home: "Главная",
@@ -760,6 +774,8 @@ const translations = {
       "Не удалось зарегистрироваться через Google. Попробуйте еще раз.",
     "Failed to login with Google. Try again.":
       "Не удалось войти через Google. Попробуйте еще раз.",
+    Instructions: "Инструкции",
+    "Privacy Policy": "Политика конфиденциальности",
   },
   ja: {
     Home: "ホーム",
@@ -855,6 +871,8 @@ const translations = {
       "Googleでの登録に失敗しました。もう一度お試しください。",
     "Failed to login with Google. Try again.":
       "Googleでのログインに失敗しました。もう一度お試しください。",
+    Instructions: "手順",
+    "Privacy Policy": "プライバシーポリシー",
   },
   ko: {
     Home: "홈",
@@ -946,6 +964,8 @@ const translations = {
       "Google로 회원가입에 실패했습니다. 다시 시도하세요.",
     "Failed to login with Google. Try again.":
       "Google로 로그인에 실패했습니다. 다시 시도하세요.",
+    Instructions: "지침",
+    "Privacy Policy": "개인정보 처리방침",
   },
   zh: {
     Home: "首页",
@@ -1032,6 +1052,8 @@ const translations = {
     "Failed to register with Google. Try again.":
       "使用 Google 注册失败。请重试。",
     "Failed to login with Google. Try again.": "使用 Google 登录失败。请重试。",
+    Instructions: "说明",
+    "Privacy Policy": "隐私政策",
   },
 };
 

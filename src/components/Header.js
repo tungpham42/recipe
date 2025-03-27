@@ -1,6 +1,6 @@
 import React from "react";
-import { Navbar, Nav, Button, Container, Form } from "react-bootstrap";
-import { NavLink } from "react-router-dom"; // Replace Link with NavLink
+import { Navbar, Nav, Container, Form, NavDropdown } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useContext } from "react";
@@ -16,6 +16,7 @@ import {
   faSignInAlt,
   faUserPlus,
   faBowlFood,
+  faBook, // Added for Instructions
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
@@ -37,36 +38,50 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+          {/* Left-side navigation */}
           <Nav className="me-auto">
             <Nav.Link as={NavLink} to="/" end>
               <FontAwesomeIcon icon={faHome} className="me-1" />
               {t("Home")}
             </Nav.Link>
-            {currentUser && (
-              <Nav.Link as={NavLink} to="/them-cong-thuc">
-                <FontAwesomeIcon icon={faPlus} className="me-1" />
-                {t("Add Recipe")}
-              </Nav.Link>
-            )}
-            {currentUser && (
-              <Nav.Link as={NavLink} to="/ho-so">
-                <FontAwesomeIcon icon={faUser} className="me-1" />
-                {t("Profile")}
-              </Nav.Link>
-            )}
-            {isAdmin && (
-              <Nav.Link as={NavLink} to="/admin">
-                <FontAwesomeIcon icon={faTools} className="me-1" />
-                {t("Admin")}
-              </Nav.Link>
-            )}
+            <Nav.Link as={NavLink} to="/huong-dan">
+              <FontAwesomeIcon icon={faBook} className="me-1" />
+              {t("Instructions")}
+            </Nav.Link>
           </Nav>
+          {/* Right-side navigation */}
           <Nav className="align-items-left justify-content-between gap-2">
             {currentUser ? (
-              <Button variant="outline-light" onClick={handleLogout}>
-                <FontAwesomeIcon icon={faSignOutAlt} className="me-1" />
-                {t("Logout")}
-              </Button>
+              <NavDropdown
+                title={
+                  <>
+                    <FontAwesomeIcon icon={faUser} className="me-1" />{" "}
+                    {currentUser.displayName}
+                  </>
+                }
+                id="user-dropdown"
+                align="end"
+              >
+                <NavDropdown.Item as={NavLink} to="/them-cong-thuc">
+                  <FontAwesomeIcon icon={faPlus} className="me-1" />
+                  {t("Add Recipe")}
+                </NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to="/ho-so">
+                  <FontAwesomeIcon icon={faUser} className="me-1" />
+                  {t("Profile")}
+                </NavDropdown.Item>
+                {isAdmin && (
+                  <NavDropdown.Item as={NavLink} to="/admin">
+                    <FontAwesomeIcon icon={faTools} className="me-1" />
+                    {t("Admin")}
+                  </NavDropdown.Item>
+                )}
+                <NavDropdown.Divider />
+                <NavDropdown.Item onClick={handleLogout}>
+                  <FontAwesomeIcon icon={faSignOutAlt} className="me-1" />
+                  {t("Logout")}
+                </NavDropdown.Item>
+              </NavDropdown>
             ) : (
               <>
                 <Nav.Link as={NavLink} to="/dang-nhap">
@@ -80,7 +95,7 @@ const Header = () => {
               </>
             )}
             {/* Language Switcher */}
-            <div className="d-flex align-items-left">
+            <div className="d-flex align-items-center">
               <Form.Select
                 className="language-switcher"
                 style={{ width: "120px" }}
