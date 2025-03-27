@@ -37,10 +37,10 @@ const EditRecipe = () => {
   const [existingImageUrl, setExistingImageUrl] = useState("");
   const [error, setError] = useState("");
   const [recipeId, setRecipeId] = useState(null);
+  const [youtubeUrl, setYoutubeUrl] = useState("");
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   const { t } = useLanguage();
-
   const CLOUDINARY_CLOUD_NAME = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
   const CLOUDINARY_UPLOAD_PRESET =
     process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
@@ -69,6 +69,7 @@ const EditRecipe = () => {
         setSteps(data.steps.join("\n"));
         setCategory(data.category || "");
         setExistingImageUrl(data.imageUrl || "");
+        setYoutubeUrl(data.youtubeUrl || "");
       } else {
         setError(t("Recipe not found."));
       }
@@ -115,6 +116,11 @@ const EditRecipe = () => {
     setExistingImageUrl("");
   };
 
+  const isValidYoutubeUrl = (url) => {
+    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
+    return youtubeRegex.test(url);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!recipeId) {
@@ -123,6 +129,12 @@ const EditRecipe = () => {
     }
 
     try {
+      // Validate YouTube URL if provided
+      if (youtubeUrl && !isValidYoutubeUrl(youtubeUrl)) {
+        setError(t("Invalid YouTube URL"));
+        return;
+      }
+
       let imageUrl = existingImageUrl;
       if (imageFile) {
         imageUrl = await handleImageUpload(imageFile);
@@ -139,6 +151,7 @@ const EditRecipe = () => {
         steps: steps.split("\n"),
         category,
         imageUrl,
+        youtubeUrl: youtubeUrl || "", // Add YouTube URL
         slug: newSlug,
         updatedAt: new Date().toISOString(),
       });
@@ -273,6 +286,18 @@ const EditRecipe = () => {
             type="file"
             accept="image/*"
             onChange={(e) => setImageFile(e.target.files[0])}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>
+            <FontAwesomeIcon icon={faImage} className="me-1" />
+            {t("YouTube Video URL (optional)")}
+          </Form.Label>
+          <Form.Control
+            type="text"
+            value={youtubeUrl}
+            onChange={(e) => setYoutubeUrl(e.target.value)}
+            placeholder="https://www.youtube.com/watch?v=..."
           />
         </Form.Group>
         <Button type="submit" variant="primary">

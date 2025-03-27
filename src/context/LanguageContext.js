@@ -96,6 +96,9 @@ const translations = {
       "Failed to login with Google. Try again.",
     Instructions: "Instructions",
     "Privacy Policy": "Privacy Policy",
+    "YouTube Video URL (optional)": "YouTube Video URL (optional)",
+    "Invalid YouTube URL": "Invalid YouTube URL",
+    "Video Tutorial": "Video Tutorial",
   },
   vi: {
     Home: "Trang chủ",
@@ -193,6 +196,9 @@ const translations = {
       "Đăng nhập với Google thất bại. Thử lại.",
     Instructions: "Hướng Dẫn",
     "Privacy Policy": "Chính Sách Bảo Mật",
+    "YouTube Video URL (optional)": "Liên kết video YouTube (tùy chọn)",
+    "Invalid YouTube URL": "Liên kết YouTube không hợp lệ",
+    "Video Tutorial": "Video hướng dẫn",
   },
   fr: {
     Home: "Accueil",
@@ -291,6 +297,9 @@ const translations = {
       "Échec de la connexion avec Google. Réessayez.",
     Instructions: "Instructions",
     "Privacy Policy": "Politique de confidentialité",
+    "YouTube Video URL (optional)": "URL de la vidéo YouTube (facultatif)",
+    "Invalid YouTube URL": "URL YouTube invalide",
+    "Video Tutorial": "Tutoriel vidéo",
   },
   es: {
     Home: "Inicio",
@@ -388,6 +397,9 @@ const translations = {
       "No se pudo iniciar sesión con Google. Intenta de nuevo.",
     Instructions: "Instrucciones",
     "Privacy Policy": "Política de privacidad",
+    "YouTube Video URL (optional)": "URL del video de YouTube (opcional)",
+    "Invalid YouTube URL": "URL de YouTube no válida",
+    "Video Tutorial": "Tutorial en video",
   },
   pt: {
     Home: "Início",
@@ -484,6 +496,9 @@ const translations = {
       "Falha ao entrar com Google. Tente novamente.",
     Instructions: "Instruções",
     "Privacy Policy": "Política de Privacidade",
+    "YouTube Video URL (optional)": "URL do vídeo do YouTube (opcional)",
+    "Invalid YouTube URL": "URL do YouTube inválido",
+    "Video Tutorial": "Tutorial em vídeo",
   },
   de: {
     Home: "Startseite",
@@ -580,6 +595,9 @@ const translations = {
       "Anmeldung mit Google fehlgeschlagen. Versuche es erneut.",
     Instructions: "Anleitung",
     "Privacy Policy": "Datenschutz",
+    "YouTube Video URL (optional)": "YouTube-Video-URL (optional)",
+    "Invalid YouTube URL": "Ungültige YouTube-URL",
+    "Video Tutorial": "Videoanleitung",
   },
   it: {
     Home: "Home",
@@ -676,6 +694,9 @@ const translations = {
       "Accesso con Google fallito. Riprova.",
     Instructions: "Istruzioni",
     "Privacy Policy": "Informativa sulla privacy",
+    "YouTube Video URL (optional)": "URL video di YouTube (opzionale)",
+    "Invalid YouTube URL": "URL di YouTube non valido",
+    "Video Tutorial": "Video tutorial",
   },
   ru: {
     Home: "Главная",
@@ -776,6 +797,9 @@ const translations = {
       "Не удалось войти через Google. Попробуйте еще раз.",
     Instructions: "Инструкции",
     "Privacy Policy": "Политика конфиденциальности",
+    "YouTube Video URL (optional)": "URL видео на YouTube (необязательно)",
+    "Invalid YouTube URL": "Недопустимый URL YouTube",
+    "Video Tutorial": "Видеоурок",
   },
   ja: {
     Home: "ホーム",
@@ -873,6 +897,9 @@ const translations = {
       "Googleでのログインに失敗しました。もう一度お試しください。",
     Instructions: "手順",
     "Privacy Policy": "プライバシーポリシー",
+    "YouTube Video URL (optional)": "YouTubeビデオのURL（任意）",
+    "Invalid YouTube URL": "無効なYouTube URL",
+    "Video Tutorial": "ビデオチュートリアル",
   },
   ko: {
     Home: "홈",
@@ -966,6 +993,9 @@ const translations = {
       "Google로 로그인에 실패했습니다. 다시 시도하세요.",
     Instructions: "지침",
     "Privacy Policy": "개인정보 처리방침",
+    "YouTube Video URL (optional)": "YouTube 비디오 URL (선택 사항)",
+    "Invalid YouTube URL": "잘못된 YouTube URL",
+    "Video Tutorial": "비디오 튜토리얼",
   },
   zh: {
     Home: "首页",
@@ -1054,6 +1084,9 @@ const translations = {
     "Failed to login with Google. Try again.": "使用 Google 登录失败。请重试。",
     Instructions: "说明",
     "Privacy Policy": "隐私政策",
+    "YouTube Video URL (optional)": "YouTube 视频 URL（可选）",
+    "Invalid YouTube URL": "无效的 YouTube URL",
+    "Video Tutorial": "视频教程",
   },
 };
 

@@ -30,6 +30,7 @@ const AddRecipe = () => {
   const [steps, setSteps] = useState("");
   const [category, setCategory] = useState("");
   const [imageFile, setImageFile] = useState(null);
+  const [youtubeUrl, setYoutubeUrl] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { t } = useLanguage();
@@ -69,9 +70,20 @@ const AddRecipe = () => {
     return baseSlug + "-temp-" + Math.random().toString(36).substring(2, 8);
   };
 
+  const isValidYoutubeUrl = (url) => {
+    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
+    return youtubeRegex.test(url);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Validate YouTube URL if provided
+      if (youtubeUrl && !isValidYoutubeUrl(youtubeUrl)) {
+        setError(t("Invalid YouTube URL"));
+        return;
+      }
+
       let imageUrl = "";
       if (imageFile) {
         imageUrl = await handleImageUpload(imageFile);
@@ -87,6 +99,7 @@ const AddRecipe = () => {
         steps: steps.split("\n"),
         category,
         imageUrl,
+        youtubeUrl: youtubeUrl || "", // Add YouTube URL
         slug,
         userId: auth.currentUser.uid,
         createdAt: new Date().toISOString(),
@@ -205,6 +218,18 @@ const AddRecipe = () => {
             type="file"
             accept="image/*"
             onChange={(e) => setImageFile(e.target.files[0])}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>
+            <FontAwesomeIcon icon={faImage} className="me-1" />
+            {t("YouTube Video URL (optional)")}
+          </Form.Label>
+          <Form.Control
+            type="text"
+            value={youtubeUrl}
+            onChange={(e) => setYoutubeUrl(e.target.value)}
+            placeholder="https://www.youtube.com/watch?v=..."
           />
         </Form.Group>
         <Button type="submit" variant="primary">

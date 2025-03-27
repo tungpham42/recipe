@@ -113,6 +113,15 @@ const RecipeDetail = () => {
     }
   };
 
+  const getYoutubeEmbedUrl = (url) => {
+    if (!url) return null;
+    const videoIdMatch =
+      url.match(/(?:v=)([^&]+)/) || url.match(/youtu\.be\/([^?]+)/);
+    return videoIdMatch
+      ? `https://www.youtube.com/embed/${videoIdMatch[1]}`
+      : null;
+  };
+
   const totalPages = Math.ceil(relatedRecipes.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -184,6 +193,22 @@ const RecipeDetail = () => {
                 {t(recipe.category)}
               </span>
             </h6>
+          )}
+          {recipe.youtubeUrl && (
+            <div className="mb-4">
+              <h5>
+                <FontAwesomeIcon icon={faUtensils} className="me-2" />
+                {t("Video Tutorial")}
+              </h5>
+              <div className="ratio ratio-16x9">
+                <iframe
+                  src={getYoutubeEmbedUrl(recipe.youtubeUrl)}
+                  title={recipe.title}
+                  allowFullScreen
+                  className="rounded"
+                ></iframe>
+              </div>
+            </div>
           )}
           <h5>
             <FontAwesomeIcon icon={faList} className="me-2" />{" "}
