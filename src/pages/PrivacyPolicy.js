@@ -9,7 +9,7 @@ const privacyPolicyTranslations = {
     "Recipe App": "Recipe Sharing Platform",
     html: `
       <div>
-        <h2>Privacy Policy</h2>
+        <h2 class="mb-2">Privacy Policy</h2>
         <h6 class="text-muted">Last updated: March 25, 2025</h6>
         <h5 class="text-primary">Introduction</h5>
         <p>Welcome to the Recipe Sharing Platform ("we," "us," or "our"). We are committed to protecting your privacy and ensuring that your personal information is handled responsibly. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and services.</p>
@@ -56,7 +56,7 @@ const privacyPolicyTranslations = {
     "Recipe App": "Nền tảng Chia sẻ Công thức",
     html: `
       <div>
-        <h2>Chính sách Bảo mật</h2>
+        <h2 class="mb-2">Chính sách Bảo mật</h2>
         <h6 class="text-muted">Cập nhật lần cuối: Ngày 25 tháng 3 năm 2025</h6>
         <h5 class="text-primary">Giới thiệu</h5>
         <p>Chào mừng bạn đến với Nền tảng Chia sẻ Công thức ("chúng tôi"). Chúng tôi cam kết bảo vệ quyền riêng tư của bạn và đảm bảo rằng thông tin cá nhân của bạn được xử lý một cách có trách nhiệm. Chính sách Bảo mật này giải thích cách chúng tôi thu thập, sử dụng, tiết lộ và bảo vệ thông tin của bạn khi bạn sử dụng trang web và dịch vụ của chúng tôi.</p>
@@ -103,7 +103,7 @@ const privacyPolicyTranslations = {
     "Recipe App": "Plateforme de Partage de Recettes",
     html: `
       <div>
-        <h2>Politique de Confidentialité</h2>
+        <h2 class="mb-2">Politique de Confidentialité</h2>
         <h6 class="text-muted">Dernière mise à jour : 25 mars 2025</h6>
         <h5 class="text-primary">Introduction</h5>
         <p>Bienvenue sur la Plateforme de Partage de Recettes ("nous"). Nous nous engageons à protéger votre vie privée et à garantir que vos informations personnelles soient traitées de manière responsable. Cette Politique de Confidentialité explique comment nous collectons, utilisons, divulguons et protégeons vos informations lorsque vous utilisez notre site web et nos services.</p>
@@ -150,7 +150,7 @@ const privacyPolicyTranslations = {
     "Recipe App": "Plataforma de Recetas",
     html: `
       <div>
-        <h2>Política de Privacidad</h2>
+        <h2 class="mb-2">Política de Privacidad</h2>
         <h6 class="text-muted">Última actualización: 25 de marzo de 2025</h6>
         <h5 class="text-primary">Introducción</h5>
         <p>Bienvenido a la Plataforma de Recetas ("nosotros"). Nos comprometemos a proteger tu privacidad y asegurar que tu información personal sea manejada de manera responsable. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos tu información cuando utilizas nuestro sitio web y servicios.</p>
@@ -197,7 +197,7 @@ const privacyPolicyTranslations = {
     "Recipe App": "Plataforma de Receitas",
     html: `
       <div>
-        <h2>Política de Privacidade</h2>
+        <h2 class="mb-2">Política de Privacidade</h2>
         <h6 class="text-muted">Última atualização: 25 de março de 2025</h6>
         <h5 class="text-primary">Introdução</h5>
         <p>Bem-vindo à Plataforma de Receitas ("nós"). Estamos comprometidos em proteger sua privacidade e garantir que suas informações pessoais sejam tratadas de forma responsável. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e protegemos suas informações ao usar nosso site e serviços.</p>
@@ -244,7 +244,7 @@ const privacyPolicyTranslations = {
     "Recipe App": "Rezeptplattform",
     html: `
       <div>
-        <h2>Datenschutzrichtlinie</h2>
+        <h2 class="mb-2">Datenschutzrichtlinie</h2>
         <h6 class="text-muted">Zuletzt aktualisiert: 25. März 2025</h6>
         <h5 class="text-primary">Einführung</h5>
         <p>Willkommen auf der Rezeptplattform ("wir"). Wir verpflichten uns, Ihre Privatsphäre zu schützen und sicherzustellen, dass Ihre persönlichen Daten verantwortungsvoll behandelt werden. Diese Datenschutzrichtlinie erläutert, wie wir Ihre Informationen sammeln, verwenden, offenlegen und schützen, wenn Sie unsere Website und Dienste nutzen.</p>
@@ -291,7 +291,7 @@ const privacyPolicyTranslations = {
     "Recipe App": "Piattaforma di Condivisione Ricette",
     html: `
       <div>
-        <h2>Politica sulla Privacy</h2>
+        <h2 class="mb-2">Politica sulla Privacy</h2>
         <h6 class="text-muted">Ultimo aggiornamento: 25 marzo 2025</h6>
         <h5 class="text-primary">Introduzione</h5>
         <p>Benvenuto sulla Piattaforma di Condivisione Ricette ("noi"). Ci impegniamo a proteggere la tua privacy e a garantire che le tue informazioni personali siano gestite responsabilmente. Questa Politica sulla Privacy spiega come raccogliamo, utilizziamo, divulghiamo e proteggiamo le tue informazioni quando utilizzi il nostro sito web e i nostri servizi.</p>
@@ -338,7 +338,7 @@ const privacyPolicyTranslations = {
     "Recipe App": "Платформа Обмена Рецептами",
     html: `
       <div>
-        <h2>Политика Конфиденциальности</h2>
+        <h2 class="mb-2">Политика Конфиденциальности</h2>
         <h6 class="text-muted">Последнее обновление: 25 марта 2025 года</h6>
         <h5 class="text-primary">Введение</h5>
         <p>Добро пожаловать на Платформу Обмена Рецептами ("мы"). Мы стремимся защищать вашу конфиденциальность и гарантировать ответственное обращение с вашей личной информацией. Эта Политика Конфиденциальности объясняет, как мы собираем, используем, раскрываем и защищаем вашу информацию при использовании нашего сайта и услуг.</p>
@@ -385,7 +385,7 @@ const privacyPolicyTranslations = {
     "Recipe App": "レシピプラットフォーム",
     html: `
       <div>
-        <h2>プライバシーポリシー</h2>
+        <h2 class="mb-2">プライバシーポリシー</h2>
         <h6 class="text-muted">最終更新日：2025年3月25日</h6>
         <h5 class="text-primary">はじめに</h5>
         <p>レシピ共有プラットフォーム（「私たち」）へようこそ。私たちはあなたのプライバシーを保護し、個人情報が責任を持って扱われることを保証することに取り組んでいます。このプライバシーポリシーは、私たちのウェブサイトおよびサービスを利用する際に、あなたの情報をどのように収集、使用、開示、保護するかを説明します。</p>
@@ -432,7 +432,7 @@ const privacyPolicyTranslations = {
     "Recipe App": "레시피 공유 플랫폼",
     html: `
       <div>
-        <h2>개인정보 보호정책</h2>
+        <h2 class="mb-2">개인정보 보호정책</h2>
         <h6 class="text-muted">최종 업데이트: 2025년 3월 25일</h6>
         <h5 class="text-primary">소개</h5>
         <p>레시피 공유 플랫폼("우리")에 오신 것을 환영합니다. 우리는 귀하의 개인정보를 보호하고 귀하의 개인정보가 책임감 있게 처리되도록 보장하기 위해 최선을 다하고 있습니다. 이 개인정보 보호정책은 귀하가 우리 웹사이트와 서비스를 사용할 때 귀하의 정보를 어떻게 수집, 사용, 공개, 보호하는지 설명합니다.</p>
@@ -479,7 +479,7 @@ const privacyPolicyTranslations = {
     "Recipe App": "食谱分享平台",
     html: `
       <div>
-        <h2>隐私政策</h2>
+        <h2 class="mb-2">隐私政策</h2>
         <h6 class="text-muted">最后更新：2025年3月25日</h6>
         <h5 class="text-primary">引言</h5>
         <p>欢迎来到食谱分享平台（“我们”）。我们致力于保护您的隐私，并确保您的个人信息得到负责任的处理。本隐私政策解释了当您使用我们的网站和服务时，我们如何收集、使用、披露和保护您的信息。</p>
