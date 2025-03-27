@@ -129,6 +129,7 @@ a[href^="tel"] {
   font-weight: 600 !important; /* Slightly bolder */
   box-shadow: 0 2px 4px rgba(74, 44, 15, 0.2) !important; /* Subtle brown shadow */
   transition: background-color 0.3s ease, transform 0.2s ease !important;
+  width: fit-content !important; /* Only take up as much space as needed */
 }
 
 .nav-link.active:hover {
