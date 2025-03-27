@@ -5,7 +5,18 @@ body {
   background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Crect x="0" y="8" width="20" height="4" fill="%23d4a017" opacity="0.1"/%3E%3C/svg%3E');
 }
 
-h2 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   font-family: "Pacifico", cursive !important; /* Handwritten style for warmth */
   font-weight: 400 !important;
   color: #e67e22 !important; /* Warm orange, like carrots or citrus */
