@@ -187,7 +187,7 @@ const RecipeDetail = () => {
           <Card.Text className="mb-2">{recipe.description}</Card.Text>
           {/* Added Category Display */}
           {recipe.category && (
-            <h6 className="mb-4" style={{ color: "#27ae60" }}>
+            <h6 className="mb-4 recipe-category">
               <FontAwesomeIcon icon={faTag} className="me-2" />
               <span style={{ fontStyle: "italic", fontWeight: "500" }}>
                 {t(recipe.category)}
