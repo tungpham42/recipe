@@ -31,7 +31,7 @@ h6,
 a[href^="mailto"],
 a[href^="tel"],
 .card-body .text-primary {
-  color: #e67e22 !important;
+  color: #d35400 !important;
 }
 
 /* Card Styling */
@@ -69,14 +69,14 @@ a[href^="tel"],
 }
 
 .btn-primary {
-  background-color: #27ae60 !important; /* Fresh green, like basil */
-  border-color: #27ae60 !important;
+  background-color: #d35400 !important; /* Deep saffron/paprika, rich and culinary */
+  border-color: #d35400 !important;
 }
 
 .btn-primary:hover {
-  background-color: #219653 !important; /* Darker green */
-  border-color: #219653 !important;
-  transform: scale(1.05) !important; /* Slight pop effect */
+  background-color: #b84500 !important; /* Slightly darker for depth, like a roasted spice */
+  border-color: #b84500 !important;
+  transform: scale(1.05) !important; /* Retain the pop effect */
 }
 
 .btn-outline-danger {

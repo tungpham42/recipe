@@ -871,7 +871,7 @@ const Instructions = () => {
           content={translation.sections[0].content.slice(0, 150) + "..."}
         />
       </Helmet>
-      <Card className="shadow-sm">
+      <Card>
         <Card.Body>
           <h2 className="mb-3">
             <FontAwesomeIcon icon={faUtensils} className="me-2" />
