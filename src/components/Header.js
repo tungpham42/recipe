@@ -56,19 +56,19 @@ const Header = () => {
                 title={
                   <>
                     <FontAwesomeIcon icon={faUser} className="me-1" />{" "}
-                    {currentUser.displayName}
+                    {currentUser.displayName ?? currentUser.email}
                   </>
                 }
                 id="user-dropdown"
                 align="end"
               >
-                <NavDropdown.Item as={NavLink} to="/them-cong-thuc">
-                  <FontAwesomeIcon icon={faPlus} className="me-1" />
-                  {t("Add Recipe")}
-                </NavDropdown.Item>
                 <NavDropdown.Item as={NavLink} to="/ho-so">
                   <FontAwesomeIcon icon={faUser} className="me-1" />
                   {t("Profile")}
+                </NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to="/them-cong-thuc">
+                  <FontAwesomeIcon icon={faPlus} className="me-1" />
+                  {t("Add Recipe")}
                 </NavDropdown.Item>
                 {isAdmin && (
                   <NavDropdown.Item as={NavLink} to="/admin">

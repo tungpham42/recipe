@@ -174,7 +174,7 @@ const translations = {
       "Xem bộ sưu tập công thức cá nhân của bạn!",
     "Create an account to share your recipes!":
       "Tạo tài khoản để chia sẻ công thức của bạn!",
-    "Related Recipes": "Công thức khác",
+    "Related Recipes": "Công thức liên quan",
     "Recipe not found.": "Không tìm thấy công thức.",
     "404 - Page Not Found": "404 - Trang không tồn tại",
     "Sorry, the page you are looking for does not exist or has been moved.":

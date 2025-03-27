@@ -115,6 +115,7 @@ a[href^="tel"],
   font-weight: 500 !important;
   color: #fff !important; /* Default white */
   transition: color 0.3s ease !important;
+  width: fit-content !important;
 }
 
 .nav-link:hover,
