@@ -28,6 +28,7 @@ import {
   faChevronRight,
   faTag, // Added for category icon
 } from "@fortawesome/free-solid-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 const RecipeDetail = () => {
   const { slug } = useParams();
@@ -197,7 +198,7 @@ const RecipeDetail = () => {
           {recipe.youtubeUrl && (
             <div className="mb-4">
               <h5>
-                <FontAwesomeIcon icon={faUtensils} className="me-2" />
+                <FontAwesomeIcon icon={faYoutube} className="me-2" />
                 {t("Video Tutorial")}
               </h5>
               <div className="ratio ratio-16x9">

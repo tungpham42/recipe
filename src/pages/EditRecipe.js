@@ -25,6 +25,7 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { romanizeString } from "../utils";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 const EditRecipe = () => {
   const { slug } = useParams();
@@ -290,7 +291,7 @@ const EditRecipe = () => {
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
-            <FontAwesomeIcon icon={faImage} className="me-1" />
+            <FontAwesomeIcon icon={faYoutube} className="me-1" />
             {t("YouTube Video URL (optional)")}
           </Form.Label>
           <Form.Control
