@@ -116,31 +116,9 @@ a[href^="tel"] {
   transition: color 0.3s ease !important;
 }
 
-.nav-link:hover {
-  color: #ffeaa7 !important; /* Light yellow, like butter */
-}
-
-/* Active Nav Link Styling */
+.nav-link:hover,
 .nav-link.active {
-  color: #fff !important; /* White text for contrast */
-  background-color: #e67e2280 !important; /* Warm orange, like spices */
-  border-radius: 8px !important; /* Slightly rounded corners */
-  padding: 0.5rem 1rem !important; /* Consistent padding */
-  font-weight: 600 !important; /* Slightly bolder */
-  box-shadow: 0 2px 4px rgba(74, 44, 15, 0.2) !important; /* Subtle brown shadow */
-  transition: background-color 0.3s ease, transform 0.2s ease !important;
-  width: fit-content !important; /* Only take up as much space as needed */
-}
-
-.nav-link.active:hover {
-  color: #fff !important; /* Maintain white on hover */
-  background-color: #d3540080 !important; /* Deeper orange on hover */
-  transform: scale(1.05) !important; /* Slight pop effect */
-}
-
-/* Ensure icons align properly in active state */
-.nav-link.active .fa-icon {
-  color: #fff !important; /* Ensure icons match text color */
+  color: #ffeaa7 !important; /* Light yellow, like butter */
 }
 
 /* Forms (Input and Select) */
