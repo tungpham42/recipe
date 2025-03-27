@@ -59,7 +59,7 @@ const instructionsTranslations = {
         content: "Share your favorite dishes with the world:",
         list: [
           "Click <strong>Add Recipe</strong> in the navigation bar (you must be logged in).",
-          "Fill out the form with your recipe's title, description, ingredients, steps, category, and an optional image.",
+          "Fill out the form with your recipe's title, description, ingredients, steps, category, and optional image and video.",
           "Click <strong>Add Recipe</strong> to publish it—your recipe will now be visible to everyone!",
         ],
       },
@@ -135,7 +135,7 @@ const instructionsTranslations = {
         content: "Chia sẻ những món ăn yêu thích của bạn với mọi người:",
         list: [
           "Nhấn vào <strong>Thêm Công thức</strong> trên thanh điều hướng (bạn phải đăng nhập).",
-          "Điền vào biểu mẫu với tiêu đề, mô tả, nguyên liệu, các bước, danh mục và hình ảnh tùy chọn của công thức.",
+          "Điền vào mẫu với tiêu đề công thức, mô tả, thành phần, các bước, danh mục, hình ảnh và video tùy chọn.",
           "Nhấn <strong>Thêm Công thức</strong> để đăng tải—công thức của bạn giờ đây sẽ hiển thị cho mọi người!",
         ],
       },
