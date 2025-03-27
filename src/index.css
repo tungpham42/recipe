@@ -2,7 +2,7 @@ body {
   font-family: "Cabin", sans-serif !important; /* Clean, readable base font */
   background-color: #fff7e6 !important; /* Warm cream, like parchment */
   color: #4a2c0f !important; /* Rich brown, like coffee or chocolate */
-  background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M10 2a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 11a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1z" fill="%23f5e1c8" opacity="0.2"/%3E%3C/svg%3E'); /* Subtle texture */
+  background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Crect x="0" y="8" width="20" height="4" fill="%23d4a017" opacity="0.1"/%3E%3C/svg%3E');
 }
 
 h2 {

@@ -15,7 +15,7 @@ import {
   faSignOutAlt,
   faSignInAlt,
   faUserPlus,
-  faUtensils,
+  faBowlFood,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
@@ -32,7 +32,7 @@ const Header = () => {
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          <FontAwesomeIcon icon={faUtensils} className="me-2" />{" "}
+          <FontAwesomeIcon icon={faBowlFood} className="me-2" />{" "}
           {t("Recipe Sharing")}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
