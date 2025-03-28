@@ -4,6 +4,7 @@ import { Card, ListGroup } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faBook,
   faComment,
   faEye,
   faInfoCircle,
@@ -12,7 +13,6 @@ import {
   faSearch,
   faSignInAlt,
   faUserPlus,
-  faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
 
 const instructionsTranslations = {
@@ -874,7 +874,7 @@ const Instructions = () => {
       <Card>
         <Card.Body>
           <h2 className="mb-3">
-            <FontAwesomeIcon icon={faUtensils} className="me-2" />
+            <FontAwesomeIcon icon={faBook} className="me-2" />
             {translation.title}
           </h2>
           <Card.Subtitle className="mb-4 text-muted">
