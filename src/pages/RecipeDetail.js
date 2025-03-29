@@ -355,7 +355,7 @@ const RecipeDetail = () => {
               </Button>
             </Form>
           ) : (
-            <Alert variant="warning" className="mb-0">
+            <Alert variant="warning" className="mb-4">
               {t("Please log in to add a comment.")}
             </Alert>
           )}
@@ -379,11 +379,7 @@ const RecipeDetail = () => {
                     ></div>
                   )}
                   <Card.Body className="d-flex flex-column">
-                    <Card.Title>
-                      <Link to={`/cong-thuc/${related.slug}`}>
-                        {related.title}
-                      </Link>
-                    </Card.Title>
+                    <Card.Title>{related.title}</Card.Title>
                     <Card.Text>
                       {related.description.slice(0, 100)}...
                     </Card.Text>
