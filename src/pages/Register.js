@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { auth, googleProvider } from "../firebase";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider, createUserDocument } from "../firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  updateProfile,
+} from "firebase/auth";
 import { Form, Button, Alert, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
@@ -10,11 +14,13 @@ import {
   faEnvelope,
   faLock,
   faUserPlus,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const Register = () => {
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState("");
@@ -27,20 +33,44 @@ const Register = () => {
       setError(t("Passwords do not match."));
       return;
     }
+    if (username.length > 20) {
+      setError(t("Username must be 20 characters or less."));
+      return;
+    }
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // Update profile and create user document with hashed password
+      await updateProfile(user, { displayName: username });
+      await createUserDocument(user, {
+        username,
+        authProvider: "email",
+      });
+
       navigate("/");
     } catch (err) {
-      setError(t("Failed to register. Try again."));
+      setError(t("Failed to register: ") + err.message);
     }
   };
 
   const handleGoogleRegister = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const userCredential = await signInWithPopup(auth, googleProvider);
+      const user = userCredential.user;
+
+      // Create user document for Google auth (no password to hash)
+      await createUserDocument(user, {
+        authProvider: "google",
+      });
+
       navigate("/");
     } catch (err) {
-      setError(t("Failed to register with Google. Try again."));
+      setError(t("Failed to register with Google: ") + err.message);
     }
   };
 
@@ -66,6 +96,20 @@ const Register = () => {
         <h2 className="text-center">{t("Register")}</h2>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleEmailRegister}>
+          <Form.Group className="mb-3">
+            <Form.Label>
+              <FontAwesomeIcon icon={faUser} className="me-1" />
+              {t("Username")}
+            </Form.Label>
+            <Form.Control
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              placeholder={t("Enter your username")}
+              maxLength="20"
+            />
+          </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>
               <FontAwesomeIcon icon={faEnvelope} className="me-1" />

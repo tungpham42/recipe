@@ -95,8 +95,8 @@ a[href^="tel"],
 }
 
 .btn-warning:hover {
-  background-color: #2e7d32 !important; /* Deeper orange */
-  border-color: #2e7d32 !important;
+  background-color: #e67e22 !important; /* Deeper orange */
+  border-color: #e67e22 !important;
   transform: scale(1.05) !important;
 }
 
@@ -437,4 +437,20 @@ a[href^="tel"],
   transition: none !important;
   outline: none !important;
   box-shadow: none !important;
+}
+.alert-success {
+  border-radius: 10px !important; /* Consistent with other rounded elements */
+  font-family: "Cabin", sans-serif !important; /* Clean, readable font */
+  font-weight: 500 !important; /* Matches button and dropdown weights */
+  background-color: #d4edda !important; /* Light green, like fresh herbs or lime zest */
+  border: 1px solid #2e7d32 !important; /* Deep green border, matching btn-primary */
+  color: #2e7d32 !important; /* Rich green text, like parsley or basil */
+  padding: 1rem !important; /* Comfortable padding */
+  box-shadow: 0 4px 12px rgba(74, 44, 15, 0.1) !important; /* Brown-tinted shadow */
+}
+
+/* Hover effect for interactivity */
+.alert-success:hover {
+  background-color: #c8e6c9 !important; /* Slightly deeper green on hover */
+  box-shadow: 0 6px 18px rgba(74, 44, 15, 0.15) !important; /* Deeper shadow */
 }

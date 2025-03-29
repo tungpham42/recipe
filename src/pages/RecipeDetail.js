@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { db } from "../firebase";
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
@@ -13,7 +13,6 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useLanguage } from "../context/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,7 +25,7 @@ import {
   faEye,
   faChevronLeft,
   faChevronRight,
-  faTag, // Added for category icon
+  faTag,
 } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
@@ -37,78 +36,93 @@ const RecipeDetail = () => {
   const [newComment, setNewComment] = useState("");
   const [relatedRecipes, setRelatedRecipes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, usernameUpdated } = useContext(AuthContext);
   const { t } = useLanguage();
+  const itemsPerPage = 3;
 
+  const fetchComments = async (recipeId) => {
+    const commentsRef = collection(db, "recipes", recipeId, "comments");
+    const commentsSnapshot = await getDocs(commentsRef);
+    return commentsSnapshot.docs
+      .map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+        username:
+          doc.data().userId === currentUser?.uid
+            ? currentUser.displayName || doc.data().username
+            : doc.data().username,
+      }))
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  };
   useEffect(() => {
+    const fetchRecipeBySlug = async (slug) => {
+      const recipeQuery = query(
+        collection(db, "recipes"),
+        where("slug", "==", slug)
+      );
+      const recipeSnapshot = await getDocs(recipeQuery);
+      return recipeSnapshot.empty
+        ? null
+        : { id: recipeSnapshot.docs[0].id, ...recipeSnapshot.docs[0].data() };
+    };
+
+    const fetchRelatedRecipes = async (recipe) => {
+      if (!recipe?.category) return [];
+      const relatedQuery = query(
+        collection(db, "recipes"),
+        where("category", "==", recipe.category),
+        where("slug", "!=", slug)
+      );
+      const relatedSnapshot = await getDocs(relatedQuery);
+      return relatedSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+    };
+
     const fetchData = async () => {
       try {
-        const recipeQuery = query(
-          collection(db, "recipes"),
-          where("slug", "==", slug)
-        );
-        const recipeSnapshot = await getDocs(recipeQuery);
-
-        if (recipeSnapshot.empty) {
+        const recipeData = await fetchRecipeBySlug(slug);
+        if (!recipeData) {
           setRecipe(null);
+          setComments([]);
+          setRelatedRecipes([]);
           return;
         }
 
-        const recipeDoc = recipeSnapshot.docs[0];
-        const recipeData = { id: recipeDoc.id, ...recipeDoc.data() };
         setRecipe(recipeData);
+        const [commentData, relatedData] = await Promise.all([
+          fetchComments(recipeData.id),
+          fetchRelatedRecipes(recipeData),
+        ]);
 
-        const commentsRef = collection(
-          db,
-          "recipes",
-          recipeData.id,
-          "comments"
-        );
-        const commentsSnapshot = await getDocs(commentsRef);
-        const commentData = commentsSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
         setComments(commentData);
-
-        if (recipeData.category) {
-          const relatedQuery = query(
-            collection(db, "recipes"),
-            where("category", "==", recipeData.category),
-            where("slug", "!=", slug)
-          );
-          const relatedSnapshot = await getDocs(relatedQuery);
-          const relatedData = relatedSnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setRelatedRecipes(relatedData);
-        }
+        setRelatedRecipes(relatedData);
       } catch (err) {
         console.error("Error fetching data:", err);
+        setRecipe(null);
       }
     };
 
-    fetchData();
-  }, [slug]);
+    fetchData(); // eslint-disable-next-line
+  }, [slug, usernameUpdated]); // Add usernameUpdated as dependency
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    if (!currentUser || !recipe) return;
+    if (!currentUser || !recipe || !newComment.trim()) return;
 
     try {
       const commentsRef = collection(db, "recipes", recipe.id, "comments");
-      await addDoc(commentsRef, {
+      const newCommentData = {
         text: newComment,
         userId: currentUser.uid,
+        username: currentUser.displayName,
         createdAt: new Date().toISOString(),
-      });
+      };
+
+      await addDoc(commentsRef, newCommentData);
       setNewComment("");
-      const updatedComments = await getDocs(commentsRef);
-      setComments(
-        updatedComments.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      );
+      setComments([newCommentData, ...comments]);
     } catch (err) {
       console.error("Error adding comment:", err);
     }
@@ -186,7 +200,6 @@ const RecipeDetail = () => {
         <Card.Body>
           <Card.Title className="mb-3">{recipe.title}</Card.Title>
           <Card.Text className="mb-2">{recipe.description}</Card.Text>
-          {/* Added Category Display */}
           {recipe.category && (
             <h6 className="mb-4 recipe-category">
               <FontAwesomeIcon icon={faTag} className="me-2" />
@@ -212,7 +225,7 @@ const RecipeDetail = () => {
             </div>
           )}
           <h5>
-            <FontAwesomeIcon icon={faList} className="me-2" />{" "}
+            <FontAwesomeIcon icon={faList} className="me-2" />
             {t("Ingredients")}
           </h5>
           <ListGroup variant="flush" className="mb-4">
@@ -241,12 +254,12 @@ const RecipeDetail = () => {
               variant="warning"
               className="mb-4"
             >
-              <FontAwesomeIcon icon={faPencilAlt} className="me-1" />{" "}
+              <FontAwesomeIcon icon={faPencilAlt} className="me-1" />
               {t("Edit Recipe")}
             </Button>
           )}
           <h5>
-            <FontAwesomeIcon icon={faComment} className="me-2" />{" "}
+            <FontAwesomeIcon icon={faComment} className="me-2" />
             {t("Comments")}
           </h5>
           {comments.length === 0 ? (
@@ -257,12 +270,20 @@ const RecipeDetail = () => {
             <ListGroup variant="flush" className="mb-4">
               {comments.map((comment) => (
                 <ListGroupItem key={comment.id} className="py-3">
-                  {comment.text}
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div>
+                      <strong>{comment.username}</strong>
+                      <span className="ms-2 text-muted">
+                        {new Date(comment.createdAt).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-1">{comment.text}</div>
                 </ListGroupItem>
               ))}
             </ListGroup>
           )}
-          {currentUser && (
+          {currentUser ? (
             <Form onSubmit={handleCommentSubmit}>
               <Form.Group className="mb-3">
                 <Form.Control
@@ -275,10 +296,14 @@ const RecipeDetail = () => {
                 />
               </Form.Group>
               <Button type="submit" variant="primary">
-                <FontAwesomeIcon icon={faComment} className="me-1" />{" "}
+                <FontAwesomeIcon icon={faComment} className="me-1" />
                 {t("Post Comment")}
               </Button>
             </Form>
+          ) : (
+            <Alert variant="warning" className="mb-4">
+              {t("Please log in to add a comment.")}
+            </Alert>
           )}
         </Card.Body>
       </Card>
@@ -286,7 +311,7 @@ const RecipeDetail = () => {
       {relatedRecipes.length > 0 && (
         <div className="mb-4">
           <h5>
-            <FontAwesomeIcon icon={faUtensils} className="me-2" />{" "}
+            <FontAwesomeIcon icon={faUtensils} className="me-2" />
             {t("Related Recipes")}
           </h5>
           <Row>

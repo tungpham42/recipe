@@ -1,24 +1,37 @@
 import React, { createContext, useState, useEffect } from "react";
 import { auth } from "../firebase";
-import { onAuthStateChanged } from "firebase/auth";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [usernameUpdated, setUsernameUpdated] = useState(0); // New state to trigger updates
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
-      setLoading(false);
     });
     return unsubscribe;
   }, []);
 
+  const refreshUser = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      await user.reload();
+      setCurrentUser({ ...user });
+      setUsernameUpdated((prev) => prev + 1); // Trigger update when username changes
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ currentUser }}>
-      {!loading && children}
+    <AuthContext.Provider
+      value={{
+        currentUser,
+        refreshUser,
+        usernameUpdated, // Expose this to trigger comment updates
+      }}
+    >
+      {children}
     </AuthContext.Provider>
   );
 };

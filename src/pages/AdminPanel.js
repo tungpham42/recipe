@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Helmet } from "react-helmet-async";
-import { db } from "../firebase";
+import { db, isAdminUser } from "../firebase";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
 import { useLanguage } from "../context/LanguageContext";
@@ -24,8 +24,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Pagination from "../components/Pagination";
 
-const RecipeCard = ({ recipe, onDeleteRecipe, onDeleteComment }) => {
+const RecipeCard = ({ recipe, onDeleteRecipe, onDeleteComment, isAdmin }) => {
   const { t } = useLanguage();
+
+  // Sort comments by date (newest first)
+  const sortedComments = recipe.comments
+    ? [...recipe.comments].sort((a, b) => {
+        const dateA = a.createdAt?.toDate?.() || new Date(a.createdAt);
+        const dateB = b.createdAt?.toDate?.() || new Date(b.createdAt);
+        return dateB - dateA;
+      })
+    : [];
+
   return (
     <Col lg={4} md={6} className="mb-4">
       <Card className="d-flex flex-column h-100">
@@ -38,20 +48,26 @@ const RecipeCard = ({ recipe, onDeleteRecipe, onDeleteComment }) => {
         <Card.Body className="d-flex flex-column">
           <Card.Title>{recipe.title}</Card.Title>
           <Card.Text>{recipe.description.slice(0, 100)}...</Card.Text>
-          <div className="mt-auto d-flex justify-content-start gap-3">
-            <Button
-              as={Link}
-              to={`/sua-cong-thuc/${recipe.slug}`}
-              variant="warning"
-            >
-              <FontAwesomeIcon icon={faPencilAlt} className="me-1" />{" "}
-              {t("Edit")}
-            </Button>
-            <Button variant="danger" onClick={() => onDeleteRecipe(recipe.id)}>
-              <FontAwesomeIcon icon={faTrash} className="me-1" /> {t("Delete")}
-            </Button>
-          </div>
-          {recipe.comments && recipe.comments.length > 0 && (
+          {isAdmin && (
+            <div className="mt-auto d-flex justify-content-start gap-3">
+              <Button
+                as={Link}
+                to={`/sua-cong-thuc/${recipe.slug}`}
+                variant="warning"
+              >
+                <FontAwesomeIcon icon={faPencilAlt} className="me-1" />{" "}
+                {t("Edit")}
+              </Button>
+              <Button
+                variant="danger"
+                onClick={() => onDeleteRecipe(recipe.id)}
+              >
+                <FontAwesomeIcon icon={faTrash} className="me-1" />{" "}
+                {t("Delete")}
+              </Button>
+            </div>
+          )}
+          {sortedComments.length > 0 && isAdmin && (
             <>
               <h6
                 className="mt-3 mb-2"
@@ -70,7 +86,7 @@ const RecipeCard = ({ recipe, onDeleteRecipe, onDeleteComment }) => {
                 {t("Comments")}
               </h6>
               <ListGroup variant="flush">
-                {recipe.comments.map((comment) => (
+                {sortedComments.map((comment) => (
                   <ListGroup.Item
                     key={comment.id}
                     className="d-flex justify-content-between align-items-center"
@@ -94,7 +110,7 @@ const RecipeCard = ({ recipe, onDeleteRecipe, onDeleteComment }) => {
   );
 };
 
-const useAdminRecipes = () => {
+const useAdminRecipes = (isAdmin) => {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState("");
   const { t } = useLanguage();
@@ -127,6 +143,10 @@ const useAdminRecipes = () => {
   }, [t]);
 
   const deleteRecipe = async (recipeId) => {
+    if (!isAdmin) {
+      setError(t("Unauthorized action"));
+      return;
+    }
     try {
       await deleteDoc(doc(db, "recipes", recipeId));
       setRecipes((prevRecipes) =>
@@ -138,6 +158,10 @@ const useAdminRecipes = () => {
   };
 
   const deleteComment = async (recipeId, commentId) => {
+    if (!isAdmin) {
+      setError(t("Unauthorized action"));
+      return;
+    }
     try {
       await deleteDoc(doc(db, "recipes", recipeId, "comments", commentId));
       setRecipes((prevRecipes) =>
@@ -163,7 +187,10 @@ const useAdminRecipes = () => {
 const AdminPanel = () => {
   const { currentUser } = useContext(AuthContext);
   const { t } = useLanguage();
-  const { recipes, error, deleteRecipe, deleteComment } = useAdminRecipes();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const { recipes, error, deleteRecipe, deleteComment } =
+    useAdminRecipes(isAdmin);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState(
     () => localStorage.getItem("adminSortOption") || "alphabetAsc"
@@ -171,12 +198,25 @@ const AdminPanel = () => {
   const itemsPerPage = 12;
 
   useEffect(() => {
+    const checkAdminStatus = async () => {
+      if (currentUser) {
+        const adminStatus = await isAdminUser(currentUser);
+        setIsAdmin(adminStatus);
+      }
+      setLoading(false);
+    };
+    checkAdminStatus();
+  }, [currentUser]);
+
+  useEffect(() => {
     localStorage.setItem("adminSortOption", sortOption);
   }, [sortOption]);
 
-  const isAdmin = currentUser && currentUser.email === "tung.42@gmail.com";
+  if (loading) {
+    return <div>{t("Loading...")}</div>;
+  }
 
-  if (!currentUser)
+  if (!currentUser) {
     return (
       <>
         <Helmet>
@@ -188,24 +228,10 @@ const AdminPanel = () => {
             content={t("Login") + " - " + t("Recipe App")}
           />
         </Helmet>
-        <Navigate to="/login" />
+        <Navigate to="/dang-nhap" />
       </>
     );
-  if (!isAdmin)
-    return (
-      <div>
-        <Helmet>
-          <title>
-            {t("Unauthorized access.")} - {t("Recipe App")}
-          </title>
-          <meta
-            property="og:title"
-            content={t("Unauthorized access.") + " - " + t("Recipe App")}
-          />
-        </Helmet>
-        {t("Unauthorized access.")}
-      </div>
-    );
+  }
 
   const sortRecipes = (recipesToSort) => {
     let sortedRecipes = [...recipesToSort];
@@ -256,17 +282,19 @@ const AdminPanel = () => {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2 className="mb-0">
           <FontAwesomeIcon icon={faTools} className="me-2" />
-          {t("Admin Panel - Manage Recipes")}
+          {t(isAdmin ? "Admin Panel - Manage Recipes" : "Recipes")}
         </h2>
-        <Form.Group className="ms-3" style={{ minWidth: "200px" }}>
-          <Form.Select value={sortOption} onChange={handleSortChange}>
-            <option value="">{t("Sort by...")}</option>
-            <option value="alphabetAsc">{t("Alphabetical (A-Z)")}</option>
-            <option value="alphabetDesc">{t("Alphabetical (Z-A)")}</option>
-            <option value="dateAsc">{t("Date (Oldest First)")}</option>
-            <option value="dateDesc">{t("Date (Newest First)")}</option>
-          </Form.Select>
-        </Form.Group>
+        {isAdmin && (
+          <Form.Group className="ms-3" style={{ minWidth: "200px" }}>
+            <Form.Select value={sortOption} onChange={handleSortChange}>
+              <option value="">{t("Sort by...")}</option>
+              <option value="alphabetAsc">{t("Alphabetical (A-Z)")}</option>
+              <option value="alphabetDesc">{t("Alphabetical (Z-A)")}</option>
+              <option value="dateAsc">{t("Date (Oldest First)")}</option>
+              <option value="dateDesc">{t("Date (Newest First)")}</option>
+            </Form.Select>
+          </Form.Group>
+        )}
       </div>
       {error && <Alert variant="danger">{error}</Alert>}
       {currentRecipes.length === 0 ? (
@@ -280,6 +308,7 @@ const AdminPanel = () => {
                 recipe={recipe}
                 onDeleteRecipe={deleteRecipe}
                 onDeleteComment={deleteComment}
+                isAdmin={isAdmin}
               />
             ))}
           </Row>

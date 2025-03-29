@@ -29,6 +29,10 @@ const ProtectedRoute = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
   return currentUser ? children : <Navigate to="/dang-nhap" />;
 };
+const PublicRoute = ({ children }) => {
+  const { currentUser } = useContext(AuthContext);
+  return currentUser ? <Navigate to="/" /> : children;
+};
 const AppContent = () => {
   const [showButton, setShowButton] = useState(false);
   useEffect(() => {
@@ -74,8 +78,22 @@ const AppContent = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="/dang-nhap" element={<Login />} />
-          <Route path="/dang-ky" element={<Register />} />
+          <Route
+            path="/dang-nhap"
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/dang-ky"
+            element={
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
+            }
+          />
           <Route
             path="/ho-so"
             element={

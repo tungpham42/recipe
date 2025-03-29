@@ -17,7 +17,7 @@ import {
   faUserPlus,
   faBowlFood,
   faBook,
-  faGlobe, // Added for language dropdown
+  faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
@@ -53,7 +53,6 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          {/* Left-side navigation */}
           <Nav className="me-auto">
             <Nav.Link as={NavLink} to="/" end>
               <FontAwesomeIcon icon={faHome} className="me-1" />
@@ -64,14 +63,14 @@ const Header = () => {
               {t("Instructions")}
             </Nav.Link>
           </Nav>
-          {/* Right-side navigation */}
           <Nav className="align-items-left justify-content-between gap-2">
             {currentUser ? (
               <NavDropdown
                 title={
                   <>
                     <FontAwesomeIcon icon={faUser} className="me-1" />{" "}
-                    {currentUser.displayName ?? currentUser.email}
+                    {currentUser.displayName ?? currentUser.username}{" "}
+                    {/* Simplified */}
                   </>
                 }
                 id="user-dropdown"
@@ -109,7 +108,6 @@ const Header = () => {
                 </Nav.Link>
               </>
             )}
-            {/* Language Switcher Dropdown */}
             <NavDropdown
               title={
                 <>

@@ -99,6 +99,50 @@ const translations = {
     "YouTube Video URL (optional)": "YouTube Video URL (optional)",
     "Invalid YouTube URL": "Invalid YouTube URL",
     "Video Tutorial": "Video Tutorial",
+    Username: "Username",
+    "Enter your username": "Enter your username",
+    "Account Settings": "Account Settings",
+    "Current Password": "Current Password",
+    "Enter your current password": "Enter your current password",
+    "New Password": "New Password",
+    "Enter your new password": "Enter your new password",
+    "Confirm New Password": "Confirm New Password",
+    "Repeat your new password": "Repeat your new password",
+    "Update Password": "Update Password",
+    "Delete Account": "Delete Account",
+    "Confirm Account Deletion": "Confirm Account Deletion",
+    "Are you sure you want to delete your account? This action cannot be undone, and all your recipes will be deleted.":
+      "Are you sure you want to delete your account? This action cannot be undone, and all your recipes will be deleted.",
+    Cancel: "Cancel",
+    "My Profile": "My Profile",
+    "Update Username": "Update Username",
+    "Username updated successfully.": "Username updated successfully.",
+    "Failed to update username. Try again.":
+      "Failed to update username. Try again.",
+    "Password updated successfully.": "Password updated successfully.",
+    "Failed to update password. Check your current password.":
+      "Failed to update password. Check your current password.",
+    "Account deleted successfully.": "Account deleted successfully.",
+    "Failed to delete account. Check your current password.":
+      "Failed to delete account. Check your current password.",
+    "Manage your account and view your recipes!":
+      "Manage your account and view your recipes!",
+    "Failed to register: ": "Failed to register: ",
+    "Failed to register with Google: ": "Failed to register with Google: ",
+    "Invalid email or password: ": "Invalid email or password: ",
+    "Failed to login with Google: ": "Failed to login with Google: ",
+    "Username must be 20 characters or less.":
+      "Username must be 20 characters or less.",
+    "Session expired. Please log in again.":
+      "Session expired. Please log in again.",
+    "Error updating password:": "Error updating password:",
+    "The current password is incorrect.": "The current password is incorrect.",
+    "Too many attempts. Please try again later.":
+      "Too many attempts. Please try again later.",
+    "Password should be at least 6 characters.":
+      "Password should be at least 6 characters.",
+    "Failed to update password: ": "Failed to update password: ",
+    "Please log in to add a comment.": "Please log in to add a comment.",
   },
   vi: {
     Home: "Trang chủ",
@@ -199,6 +243,42 @@ const translations = {
     "YouTube Video URL (optional)": "Liên kết video YouTube (tùy chọn)",
     "Invalid YouTube URL": "Liên kết YouTube không hợp lệ",
     "Video Tutorial": "Video hướng dẫn",
+    Username: "Tên người dùng",
+    "Enter your username": "Nhập tên người dùng của bạn",
+    "Account Settings": "Thiết lập tài khoản",
+    "Current Password": "Mật khẩu hiện tại",
+    "Enter your current password": "Nhập mật khẩu hiện tại của bạn",
+    "New Password": "Mật khẩu mới",
+    "Enter your new password": "Nhập mật khẩu mới của bạn",
+    "Confirm New Password": "Xác nhận mật khẩu mới",
+    "Repeat your new password": "Nhập lại mật khẩu mới của bạn",
+    "Update Password": "Cập nhật mật khẩu",
+    "Delete Account": "Xóa tài khoản",
+    "Confirm Account Deletion": "Xác nhận xóa tài khoản",
+    "Are you sure you want to delete your account? This action cannot be undone, and all your recipes will be deleted.":
+      "Bạn có chắc chắn muốn xóa tài khoản của mình không? Hành động này không thể hoàn tác và tất cả công thức của bạn sẽ bị xóa.",
+    Cancel: "Hủy bỏ",
+    "My Profile": "Hồ sơ của tôi",
+    "Update Username": "Cập nhật tên người dùng",
+    "Username updated successfully.":
+      "Tên người dùng đã được cập nhật thành công.",
+    "Failed to update username. Try again.":
+      "Cập nhật tên người dùng thất bại. Thử lại.",
+    "Password updated successfully.": "Mật khẩu đã được cập nhật thành công.",
+    "Failed to update password. Check your current password.":
+      "Cập nhật mật khẩu thất bại. Kiểm tra mật khẩu hiện tại của bạn.",
+    "Account deleted successfully.": "Tài khoản đã được xóa thành công.",
+    "Failed to delete account. Check your current password.":
+      "Xóa tài khoản thất bại. Kiểm tra mật khẩu hiện tại của bạn.",
+    "Manage your account and view your recipes!":
+      "Quản lý tài khoản của bạn và xem công thức của bạn!",
+    "Failed to register: ": "Đăng ký thất bại: ",
+    "Failed to register with Google: ": "Đăng ký với Google thất bại: ",
+    "Invalid email or password: ": "Email hoặc mật khẩu không hợp lệ: ",
+    "Failed to login with Google: ": "Đăng nhập với Google thất bại: ",
+    "Username must be 20 characters or less.":
+      "Tên người dùng phải có độ dài tối đa 20 ký tự.",
+    "Please log in to add a comment.": "Vui lòng đăng nhập để thêm bình luận.",
   },
   fr: {
     Home: "Accueil",
@@ -300,6 +380,43 @@ const translations = {
     "YouTube Video URL (optional)": "URL de la vidéo YouTube (facultatif)",
     "Invalid YouTube URL": "URL YouTube invalide",
     "Video Tutorial": "Tutoriel vidéo",
+    Username: "Nom d'utilisateur",
+    "Enter your username": "Entrez votre nom d'utilisateur",
+    "Account Settings": "Paramètres du compte",
+    "Current Password": "Mot de passe actuel",
+    "Enter your current password": "Entrez votre mot de passe actuel",
+    "New Password": "Nouveau mot de passe",
+    "Enter your new password": "Entrez votre nouveau mot de passe",
+    "Confirm New Password": "Confirmer le nouveau mot de passe",
+    "Repeat your new password": "Répétez votre nouveau mot de passe",
+    "Update Password": "Mettre à jour le mot de passe",
+    "Delete Account": "Supprimer le compte",
+    "Confirm Account Deletion": "Confirmer la suppression du compte",
+    "Are you sure you want to delete your account? This action cannot be undone, and all your recipes will be deleted.":
+      "Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible et toutes vos recettes seront supprimées.",
+    Cancel: "Annuler",
+    "My Profile": "Mon profil",
+    "Update Username": "Mettre à jour le nom d'utilisateur",
+    "Username updated successfully.":
+      "Nom d'utilisateur mis à jour avec succès.",
+    "Failed to update username. Try again.":
+      "Échec de la mise à jour du nom d'utilisateur. Réessayez.",
+    "Password updated successfully.": "Mot de passe mis à jour avec succès.",
+    "Failed to update password. Check your current password.":
+      "Échec de la mise à jour du mot de passe. Vérifiez votre mot de passe actuel.",
+    "Account deleted successfully.": "Compte supprimé avec succès.",
+    "Failed to delete account. Check your current password.":
+      "Échec de la suppression du compte. Vérifiez votre mot de passe actuel.",
+    "Manage your account and view your recipes!":
+      "Gérez votre compte et consultez vos recettes !",
+    "Failed to register: ": "Échec de l'inscription : ",
+    "Failed to register with Google: ": "Échec de l'inscription avec Google : ",
+    "Invalid email or password: ": "Email ou mot de passe invalide : ",
+    "Failed to login with Google: ": "Échec de la connexion avec Google : ",
+    "Username must be 20 characters or less.":
+      "Le nom d'utilisateur doit comporter 20 caractères ou moins.",
+    "Please log in to add a comment.":
+      "Veuillez vous connecter pour ajouter un commentaire.",
   },
   es: {
     Home: "Inicio",
@@ -400,6 +517,44 @@ const translations = {
     "YouTube Video URL (optional)": "URL del video de YouTube (opcional)",
     "Invalid YouTube URL": "URL de YouTube no válida",
     "Video Tutorial": "Tutorial en video",
+    Username: "Nombre de usuario",
+    "Enter your username": "Ingresa tu nombre de usuario",
+    "Account Settings": "Configuración de la cuenta",
+    "Current Password": "Contraseña actual",
+    "Enter your current password": "Ingresa tu contraseña actual",
+    "New Password": "Nueva contraseña",
+    "Enter your new password": "Ingresa tu nueva contraseña",
+    "Confirm New Password": "Confirmar nueva contraseña",
+    "Repeat your new password": "Repite tu nueva contraseña",
+    "Update Password": "Actualizar contraseña",
+    "Delete Account": "Eliminar cuenta",
+    "Confirm Account Deletion": "Confirmar eliminación de cuenta",
+    "Are you sure you want to delete your account? This action cannot be undone, and all your recipes will be deleted.":
+      "¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer y todas tus recetas serán eliminadas.",
+    Cancel: "Cancelar",
+    "My Profile": "Mi perfil",
+    "Update Username": "Actualizar nombre de usuario",
+    "Username updated successfully.":
+      "Nombre de usuario actualizado con éxito.",
+    "Failed to update username. Try again.":
+      "No se pudo actualizar el nombre de usuario. Intenta de nuevo.",
+    "Password updated successfully.": "Contraseña actualizada con éxito.",
+    "Failed to update password. Check your current password.":
+      "No se pudo actualizar la contraseña. Verifica tu contraseña actual.",
+    "Account deleted successfully.": "Cuenta eliminada con éxito.",
+    "Failed to delete account. Check your current password.":
+      "No se pudo eliminar la cuenta. Verifica tu contraseña actual.",
+    "Manage your account and view your recipes!":
+      "¡Gestiona tu cuenta y ve tus recetas!",
+    "Failed to register: ": "No se pudo registrar: ",
+    "Failed to register with Google: ": "No se pudo registrar con Google: ",
+    "Invalid email or password: ":
+      "Correo electrónico o contraseña inválidos: ",
+    "Failed to login with Google: ": "No se pudo iniciar sesión con Google: ",
+    "Username must be 20 characters or less.":
+      "El nombre de usuario debe tener 20 caracteres o menos.",
+    "Please log in to add a comment.":
+      "Por favor, inicia sesión para añadir un comentario.",
   },
   pt: {
     Home: "Início",
@@ -499,6 +654,42 @@ const translations = {
     "YouTube Video URL (optional)": "URL do vídeo do YouTube (opcional)",
     "Invalid YouTube URL": "URL do YouTube inválido",
     "Video Tutorial": "Tutorial em vídeo",
+    Username: "Nome de usuário",
+    "Enter your username": "Digite seu nome de usuário",
+    "Account Settings": "Configurações da conta",
+    "Current Password": "Senha atual",
+    "Enter your current password": "Digite sua senha atual",
+    "New Password": "Nova senha",
+    "Enter your new password": "Digite sua nova senha",
+    "Confirm New Password": "Confirmar nova senha",
+    "Repeat your new password": "Repita sua nova senha",
+    "Update Password": "Atualizar senha",
+    "Delete Account": "Excluir conta",
+    "Confirm Account Deletion": "Confirmar exclusão da conta",
+    "Are you sure you want to delete your account? This action cannot be undone, and all your recipes will be deleted.":
+      "Você tem certeza de que deseja excluir sua conta? Esta ação não pode ser desfeita e todas as suas receitas serão excluídas.",
+    Cancel: "Cancelar",
+    "My Profile": "Meu perfil",
+    "Update Username": "Atualizar nome de usuário",
+    "Username updated successfully.": "Nome de usuário atualizado com sucesso.",
+    "Failed to update username. Try again.":
+      "Falha ao atualizar nome de usuário. Tente novamente.",
+    "Password updated successfully.": "Senha atualizada com sucesso.",
+    "Failed to update password. Check your current password.":
+      "Falha ao atualizar senha. Verifique sua senha atual.",
+    "Account deleted successfully.": "Conta excluída com sucesso.",
+    "Failed to delete account. Check your current password.":
+      "Falha ao excluir conta. Verifique sua senha atual.",
+    "Manage your account and view your recipes!":
+      "Gerencie sua conta e veja suas receitas!",
+    "Failed to register: ": "Falha ao registrar: ",
+    "Failed to register with Google: ": "Falha ao registrar com Google: ",
+    "Invalid email or password: ": "E-mail ou senha inválidos: ",
+    "Failed to login with Google: ": "Falha ao entrar com Google: ",
+    "Username must be 20 characters or less.":
+      "O nome de usuário deve ter 20 caracteres ou menos.",
+    "Please log in to add a comment.":
+      "Por favor, faça login para adicionar um comentário.",
   },
   de: {
     Home: "Startseite",
@@ -598,6 +789,43 @@ const translations = {
     "YouTube Video URL (optional)": "YouTube-Video-URL (optional)",
     "Invalid YouTube URL": "Ungültige YouTube-URL",
     "Video Tutorial": "Videoanleitung",
+    Username: "Benutzername",
+    "Enter your username": "Gib deinen Benutzernamen ein",
+    "Account Settings": "Kontoeinstellungen",
+    "Current Password": "Aktuelles Passwort",
+    "Enter your current password": "Gib dein aktuelles Passwort ein",
+    "New Password": "Neues Passwort",
+    "Enter your new password": "Gib dein neues Passwort ein",
+    "Confirm New Password": "Neues Passwort bestätigen",
+    "Repeat your new password": "Wiederhole dein neues Passwort",
+    "Update Password": "Passwort aktualisieren",
+    "Delete Account": "Konto löschen",
+    "Confirm Account Deletion": "Kontolöschung bestätigen",
+    "Are you sure you want to delete your account? This action cannot be undone, and all your recipes will be deleted.":
+      "Bist du sicher, dass du dein Konto löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden, und alle deine Rezepte werden gelöscht.",
+    Cancel: "Abbrechen",
+    "My Profile": "Mein Profil",
+    "Update Username": "Benutzernamen aktualisieren",
+    "Username updated successfully.": "Benutzername erfolgreich aktualisiert.",
+    "Failed to update username. Try again.":
+      "Fehler beim Aktualisieren des Benutzernamens. Versuche es erneut.",
+    "Password updated successfully.": "Passwort erfolgreich aktualisiert.",
+    "Failed to update password. Check your current password.":
+      "Fehler beim Aktualisieren des Passworts. Überprüfe dein aktuelles Passwort.",
+    "Account deleted successfully.": "Konto erfolgreich gelöscht.",
+    "Failed to delete account. Check your current password.":
+      "Fehler beim Löschen des Kontos. Überprüfe dein aktuelles Passwort.",
+    "Manage your account and view your recipes!":
+      "Verwalte dein Konto und sieh dir deine Rezepte an!",
+    "Failed to register: ": "Registrierung fehlgeschlagen: ",
+    "Failed to register with Google: ":
+      "Registrierung mit Google fehlgeschlagen: ",
+    "Invalid email or password: ": "Ungültige E-Mail oder Passwort: ",
+    "Failed to login with Google: ": "Anmeldung mit Google fehlgeschlagen: ",
+    "Username must be 20 characters or less.":
+      "Der Benutzername darf maximal 20 Zeichen lang sein.",
+    "Please log in to add a comment.":
+      "Bitte melde dich an, um einen Kommentar hinzuzufügen.",
   },
   it: {
     Home: "Home",
@@ -697,6 +925,41 @@ const translations = {
     "YouTube Video URL (optional)": "URL video di YouTube (opzionale)",
     "Invalid YouTube URL": "URL di YouTube non valido",
     "Video Tutorial": "Video tutorial",
+    Username: "Nome utente",
+    "Enter your username": "Inserisci il tuo nome utente",
+    "Account Settings": "Impostazioni dell'account",
+    "Current Password": "Password attuale",
+    "Enter your current password": "Inserisci la tua password attuale",
+    "New Password": "Nuova password",
+    "Enter your new password": "Inserisci la tua nuova password",
+    "Confirm New Password": "Conferma nuova password",
+    "Repeat your new password": "Ripeti la tua nuova password",
+    "Update Password": "Aggiorna password",
+    "Delete Account": "Elimina account",
+    "Confirm Account Deletion": "Conferma eliminazione account",
+    "Are you sure you want to delete your account? This action cannot be undone, and all your recipes will be deleted.":
+      "Sei sicuro di voler eliminare il tuo account? Questa azione non può essere annullata e tutte le tue ricette verranno eliminate.",
+    Cancel: "Annulla",
+    "My Profile": "Il mio profilo",
+    "Update Username": "Aggiorna nome utente",
+    "Username updated successfully.": "Nome utente aggiornato con successo.",
+    "Failed to update username. Try again.":
+      "Aggiornamento nome utente fallito. Riprova.",
+    "Password updated successfully.": "Password aggiornata con successo.",
+    "Failed to update password. Check your current password.":
+      "Aggiornamento password fallito. Controlla la tua password attuale.",
+    "Account deleted successfully.": "Account eliminato con successo.",
+    "Failed to delete account. Check your current password.":
+      "Eliminazione account fallita. Controlla la tua password attuale.",
+    "Manage your account and view your recipes!":
+      "Gestisci il tuo account e visualizza le tue ricette!",
+    "Failed to register: ": "Registrazione fallita: ",
+    "Failed to register with Google: ": "Registrazione con Google fallita: ",
+    "Invalid email or password: ": "Email o password non valide: ",
+    "Failed to login with Google: ": "Accesso con Google fallito: ",
+    "Username must be 20 characters or less.":
+      "Il nome utente deve essere di 20 caratteri o meno.",
+    "Please log in to add a comment.": "Accedi per aggiungere un commento.",
   },
   ru: {
     Home: "Главная",
@@ -800,6 +1063,44 @@ const translations = {
     "YouTube Video URL (optional)": "URL видео на YouTube (необязательно)",
     "Invalid YouTube URL": "Недопустимый URL YouTube",
     "Video Tutorial": "Видеоурок",
+    Username: "Имя пользователя",
+    "Enter your username": "Введите ваше имя пользователя",
+    "Account Settings": "Настройки аккаунта",
+    "Current Password": "Текущий пароль",
+    "Enter your current password": "Введите ваш текущий пароль",
+    "New Password": "Новый пароль",
+    "Enter your new password": "Введите ваш новый пароль",
+    "Confirm New Password": "Подтвердите новый пароль",
+    "Repeat your new password": "Повторите ваш новый пароль",
+    "Update Password": "Обновить пароль",
+    "Delete Account": "Удалить аккаунт",
+    "Confirm Account Deletion": "Подтвердить удаление аккаунта",
+    "Are you sure you want to delete your account? This action cannot be undone, and all your recipes will be deleted.":
+      "Вы уверены, что хотите удалить свою учетную запись? Это действие нельзя отменить, и все ваши рецепты будут удалены.",
+    Cancel: "Отмена",
+    "My Profile": "Мой профиль",
+    "Update Username": "Обновить имя пользователя",
+    "Username updated successfully.": "Имя пользователя успешно обновлено.",
+    "Failed to update username. Try again.":
+      "Не удалось обновить имя пользователя. Попробуйте еще раз.",
+    "Password updated successfully.": "Пароль успешно обновлен.",
+    "Failed to update password. Check your current password.":
+      "Не удалось обновить пароль. Проверьте текущий пароль.",
+    "Account deleted successfully.": "Аккаунт успешно удален.",
+    "Failed to delete account. Check your current password.":
+      "Не удалось удалить аккаунт. Проверьте текущий пароль.",
+    "Manage your account and view your recipes!":
+      "Управляйте своим аккаунтом и просматривайте свои рецепты!",
+    "Failed to register: ": "Не удалось зарегистрироваться: ",
+    "Failed to register with Google: ":
+      "Не удалось зарегистрироваться через Google: ",
+    "Invalid email or password: ":
+      "Неверный адрес электронной почты или пароль: ",
+    "Failed to login with Google: ": "Не удалось войти через Google: ",
+    "Username must be 20 characters or less.":
+      "Имя пользователя должно содержать не более 20 символов.",
+    "Please log in to add a comment.":
+      "Пожалуйста, войдите, чтобы добавить комментарий.",
   },
   ja: {
     Home: "ホーム",
@@ -900,6 +1201,42 @@ const translations = {
     "YouTube Video URL (optional)": "YouTubeビデオのURL（任意）",
     "Invalid YouTube URL": "無効なYouTube URL",
     "Video Tutorial": "ビデオチュートリアル",
+    Username: "ユーザー名",
+    "Enter your username": "ユーザー名を入力してください",
+    "Account Settings": "アカウント設定",
+    "Current Password": "現在のパスワード",
+    "Enter your current password": "現在のパスワードを入力してください",
+    "New Password": "新しいパスワード",
+    "Enter your new password": "新しいパスワードを入力してください",
+    "Confirm New Password": "新しいパスワードを確認",
+    "Repeat your new password": "新しいパスワードを再入力してください",
+    "Update Password": "パスワードを更新",
+    "Delete Account": "アカウントを削除",
+    "Confirm Account Deletion": "アカウント削除の確認",
+    "Are you sure you want to delete your account? This action cannot be undone, and all your recipes will be deleted.":
+      "本当にアカウントを削除しますか？この操作は元に戻せず、すべてのレシピが削除されます。",
+    Cancel: "キャンセル",
+    "My Profile": "私のプロフィール",
+    "Update Username": "ユーザー名を更新",
+    "Username updated successfully.": "ユーザー名が正常に更新されました。",
+    "Failed to update username. Try again.":
+      "ユーザー名の更新に失敗しました。もう一度お試しください。",
+    "Password updated successfully.": "パスワードが正常に更新されました。",
+    "Failed to update password. Check your current password.":
+      "パスワードの更新に失敗しました。現在のパスワードを確認してください。",
+    "Account deleted successfully.": "アカウントが正常に削除されました。",
+    "Failed to delete account. Check your current password.":
+      "アカウントの削除に失敗しました。現在のパスワードを確認してください。",
+    "Manage your account and view your recipes!":
+      "アカウントを管理し、あなたのレシピをご覧ください！",
+    "Failed to register: ": "登録に失敗しました：",
+    "Failed to register with Google: ": "Googleでの登録に失敗しました：",
+    "Invalid email or password: ": "メールまたはパスワードが無効です：",
+    "Failed to login with Google: ": "Googleでのログインに失敗しました：",
+    "Username must be 20 characters or less.":
+      "ユーザー名は20文字以下でなければなりません。",
+    "Please log in to add a comment.":
+      "コメントを追加するにはログインしてください。",
   },
   ko: {
     Home: "홈",
@@ -996,6 +1333,43 @@ const translations = {
     "YouTube Video URL (optional)": "YouTube 비디오 URL (선택 사항)",
     "Invalid YouTube URL": "잘못된 YouTube URL",
     "Video Tutorial": "비디오 튜토리얼",
+    Username: "사용자 이름",
+    "Enter your username": "사용자 이름을 입력하세요",
+    "Account Settings": "계정 설정",
+    "Current Password": "현재 비밀번호",
+    "Enter your current password": "현재 비밀번호를 입력하세요",
+    "New Password": "새 비밀번호",
+    "Enter your new password": "새 비밀번호를 입력하세요",
+    "Confirm New Password": "새 비밀번호 확인",
+    "Repeat your new password": "새 비밀번호를 다시 입력하세요",
+    "Update Password": "비밀번호 업데이트",
+    "Delete Account": "계정 삭제",
+    "Confirm Account Deletion": "계정 삭제 확인",
+    "Are you sure you want to delete your account? This action cannot be undone, and all your recipes will be deleted.":
+      "정말로 계정을 삭제하시겠습니까? 이 작업은 취소할 수 없으며 모든 레시피가 삭제됩니다.",
+    Cancel: "취소",
+    "My Profile": "내 프로필",
+    "Update Username": "사용자 이름 업데이트",
+    "Username updated successfully.":
+      "사용자 이름이 성공적으로 업데이트되었습니다.",
+    "Failed to update username. Try again.":
+      "사용자 이름 업데이트에 실패했습니다. 다시 시도하세요.",
+    "Password updated successfully.":
+      "비밀번호가 성공적으로 업데이트되었습니다.",
+    "Failed to update password. Check your current password.":
+      "비밀번호 업데이트에 실패했습니다. 현재 비밀번호를 확인하세요.",
+    "Account deleted successfully.": "계정이 성공적으로 삭제되었습니다.",
+    "Failed to delete account. Check your current password.":
+      "계정 삭제에 실패했습니다. 현재 비밀번호를 확인하세요.",
+    "Manage your account and view your recipes!":
+      "계정을 관리하고 레시피를 확인하세요!",
+    "Failed to register: ": "회원가입에 실패했습니다: ",
+    "Failed to register with Google: ": "Google로 회원가입에 실패했습니다: ",
+    "Invalid email or password: ": "잘못된 이메일 또는 비밀번호입니다: ",
+    "Failed to login with Google: ": "Google로 로그인에 실패했습니다: ",
+    "Username must be 20 characters or less.":
+      "사용자 이름은 20자 이하여야 합니다.",
+    "Please log in to add a comment.": "댓글을 추가하려면 로그인하세요.",
   },
   zh: {
     Home: "首页",
@@ -1087,6 +1461,39 @@ const translations = {
     "YouTube Video URL (optional)": "YouTube 视频 URL（可选）",
     "Invalid YouTube URL": "无效的 YouTube URL",
     "Video Tutorial": "视频教程",
+    Username: "用户名",
+    "Enter your username": "输入您的用户名",
+    "Account Settings": "账户设置",
+    "Current Password": "当前密码",
+    "Enter your current password": "输入当前密码",
+    "New Password": "新密码",
+    "Enter your new password": "输入新密码",
+    "Confirm New Password": "确认新密码",
+    "Repeat your new password": "重复新密码",
+    "Update Password": "更新密码",
+    "Delete Account": "删除账户",
+    "Confirm Account Deletion": "确认删除账户",
+    "Are you sure you want to delete your account? This action cannot be undone, and all your recipes will be deleted.":
+      "您确定要删除您的账户吗？此操作无法撤消，所有食谱将被删除。",
+    Cancel: "取消",
+    "My Profile": "我的个人资料",
+    "Update Username": "更新用户名",
+    "Username updated successfully.": "用户名更新成功。",
+    "Failed to update username. Try again.": "更新用户名失败。请重试。",
+    "Password updated successfully.": "密码更新成功。",
+    "Failed to update password. Check your current password.":
+      "更新密码失败。请检查当前密码。",
+    "Account deleted successfully.": "账户删除成功。",
+    "Failed to delete account. Check your current password.":
+      "删除账户失败。请检查当前密码。",
+    "Manage your account and view your recipes!":
+      "管理您的账户并查看您的食谱！",
+    "Failed to register: ": "注册失败：",
+    "Failed to register with Google: ": "使用 Google 注册失败：",
+    "Invalid email or password: ": "电子邮件或密码无效：",
+    "Failed to login with Google: ": "使用 Google 登录失败：",
+    "Username must be 20 characters or less.": "用户名必须为20个字符或更少。",
+    "Please log in to add a comment.": "请登录以添加评论。",
   },
 };
 

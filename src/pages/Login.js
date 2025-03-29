@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { auth, googleProvider } from "../firebase";
+import { auth, googleProvider, createUserDocument } from "../firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { Form, Button, Alert, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -23,19 +23,38 @@ const Login = () => {
   const handleEmailLogin = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // Update user document with hashed password and last login
+      await createUserDocument(user, {
+        authProvider: "email",
+        password: password, // Pass plain password to be hashed
+      });
+
       navigate("/");
     } catch (err) {
-      setError(t("Invalid email or password."));
+      setError(t("Invalid email or password: ") + err.message);
     }
   };
 
   const handleGoogleLogin = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const userCredential = await signInWithPopup(auth, googleProvider);
+      const user = userCredential.user;
+
+      // Create/update user document (no password for Google auth)
+      await createUserDocument(user, {
+        authProvider: "google",
+      });
+
       navigate("/");
     } catch (err) {
-      setError(t("Failed to login with Google. Try again."));
+      setError(t("Failed to login with Google: ") + err.message);
     }
   };
 
