@@ -161,8 +161,8 @@ const Register = () => {
           </Button>
         </Form>
         <Button
-          variant="outline-danger"
-          className="w-100 mt-2"
+          variant="primary" // Change to filled primary button
+          className="w-100 mt-2 btn-google"
           onClick={handleGoogleRegister}
         >
           <FontAwesomeIcon icon={faGoogle} className="me-1" />

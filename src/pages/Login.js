@@ -123,8 +123,8 @@ const Login = () => {
           </Button>
         </Form>
         <Button
-          variant="outline-danger"
-          className="w-100 mt-2"
+          variant="primary" // Change to filled primary button
+          className="w-100 mt-2 btn-google"
           onClick={handleGoogleLogin}
         >
           <FontAwesomeIcon icon={faGoogle} className="me-1" />

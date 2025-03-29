@@ -83,6 +83,18 @@ a[href^="tel"],
   transform: scale(1.05) !important; /* Retain the pop effect */
 }
 
+.btn-primary.btn-google {
+  background-color: #4285f4 !important; /* Deep saffron/paprika, rich and culinary */
+  border-color: #4285f4 !important;
+  color: #ffffff !important;
+}
+
+.btn-primary.btn-google:hover {
+  background-color: #357abd !important; /* Slightly darker for depth, like a roasted spice */
+  border-color: #357abd !important;
+  transform: scale(1.05) !important; /* Retain the pop effect */
+}
+
 .btn-outline-danger {
   color: #fff !important;
   background-color: #e74c3c !important; /* Red, like a chili pepper */
