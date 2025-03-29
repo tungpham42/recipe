@@ -240,6 +240,16 @@ a[href^="tel"],
   color: #c0392b !important;
 }
 
+.alert.alert-info {
+  background-color: #f4e1d2 !important; /* Light cinnamon color */
+  color: #8b4513 !important; /* Rich brown like cocoa */
+}
+
+.alert.alert-warning {
+  background-color: #ffe5b4 !important; /* Warm toasty color */
+  color: #d2691e !important; /* Dark caramel */
+}
+
 /* Container */
 .container {
   max-width: 1200px !important;
