@@ -20,7 +20,6 @@ import {
   Alert,
   Row,
   Col,
-  Spinner,
 } from "react-bootstrap";
 import { AuthContext } from "../context/AuthContext";
 import { useLanguage } from "../context/LanguageContext";
@@ -45,44 +44,38 @@ const RecipeDetail = () => {
   const [newComment, setNewComment] = useState("");
   const [relatedRecipes, setRelatedRecipes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext); // Removed usernameUpdated since it's no longer needed
   const { t } = useLanguage();
   const itemsPerPage = 3;
 
   const fetchComments = async (recipeId) => {
-    try {
-      const commentsRef = collection(db, "recipes", recipeId, "comments");
-      const commentsSnapshot = await getDocs(commentsRef);
-      const commentsData = commentsSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+    const commentsRef = collection(db, "recipes", recipeId, "comments");
+    const commentsSnapshot = await getDocs(commentsRef);
+    const commentsData = commentsSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
-      const commentsWithUpdatedUsernames = await Promise.all(
-        commentsData.map(async (comment) => {
-          const userRef = doc(db, "users", comment.userId);
-          const userDoc = await getDoc(userRef);
-          const userData = userDoc.exists() ? userDoc.data() : {};
-          return {
-            ...comment,
-            username:
-              comment.username ||
-              userData.displayName ||
-              userData.username ||
-              "Anonymous",
-          };
-        })
-      );
+    // Fetch the latest username for each comment's userId
+    const commentsWithUpdatedUsernames = await Promise.all(
+      commentsData.map(async (comment) => {
+        const userRef = doc(db, "users", comment.userId);
+        const userDoc = await getDoc(userRef);
+        const userData = userDoc.exists() ? userDoc.data() : {};
+        return {
+          ...comment,
+          username:
+            comment.username ||
+            userData.displayName ||
+            userData.username ||
+            "Anonymous",
+        };
+      })
+    );
 
-      return commentsWithUpdatedUsernames.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
-    } catch (err) {
-      console.error("Error fetching comments:", err);
-      return [];
-    }
+    return commentsWithUpdatedUsernames.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
   };
 
   useEffect(() => {
@@ -112,12 +105,9 @@ const RecipeDetail = () => {
     };
 
     const fetchData = async () => {
-      setLoading(true);
-      setError(null);
       try {
         const recipeData = await fetchRecipeBySlug(slug);
         if (!recipeData) {
-          setError(t("Recipe not found."));
           setRecipe(null);
           setComments([]);
           setRelatedRecipes([]);
@@ -134,17 +124,12 @@ const RecipeDetail = () => {
         setRelatedRecipes(relatedData);
       } catch (err) {
         console.error("Error fetching data:", err);
-        setError(t("Error loading recipe. Please try again."));
         setRecipe(null);
-        setComments([]);
-        setRelatedRecipes([]);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchData();
-  }, [slug, t]);
+  }, [slug]); // Removed usernameUpdated from dependencies
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -161,6 +146,8 @@ const RecipeDetail = () => {
 
       await addDoc(commentsRef, newCommentData);
       setNewComment("");
+
+      // Fetch updated comments to ensure the latest usernames are displayed
       const updatedComments = await fetchComments(recipe.id);
       setComments(updatedComments);
     } catch (err) {
@@ -183,24 +170,18 @@ const RecipeDetail = () => {
   const currentRelatedRecipes = relatedRecipes.slice(startIndex, endIndex);
 
   const handleNextPage = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   const handlePrevPage = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
-  if (loading) {
-    return (
-      <div className="text-center">
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">{t("Loading...")}</span>
-        </Spinner>
-      </div>
-    );
-  }
-
-  if (error) {
+  if (!recipe)
     return (
       <div className="text-center">
         <Helmet>
@@ -212,10 +193,9 @@ const RecipeDetail = () => {
             content={t("Recipe not found.") + " - " + t("Recipe App")}
           />
         </Helmet>
-        <Alert variant="warning">{error}</Alert>
+        {t("Recipe not found.")}
       </div>
     );
-  }
 
   const isOwner = currentUser && recipe.userId === currentUser.uid;
 
