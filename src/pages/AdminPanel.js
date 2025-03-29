@@ -46,7 +46,9 @@ const RecipeCard = ({ recipe, onDeleteRecipe, onDeleteComment, isAdmin }) => {
           ></div>
         )}
         <Card.Body className="d-flex flex-column">
-          <Card.Title>{recipe.title}</Card.Title>
+          <Card.Title>
+            <Link to={`/cong-thuc/${recipe.slug}`}>{recipe.title}</Link>
+          </Card.Title>
           <Card.Text>{recipe.description.slice(0, 100)}...</Card.Text>
           {isAdmin && (
             <div className="mt-auto d-flex justify-content-start gap-3">

@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { auth, googleProvider, createUserDocument } from "../firebase";
+import {
+  auth,
+  googleProvider,
+  createUserDocument,
+  updateUsernameInComments,
+} from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithPopup,
@@ -45,12 +50,12 @@ const Register = () => {
       );
       const user = userCredential.user;
 
-      // Update profile and create user document with hashed password
+      // Update profile and create user document
       await updateProfile(user, { displayName: username });
-      await createUserDocument(user, {
-        username,
-        authProvider: "email",
-      });
+      await createUserDocument(user, { username, authProvider: "email" });
+
+      // Update username in comments (though typically no comments exist yet for new users)
+      await updateUsernameInComments(user.uid, username);
 
       navigate("/");
     } catch (err) {
@@ -63,10 +68,11 @@ const Register = () => {
       const userCredential = await signInWithPopup(auth, googleProvider);
       const user = userCredential.user;
 
-      // Create user document for Google auth (no password to hash)
-      await createUserDocument(user, {
-        authProvider: "google",
-      });
+      // Create user document for Google auth
+      await createUserDocument(user, { authProvider: "google" });
+
+      // Update username in comments using displayName from Google
+      await updateUsernameInComments(user.uid, user.displayName);
 
       navigate("/");
     } catch (err) {

@@ -1,7 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { db } from "../firebase";
-import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  addDoc,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 import { useParams, Link } from "react-router-dom";
 import {
   Card,
@@ -36,24 +44,40 @@ const RecipeDetail = () => {
   const [newComment, setNewComment] = useState("");
   const [relatedRecipes, setRelatedRecipes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const { currentUser, usernameUpdated } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext); // Removed usernameUpdated since it's no longer needed
   const { t } = useLanguage();
   const itemsPerPage = 3;
 
   const fetchComments = async (recipeId) => {
     const commentsRef = collection(db, "recipes", recipeId, "comments");
     const commentsSnapshot = await getDocs(commentsRef);
-    return commentsSnapshot.docs
-      .map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-        username:
-          doc.data().userId === currentUser?.uid
-            ? currentUser.displayName || doc.data().username
-            : doc.data().username,
-      }))
-      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const commentsData = commentsSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // Fetch the latest username for each comment's userId
+    const commentsWithUpdatedUsernames = await Promise.all(
+      commentsData.map(async (comment) => {
+        const userRef = doc(db, "users", comment.userId);
+        const userDoc = await getDoc(userRef);
+        const userData = userDoc.exists() ? userDoc.data() : {};
+        return {
+          ...comment,
+          username:
+            comment.username ||
+            userData.displayName ||
+            userData.username ||
+            "Anonymous",
+        };
+      })
+    );
+
+    return commentsWithUpdatedUsernames.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
   };
+
   useEffect(() => {
     const fetchRecipeBySlug = async (slug) => {
       const recipeQuery = query(
@@ -104,8 +128,8 @@ const RecipeDetail = () => {
       }
     };
 
-    fetchData(); // eslint-disable-next-line
-  }, [slug, usernameUpdated]); // Add usernameUpdated as dependency
+    fetchData();
+  }, [slug]); // Removed usernameUpdated from dependencies
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -122,7 +146,10 @@ const RecipeDetail = () => {
 
       await addDoc(commentsRef, newCommentData);
       setNewComment("");
-      setComments([newCommentData, ...comments]);
+
+      // Fetch updated comments to ensure the latest usernames are displayed
+      const updatedComments = await fetchComments(recipe.id);
+      setComments(updatedComments);
     } catch (err) {
       console.error("Error adding comment:", err);
     }
@@ -274,7 +301,14 @@ const RecipeDetail = () => {
                     <div>
                       <strong>{comment.username}</strong>
                       <span className="ms-2 text-muted">
-                        {new Date(comment.createdAt).toLocaleDateString()}
+                        {new Date(comment.createdAt).toLocaleDateString(
+                          "vi-VN",
+                          {
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                          }
+                        )}
                       </span>
                     </div>
                   </div>

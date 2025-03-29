@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Helmet } from "react-helmet-async";
-import { db, auth } from "../firebase";
+import { db, auth, updateCommentsUsername } from "../firebase";
 import {
   collection,
   query,
@@ -8,7 +8,6 @@ import {
   getDocs,
   doc,
   setDoc,
-  updateDoc,
 } from "firebase/firestore";
 import {
   updateProfile,
@@ -106,42 +105,6 @@ const Profile = () => {
     (provider) => provider.providerId === "google.com"
   );
 
-  const updateCommentsUsername = async (newUsername) => {
-    try {
-      // Find all recipes
-      const recipesQuery = query(
-        collection(db, "recipes"),
-        where("userId", "==", currentUser.uid)
-      );
-      const recipesSnapshot = await getDocs(recipesQuery);
-
-      // Update comments for each recipe
-      const updatePromises = recipesSnapshot.docs.map(async (recipeDoc) => {
-        const commentsQuery = query(
-          collection(db, "recipes", recipeDoc.id, "comments"),
-          where("userId", "==", currentUser.uid)
-        );
-        const commentsSnapshot = await getDocs(commentsQuery);
-
-        return Promise.all(
-          commentsSnapshot.docs.map((commentDoc) =>
-            updateDoc(
-              doc(db, "recipes", recipeDoc.id, "comments", commentDoc.id),
-              {
-                username: newUsername,
-              }
-            )
-          )
-        );
-      });
-
-      await Promise.all(updatePromises);
-    } catch (err) {
-      console.error("Error updating comments username:", err.message);
-      throw err; // Re-throw to handle in the calling function
-    }
-  };
-
   // Sort recipes based on selected option
   const sortRecipes = (recipesToSort) => {
     const sortedRecipes = [...recipesToSort];
@@ -194,14 +157,15 @@ const Profile = () => {
       await updateProfile(auth.currentUser, { displayName: username });
 
       // Update users collection
+      const userRef = doc(db, "users", currentUser.uid);
       await setDoc(
-        doc(db, "users", currentUser.uid),
-        { username },
+        userRef,
+        { username, updatedAt: new Date().toISOString() },
         { merge: true }
       );
 
       // Update all comments with the new username
-      await updateCommentsUsername(username);
+      await updateCommentsUsername(currentUser.uid, username);
 
       // Refresh user data
       await auth.currentUser.getIdToken(true);
@@ -209,7 +173,7 @@ const Profile = () => {
 
       setSuccess(t("Username updated successfully."));
     } catch (err) {
-      setError(t("Failed to update username. Try again."));
+      setError(t("Failed to update username: ") + err.message);
       console.error("Error updating username:", err.message);
     }
   };
@@ -275,7 +239,6 @@ const Profile = () => {
     }
   };
 
-  // Rest of the component remains the same...
   return (
     <div>
       <Helmet>
@@ -437,7 +400,11 @@ const Profile = () => {
                         />
                       )}
                       <Card.Body className="d-flex flex-column">
-                        <Card.Title>{recipe.title}</Card.Title>
+                        <Card.Title>
+                          <Link to={`/cong-thuc/${recipe.slug}`}>
+                            {recipe.title}
+                          </Link>
+                        </Card.Title>
                         <Card.Text>
                           {recipe.description.slice(0, 100)}...
                         </Card.Text>

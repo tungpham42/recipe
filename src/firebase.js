@@ -1,6 +1,16 @@
 // firebase.js
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+  updateDoc,
+} from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
@@ -61,6 +71,75 @@ export const createUserDocument = async (user, additionalData = {}) => {
     return userData;
   } catch (error) {
     console.error("Error creating user document:", error);
+    throw error;
+  }
+};
+
+// New helper function to update username in comments
+export const updateUsernameInComments = async (userId, newUsername) => {
+  try {
+    const recipesRef = collection(db, "recipes");
+    const recipesSnapshot = await getDocs(recipesRef);
+
+    for (const recipeDoc of recipesSnapshot.docs) {
+      const commentsRef = collection(db, "recipes", recipeDoc.id, "comments");
+      const commentsQuery = query(commentsRef, where("userId", "==", userId));
+      const commentsSnapshot = await getDocs(commentsQuery);
+
+      for (const commentDoc of commentsSnapshot.docs) {
+        await updateDoc(
+          doc(db, "recipes", recipeDoc.id, "comments", commentDoc.id),
+          {
+            username: newUsername,
+          }
+        );
+      }
+    }
+    console.log(
+      `Updated username to "${newUsername}" in comments for user ${userId}`
+    );
+  } catch (error) {
+    console.error("Error updating username in comments:", error);
+    throw error;
+  }
+};
+
+// Helper function to update username in comments
+export const updateCommentsUsername = async (userId, newUsername) => {
+  try {
+    // Find all recipes by the user
+    const recipesQuery = query(
+      collection(db, "recipes"),
+      where("userId", "==", userId)
+    );
+    const recipesSnapshot = await getDocs(recipesQuery);
+
+    // Update comments for each recipe
+    const updatePromises = recipesSnapshot.docs.map(async (recipeDoc) => {
+      const commentsQuery = query(
+        collection(db, "recipes", recipeDoc.id, "comments"),
+        where("userId", "==", userId)
+      );
+      const commentsSnapshot = await getDocs(commentsQuery);
+
+      return Promise.all(
+        commentsSnapshot.docs.map((commentDoc) =>
+          updateDoc(
+            doc(db, "recipes", recipeDoc.id, "comments", commentDoc.id),
+            {
+              username: newUsername,
+            }
+          )
+        )
+      );
+    });
+
+    await Promise.all(updatePromises);
+    console.log(
+      `Updated username to "${newUsername}" in comments for user ${userId}`
+    );
+  } catch (error) {
+    console.error("Error updating comments username:", error);
     throw error;
   }
 };

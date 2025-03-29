@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { auth, googleProvider, createUserDocument } from "../firebase";
+import {
+  auth,
+  googleProvider,
+  createUserDocument,
+  updateUsernameInComments,
+} from "../firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { Form, Button, Alert, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -30,11 +35,16 @@ const Login = () => {
       );
       const user = userCredential.user;
 
-      // Update user document with hashed password and last login
-      await createUserDocument(user, {
+      // Update user document with last login
+      const userData = await createUserDocument(user, {
         authProvider: "email",
-        password: password, // Pass plain password to be hashed
       });
+
+      // Update username in comments using the displayName or username from userData
+      await updateUsernameInComments(
+        user.uid,
+        user.displayName || userData.username
+      );
 
       navigate("/");
     } catch (err) {
@@ -47,10 +57,11 @@ const Login = () => {
       const userCredential = await signInWithPopup(auth, googleProvider);
       const user = userCredential.user;
 
-      // Create/update user document (no password for Google auth)
-      await createUserDocument(user, {
-        authProvider: "google",
-      });
+      // Create/update user document
+      await createUserDocument(user, { authProvider: "google" });
+
+      // Update username in comments using displayName from Google
+      await updateUsernameInComments(user.uid, user.displayName);
 
       navigate("/");
     } catch (err) {

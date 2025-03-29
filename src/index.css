@@ -54,6 +54,11 @@ a[href^="tel"],
   color: #c0392b !important; /* Deep red, like tomato sauce */
 }
 
+.card-title > a {
+  color: #c0392b !important;
+  text-decoration: none !important;
+}
+
 .card-text {
   font-size: 0.95rem !important;
   color: #7f5539 !important; /* Warm brown, like toasted bread */
