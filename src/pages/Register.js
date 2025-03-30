@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import {
   auth,
@@ -31,6 +31,10 @@ const Register = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { t } = useLanguage();
+
+  useEffect(() => {
+    setError(""); // Reset error to empty string on language change
+  }, [t]);
 
   const handleEmailRegister = async (e) => {
     e.preventDefault();

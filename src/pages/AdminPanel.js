@@ -118,6 +118,10 @@ const useAdminRecipes = (isAdmin) => {
   const { t } = useLanguage();
 
   useEffect(() => {
+    setError(""); // Reset error to empty string on language change
+  }, [t]);
+
+  useEffect(() => {
     const fetchRecipesAndComments = async () => {
       try {
         const recipeSnapshot = await getDocs(collection(db, "recipes"));

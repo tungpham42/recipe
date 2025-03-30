@@ -55,6 +55,11 @@ const Profile = () => {
     localStorage.setItem("profileSortOption", sortOption);
   }, [sortOption]);
 
+  useEffect(() => {
+    setError(""); // Reset error to empty string on language change
+    setSuccess("");
+  }, [t]);
+
   // Fetch user recipes
   useEffect(() => {
     const fetchUserRecipes = async () => {

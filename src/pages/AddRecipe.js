@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { db, auth } from "../firebase";
 import {
@@ -41,6 +41,10 @@ const AddRecipe = () => {
   const CLOUDINARY_CLOUD_NAME = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
   const CLOUDINARY_UPLOAD_PRESET =
     process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
+
+  useEffect(() => {
+    setError(""); // Reset error to empty string on language change
+  }, [t]);
 
   const handleImageUpload = async (file) => {
     const formData = new FormData();

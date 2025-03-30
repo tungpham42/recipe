@@ -49,6 +49,10 @@ const EditRecipe = () => {
     process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 
   useEffect(() => {
+    setError(""); // Reset error to empty string on language change
+  }, [t]);
+
+  useEffect(() => {
     const fetchRecipe = async () => {
       if (!slug) {
         setError(t("No recipe slug provided."));

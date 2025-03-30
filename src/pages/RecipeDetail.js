@@ -53,6 +53,10 @@ const RecipeDetail = () => {
   const { t } = useLanguage();
   const itemsPerPage = 3;
 
+  useEffect(() => {
+    setError(""); // Reset error to empty string on language change
+  }, [t]);
+
   const fetchComments = async (recipeId) => {
     try {
       const commentsRef = collection(db, "recipes", recipeId, "comments");
