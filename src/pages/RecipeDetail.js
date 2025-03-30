@@ -259,12 +259,12 @@ const RecipeDetail = () => {
         <Card.Body>
           <Card.Title className="mb-3">{recipe.title}</Card.Title>
           <Card.Text className="mb-2">{recipe.description}</Card.Text>
-          <div className="mb-3 h5">
+          <h5 className="mb-3 text-primary">
             <FontAwesomeIcon icon={faUser} className="me-2" />
             {t("Author")}
             {": "}
             <strong>{authorName}</strong>
-          </div>
+          </h5>
           {recipe.category && (
             <h6 className="mb-4 recipe-category">
               <FontAwesomeIcon icon={faTag} className="me-2" />
