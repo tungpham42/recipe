@@ -452,29 +452,7 @@ a[href^="tel"],
     padding: 1rem 0 !important; /* Add padding inside collapsed menu */
   }
 }
-/* Item Number Styling (for ingredients and steps) */
-.item-number {
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  line-height: 1.5rem;
-  text-align: center;
-  background-color: #f1c40f !important;
-  color: #4a2c0f !important;
-  font-family: "Pacifico", cursive !important;
-  font-size: 0.9rem !important;
-  font-weight: 400 !important;
-  border-radius: 50% !important;
-  margin-right: 0.75rem !important;
-  box-shadow: 0 2px 4px rgba(74, 44, 15, 0.2) !important;
-  transition: transform 0.2s ease, background-color 0.2s ease !important;
-}
 
-.item-number:hover {
-  background-color: #e67e22 !important;
-  color: #fff !important;
-  transform: scale(1.1) !important;
-}
 .page-link {
   color: #4a2c0f !important;
   font-weight: 500 !important;
@@ -497,4 +475,75 @@ a[href^="tel"],
 .alert-success:hover {
   background-color: #c8e6c9 !important; /* Slightly deeper green on hover */
   box-shadow: 0 6px 18px rgba(74, 44, 15, 0.15) !important; /* Deeper shadow */
+}
+/* List Group Styling (for ingredients and steps) */
+.list-group {
+  border-radius: 12px !important; /* Slightly softer than cards for a nested feel */
+  background-color: #fffef0 !important; /* Very light cream, like a fresh recipe page */
+  border: 1px solid #f9e4b7 !important; /* Light golden border, like a pastry edge */
+  box-shadow: 0 2px 8px rgba(74, 44, 15, 0.08) !important; /* Subtle brown-tinted shadow */
+  padding: 0.5rem !important; /* Cozy padding */
+}
+
+/* List Group Item Styling */
+.list-group-item {
+  background-color: #fffcf5 !important; /* Off-white, like a cookbook page */
+  border: none !important; /* Remove default borders for a seamless look */
+  border-bottom: 1px dashed #e8d5a9 !important; /* Dashed beige line, like a recipe note */
+  color: #7f5539 !important; /* Warm brown, like toasted bread */
+  font-family: "Cabin", sans-serif !important; /* Clean, readable font */
+  font-size: 1rem !important; /* Comfortable reading size */
+  padding: 1rem 1.25rem !important; /* Spacious padding for a handwritten feel */
+  transition: background-color 0.2s ease, transform 0.2s ease !important;
+}
+
+/* Hover effect for interactivity */
+.list-group-item:hover {
+  background-color: #f9e4b7 !important; /* Light golden, like a highlighted recipe step */
+  color: #e67e22 !important; /* Warm orange text, like a citrus zest accent */
+  transform: translateX(
+    5px
+  ) !important; /* Slight shift right, like flipping a page */
+}
+
+/* First and last items for rounded corners */
+.list-group-item:first-child {
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+}
+
+.list-group-item:last-child {
+  border-bottom: none !important; /* Remove dashed line on last item */
+  border-bottom-left-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
+}
+
+/* Active state (if applicable, e.g., for selected comments) */
+.list-group-item.active {
+  background-color: #e67e22 !important; /* Warm orange, like a spice accent */
+  color: #fff !important; /* White text for contrast */
+  font-weight: 500 !important;
+}
+
+/* Specific styling for ingredients and steps with item-number */
+.list-group-item .item-number {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  background-color: #f1c40f !important; /* Bright yellow, like a mustard seed */
+  color: #4a2c0f !important; /* Rich brown contrast */
+  font-family: "Pacifico", cursive !important; /* Handwritten vibe */
+  font-size: 0.9rem !important;
+  border-radius: 50% !important;
+  margin-right: 0.75rem !important;
+  box-shadow: 0 2px 4px rgba(74, 44, 15, 0.2) !important;
+  transition: transform 0.2s ease, background-color 0.2s ease !important;
+}
+
+.list-group-item:hover .item-number {
+  background-color: #e67e22 !important; /* Orange on hover, like a roasted spice */
+  color: #fff !important;
+  transform: scale(1.1) !important; /* Slight pop effect */
 }
