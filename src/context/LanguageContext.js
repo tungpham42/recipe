@@ -279,6 +279,15 @@ const translations = {
     "Failed to login with Google: ": "Đăng nhập với Google thất bại: ",
     "Username must be 20 characters or less.":
       "Tên người dùng phải có độ dài tối đa 20 ký tự.",
+    "Session expired. Please log in again.":
+      "Phiên đã hết hạn. Vui lòng đăng nhập lại.",
+    "Error updating password:": "Lỗi khi cập nhật mật khẩu:",
+    "The current password is incorrect.": "Mật khẩu hiện tại không đúng.",
+    "Too many attempts. Please try again later.":
+      "Quá nhiều lần thử. Vui lòng thử lại sau.",
+    "Password should be at least 6 characters.":
+      "Mật khẩu phải có ít nhất 6 ký tự.",
+    "Failed to update password: ": "Cập nhật mật khẩu thất bại: ",
     "Please log in to add a comment.": "Vui lòng đăng nhập để thêm bình luận.",
     "Invalid email or password": "Email hoặc mật khẩu không hợp lệ",
   },
@@ -417,6 +426,17 @@ const translations = {
     "Failed to login with Google: ": "Échec de la connexion avec Google : ",
     "Username must be 20 characters or less.":
       "Le nom d'utilisateur doit comporter 20 caractères ou moins.",
+    "Session expired. Please log in again.":
+      "Session expirée. Veuillez vous reconnecter.",
+    "Error updating password:":
+      "Erreur lors de la mise à jour du mot de passe :",
+    "The current password is incorrect.":
+      "Le mot de passe actuel est incorrect.",
+    "Too many attempts. Please try again later.":
+      "Trop de tentatives. Veuillez réessayer plus tard.",
+    "Password should be at least 6 characters.":
+      "Le mot de passe doit comporter au moins 6 caractères.",
+    "Failed to update password: ": "Échec de la mise à jour du mot de passe : ",
     "Please log in to add a comment.":
       "Veuillez vous connecter pour ajouter un commentaire.",
     "Invalid email or password": "Email ou mot de passe invalide",
@@ -556,6 +576,15 @@ const translations = {
     "Failed to login with Google: ": "No se pudo iniciar sesión con Google: ",
     "Username must be 20 characters or less.":
       "El nombre de usuario debe tener 20 caracteres o menos.",
+    "Session expired. Please log in again.":
+      "Sessão expirada. Por favor, faça login novamente.",
+    "Error updating password:": "Erro ao atualizar a senha:",
+    "The current password is incorrect.": "A senha atual está incorreta.",
+    "Too many attempts. Please try again later.":
+      "Muitas tentativas. Por favor, tente novamente mais tarde.",
+    "Password should be at least 6 characters.":
+      "A senha deve ter pelo menos 6 caracteres.",
+    "Failed to update password: ": "Falha ao atualizar a senha: ",
     "Please log in to add a comment.":
       "Por favor, inicia sesión para añadir un comentario.",
     "Invalid email or password": "Correo electrónico o contraseña inválidos",
@@ -692,6 +721,15 @@ const translations = {
     "Failed to login with Google: ": "Falha ao entrar com Google: ",
     "Username must be 20 characters or less.":
       "O nome de usuário deve ter 20 caracteres ou menos.",
+    "Session expired. Please log in again.":
+      "Sessão expirada. Por favor, faça login novamente.",
+    "Error updating password:": "Erro ao atualizar a senha:",
+    "The current password is incorrect.": "A senha atual está incorreta.",
+    "Too many attempts. Please try again later.":
+      "Muitas tentativas. Por favor, tente novamente mais tarde.",
+    "Password should be at least 6 characters.":
+      "A senha deve ter pelo menos 6 caracteres.",
+    "Failed to update password: ": "Falha ao atualizar a senha: ",
     "Please log in to add a comment.":
       "Por favor, faça login para adicionar um comentário.",
     "Invalid email or password": "E-mail ou senha inválidos",
@@ -829,6 +867,15 @@ const translations = {
     "Failed to login with Google: ": "Anmeldung mit Google fehlgeschlagen: ",
     "Username must be 20 characters or less.":
       "Der Benutzername darf maximal 20 Zeichen lang sein.",
+    "Session expired. Please log in again.":
+      "Sitzung abgelaufen. Bitte melden Sie sich erneut an.",
+    "Error updating password:": "Fehler beim Aktualisieren des Passworts:",
+    "The current password is incorrect.": "Das aktuelle Passwort ist falsch.",
+    "Too many attempts. Please try again later.":
+      "Zu viele Versuche. Bitte versuchen Sie es später erneut.",
+    "Password should be at least 6 characters.":
+      "Das Passwort sollte mindestens 6 Zeichen lang sein.",
+    "Failed to update password: ": "Fehler beim Aktualisieren des Passworts: ",
     "Please log in to add a comment.":
       "Bitte melde dich an, um einen Kommentar hinzuzufügen.",
     "Invalid email or password": "Ungültige E-Mail oder Passwort",
@@ -965,6 +1012,16 @@ const translations = {
     "Failed to login with Google: ": "Accesso con Google fallito: ",
     "Username must be 20 characters or less.":
       "Il nome utente deve essere di 20 caratteri o meno.",
+    "Session expired. Please log in again.":
+      "Sessione scaduta. Per favore, accedi di nuovo.",
+    "Error updating password:":
+      "Errore durante l'aggiornamento della password:",
+    "The current password is incorrect.": "La password attuale è errata.",
+    "Too many attempts. Please try again later.":
+      "Troppi tentativi. Riprova più tardi.",
+    "Password should be at least 6 characters.":
+      "La password deve essere di almeno 6 caratteri.",
+    "Failed to update password: ": "Aggiornamento della password fallito: ",
     "Please log in to add a comment.": "Accedi per aggiungere un commento.",
     "Invalid email or password": "Email o password non valide",
   },
@@ -1106,6 +1163,15 @@ const translations = {
     "Failed to login with Google: ": "Не удалось войти через Google: ",
     "Username must be 20 characters or less.":
       "Имя пользователя должно содержать не более 20 символов.",
+    "Session expired. Please log in again.":
+      "Сессия истекла. Пожалуйста, войдите снова.",
+    "Error updating password:": "Ошибка при обновлении пароля:",
+    "The current password is incorrect.": "Текущий пароль неверный.",
+    "Too many attempts. Please try again later.":
+      "Слишком много попыток. Попробуйте позже.",
+    "Password should be at least 6 characters.":
+      "Пароль должен содержать не менее 6 символов.",
+    "Failed to update password: ": "Не удалось обновить пароль: ",
     "Please log in to add a comment.":
       "Пожалуйста, войдите, чтобы добавить комментарий.",
     "Invalid email or password": "Неверный адрес электронной почты или пароль",
@@ -1243,6 +1309,15 @@ const translations = {
     "Failed to login with Google: ": "Googleでのログインに失敗しました：",
     "Username must be 20 characters or less.":
       "ユーザー名は20文字以下でなければなりません。",
+    "Session expired. Please log in again.":
+      "セッションが期限切れです。もう一度ログインしてください。",
+    "Error updating password:": "パスワード更新エラー：",
+    "The current password is incorrect.": "現在のパスワードが間違っています。",
+    "Too many attempts. Please try again later.":
+      "試行回数が多すぎます。後でもう一度お試しください。",
+    "Password should be at least 6 characters.":
+      "パスワードは6文字以上である必要があります。",
+    "Failed to update password: ": "パスワードの更新に失敗しました：",
     "Please log in to add a comment.":
       "コメントを追加するにはログインしてください。",
     "Invalid email or password": "メールまたはパスワードが無効です",
@@ -1378,6 +1453,15 @@ const translations = {
     "Failed to login with Google: ": "Google로 로그인에 실패했습니다: ",
     "Username must be 20 characters or less.":
       "사용자 이름은 20자 이하여야 합니다.",
+    "Session expired. Please log in again.":
+      "세션이 만료되었습니다. 다시 로그인하세요.",
+    "Error updating password:": "비밀번호 업데이트 오류:",
+    "The current password is incorrect.": "현재 비밀번호가 잘못되었습니다.",
+    "Too many attempts. Please try again later.":
+      "시도 횟수가 너무 많습니다. 나중에 다시 시도하세요.",
+    "Password should be at least 6 characters.":
+      "비밀번호는 최소 6자 이상이어야 합니다.",
+    "Failed to update password: ": "비밀번호 업데이트에 실패했습니다: ",
     "Please log in to add a comment.": "댓글을 추가하려면 로그인하세요.",
     "Invalid email or password": "잘못된 이메일 또는 비밀번호입니다",
   },
@@ -1503,6 +1587,12 @@ const translations = {
     "Invalid email or password: ": "电子邮件或密码无效：",
     "Failed to login with Google: ": "使用 Google 登录失败：",
     "Username must be 20 characters or less.": "用户名必须为20个字符或更少。",
+    "Session expired. Please log in again.": "会话已过期。请重新登录。",
+    "Error updating password:": "更新密码错误：",
+    "The current password is incorrect.": "当前密码不正确。",
+    "Too many attempts. Please try again later.": "尝试次数过多。请稍后再试。",
+    "Password should be at least 6 characters.": "密码应至少为6个字符。",
+    "Failed to update password: ": "更新密码失败：",
     "Please log in to add a comment.": "请登录以添加评论。",
     "Invalid email or password": "电子邮件或密码无效",
   },

@@ -173,7 +173,7 @@ const Profile = () => {
 
       setSuccess(t("Username updated successfully."));
     } catch (err) {
-      setError(t("Failed to update username: ") + err.message);
+      setError(t("Failed to update username. Try again."));
       console.error("Error updating username:", err.message);
     }
   };
@@ -234,7 +234,9 @@ const Profile = () => {
           setError(t("Password should be at least 6 characters."));
           break;
         default:
-          setError(t("Failed to update password: ") + err.message);
+          setError(
+            t("Failed to update password. Check your current password.")
+          );
       }
     }
   };
