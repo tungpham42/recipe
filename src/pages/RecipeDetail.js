@@ -7,8 +7,8 @@ import {
   where,
   getDocs,
   addDoc,
-  // doc,
-  // getDoc,
+  doc,
+  getDoc,
 } from "firebase/firestore";
 import { useParams, Link } from "react-router-dom";
 import {
@@ -35,12 +35,14 @@ import {
   faChevronLeft,
   faChevronRight,
   faTag,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 const RecipeDetail = () => {
   const { slug } = useParams();
   const [recipe, setRecipe] = useState(null);
+  const [authorName, setAuthorName] = useState("");
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [relatedRecipes, setRelatedRecipes] = useState([]);
@@ -59,13 +61,31 @@ const RecipeDetail = () => {
         id: doc.id,
         ...doc.data(),
       }));
-
       return commentsData.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
     } catch (err) {
       console.error("Error fetching comments:", err);
       return [];
+    }
+  };
+
+  const fetchAuthorName = async (userId) => {
+    if (!userId) return "Unknown Author";
+
+    try {
+      const userRef = doc(db, "users", userId);
+      const userSnap = await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+        return "Unknown Author";
+      }
+
+      const userData = userSnap.data();
+      return userData.username || userData.displayName || "Unknown Author";
+    } catch (err) {
+      console.error("Error fetching author name:", err.message);
+      return "Unknown Author";
     }
   };
 
@@ -103,23 +123,27 @@ const RecipeDetail = () => {
         if (!recipeData) {
           setError(t("Recipe not found."));
           setRecipe(null);
+          setAuthorName("");
           setComments([]);
           setRelatedRecipes([]);
           return;
         }
 
         setRecipe(recipeData);
-        const [commentData, relatedData] = await Promise.all([
+        const [commentData, relatedData, author] = await Promise.all([
           fetchComments(recipeData.id),
           fetchRelatedRecipes(recipeData),
+          fetchAuthorName(recipeData.userId),
         ]);
 
         setComments(commentData);
         setRelatedRecipes(relatedData);
+        setAuthorName(author);
       } catch (err) {
         console.error("Error fetching data:", err);
         setError(t("Error loading recipe. Please try again."));
         setRecipe(null);
+        setAuthorName("");
         setComments([]);
         setRelatedRecipes([]);
       } finally {
@@ -231,6 +255,12 @@ const RecipeDetail = () => {
         <Card.Body>
           <Card.Title className="mb-3">{recipe.title}</Card.Title>
           <Card.Text className="mb-2">{recipe.description}</Card.Text>
+          <div className="mb-3 h5">
+            <FontAwesomeIcon icon={faUser} className="me-2" />
+            {t("Author")}
+            {": "}
+            <strong>{authorName}</strong>
+          </div>
           {recipe.category && (
             <h6 className="mb-4 recipe-category">
               <FontAwesomeIcon icon={faTag} className="me-2" />

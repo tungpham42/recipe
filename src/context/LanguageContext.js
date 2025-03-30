@@ -144,6 +144,7 @@ const translations = {
     "Failed to update password: ": "Failed to update password: ",
     "Please log in to add a comment.": "Please log in to add a comment.",
     "Invalid email or password": "Invalid email or password",
+    Author: "Author",
   },
   vi: {
     Home: "Trang chủ",
@@ -290,6 +291,7 @@ const translations = {
     "Failed to update password: ": "Cập nhật mật khẩu thất bại: ",
     "Please log in to add a comment.": "Vui lòng đăng nhập để thêm bình luận.",
     "Invalid email or password": "Email hoặc mật khẩu không hợp lệ",
+    Author: "Tác giả",
   },
   fr: {
     Home: "Accueil",
@@ -440,6 +442,7 @@ const translations = {
     "Please log in to add a comment.":
       "Veuillez vous connecter pour ajouter un commentaire.",
     "Invalid email or password": "Email ou mot de passe invalide",
+    Author: "Auteur",
   },
   es: {
     Home: "Inicio",
@@ -588,6 +591,7 @@ const translations = {
     "Please log in to add a comment.":
       "Por favor, inicia sesión para añadir un comentario.",
     "Invalid email or password": "Correo electrónico o contraseña inválidos",
+    Author: "Autor",
   },
   pt: {
     Home: "Início",
@@ -733,6 +737,7 @@ const translations = {
     "Please log in to add a comment.":
       "Por favor, faça login para adicionar um comentário.",
     "Invalid email or password": "E-mail ou senha inválidos",
+    Author: "Autor",
   },
   de: {
     Home: "Startseite",
@@ -879,6 +884,7 @@ const translations = {
     "Please log in to add a comment.":
       "Bitte melde dich an, um einen Kommentar hinzuzufügen.",
     "Invalid email or password": "Ungültige E-Mail oder Passwort",
+    Author: "Autor",
   },
   it: {
     Home: "Home",
@@ -1024,6 +1030,7 @@ const translations = {
     "Failed to update password: ": "Aggiornamento della password fallito: ",
     "Please log in to add a comment.": "Accedi per aggiungere un commento.",
     "Invalid email or password": "Email o password non valide",
+    Author: "Autore",
   },
   ru: {
     Home: "Главная",
@@ -1175,6 +1182,7 @@ const translations = {
     "Please log in to add a comment.":
       "Пожалуйста, войдите, чтобы добавить комментарий.",
     "Invalid email or password": "Неверный адрес электронной почты или пароль",
+    Author: "Автор",
   },
   ja: {
     Home: "ホーム",
@@ -1321,6 +1329,7 @@ const translations = {
     "Please log in to add a comment.":
       "コメントを追加するにはログインしてください。",
     "Invalid email or password": "メールまたはパスワードが無効です",
+    Author: "著者",
   },
   ko: {
     Home: "홈",
@@ -1464,6 +1473,7 @@ const translations = {
     "Failed to update password: ": "비밀번호 업데이트에 실패했습니다: ",
     "Please log in to add a comment.": "댓글을 추가하려면 로그인하세요.",
     "Invalid email or password": "잘못된 이메일 또는 비밀번호입니다",
+    Author: "저자",
   },
   zh: {
     Home: "首页",
@@ -1595,6 +1605,7 @@ const translations = {
     "Failed to update password: ": "更新密码失败：",
     "Please log in to add a comment.": "请登录以添加评论。",
     "Invalid email or password": "电子邮件或密码无效",
+    Author: "作者",
   },
 };
 
