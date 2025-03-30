@@ -48,7 +48,7 @@ const Login = () => {
 
       navigate("/");
     } catch (err) {
-      setError(t("Invalid email or password: ") + err.message);
+      setError(t("Invalid email or password."));
     }
   };
 
@@ -65,7 +65,7 @@ const Login = () => {
 
       navigate("/");
     } catch (err) {
-      setError(t("Failed to login with Google: ") + err.message);
+      setError(t("Failed to login with Google. Try again."));
     }
   };
 

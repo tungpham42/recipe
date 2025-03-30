@@ -143,6 +143,7 @@ const translations = {
       "Password should be at least 6 characters.",
     "Failed to update password: ": "Failed to update password: ",
     "Please log in to add a comment.": "Please log in to add a comment.",
+    "Invalid email or password": "Invalid email or password",
   },
   vi: {
     Home: "Trang chủ",
@@ -279,6 +280,7 @@ const translations = {
     "Username must be 20 characters or less.":
       "Tên người dùng phải có độ dài tối đa 20 ký tự.",
     "Please log in to add a comment.": "Vui lòng đăng nhập để thêm bình luận.",
+    "Invalid email or password": "Email hoặc mật khẩu không hợp lệ",
   },
   fr: {
     Home: "Accueil",
@@ -417,6 +419,7 @@ const translations = {
       "Le nom d'utilisateur doit comporter 20 caractères ou moins.",
     "Please log in to add a comment.":
       "Veuillez vous connecter pour ajouter un commentaire.",
+    "Invalid email or password": "Email ou mot de passe invalide",
   },
   es: {
     Home: "Inicio",
@@ -555,6 +558,7 @@ const translations = {
       "El nombre de usuario debe tener 20 caracteres o menos.",
     "Please log in to add a comment.":
       "Por favor, inicia sesión para añadir un comentario.",
+    "Invalid email or password": "Correo electrónico o contraseña inválidos",
   },
   pt: {
     Home: "Início",
@@ -690,6 +694,7 @@ const translations = {
       "O nome de usuário deve ter 20 caracteres ou menos.",
     "Please log in to add a comment.":
       "Por favor, faça login para adicionar um comentário.",
+    "Invalid email or password": "E-mail ou senha inválidos",
   },
   de: {
     Home: "Startseite",
@@ -826,6 +831,7 @@ const translations = {
       "Der Benutzername darf maximal 20 Zeichen lang sein.",
     "Please log in to add a comment.":
       "Bitte melde dich an, um einen Kommentar hinzuzufügen.",
+    "Invalid email or password": "Ungültige E-Mail oder Passwort",
   },
   it: {
     Home: "Home",
@@ -960,6 +966,7 @@ const translations = {
     "Username must be 20 characters or less.":
       "Il nome utente deve essere di 20 caratteri o meno.",
     "Please log in to add a comment.": "Accedi per aggiungere un commento.",
+    "Invalid email or password": "Email o password non valide",
   },
   ru: {
     Home: "Главная",
@@ -1101,6 +1108,7 @@ const translations = {
       "Имя пользователя должно содержать не более 20 символов.",
     "Please log in to add a comment.":
       "Пожалуйста, войдите, чтобы добавить комментарий.",
+    "Invalid email or password": "Неверный адрес электронной почты или пароль",
   },
   ja: {
     Home: "ホーム",
@@ -1237,6 +1245,7 @@ const translations = {
       "ユーザー名は20文字以下でなければなりません。",
     "Please log in to add a comment.":
       "コメントを追加するにはログインしてください。",
+    "Invalid email or password": "メールまたはパスワードが無効です",
   },
   ko: {
     Home: "홈",
@@ -1370,6 +1379,7 @@ const translations = {
     "Username must be 20 characters or less.":
       "사용자 이름은 20자 이하여야 합니다.",
     "Please log in to add a comment.": "댓글을 추가하려면 로그인하세요.",
+    "Invalid email or password": "잘못된 이메일 또는 비밀번호입니다",
   },
   zh: {
     Home: "首页",
@@ -1494,6 +1504,7 @@ const translations = {
     "Failed to login with Google: ": "使用 Google 登录失败：",
     "Username must be 20 characters or less.": "用户名必须为20个字符或更少。",
     "Please log in to add a comment.": "请登录以添加评论。",
+    "Invalid email or password": "电子邮件或密码无效",
   },
 };
 

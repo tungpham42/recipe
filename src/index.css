@@ -250,6 +250,23 @@ a[href^="tel"],
   color: #d2691e !important; /* Dark caramel */
 }
 
+/* Base Alert (assuming .alert-error aligns with this) */
+.alert:hover {
+  background-color: #f5c6cb !important; /* Deeper pinkish-red, like a ripe strawberry reduction */
+  box-shadow: 0 6px 18px rgba(192, 57, 43, 0.2) !important; /* Shadow tinted with tomato red for depth */
+}
+
+/* Alert Info */
+.alert.alert-info:hover {
+  background-color: #edd5c1 !important; /* Richer cinnamon, like a freshly baked pastry crust */
+  box-shadow: 0 6px 18px rgba(139, 69, 19, 0.2) !important; /* Cocoa-brown shadow for a toasted effect */
+}
+
+/* Alert Warning */
+.alert.alert-warning:hover {
+  background-color: #fff7d0 !important; /* Golden yellow, like melted butter or caramelized sugar */
+  box-shadow: 0 6px 18px rgba(210, 105, 30, 0.25) !important; /* Caramel-orange shadow for warmth */
+}
 /* Container */
 .container {
   max-width: 1200px !important;

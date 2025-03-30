@@ -59,7 +59,7 @@ const Register = () => {
 
       navigate("/");
     } catch (err) {
-      setError(t("Failed to register: ") + err.message);
+      setError(t("Failed to register. Try again."));
     }
   };
 
@@ -76,7 +76,7 @@ const Register = () => {
 
       navigate("/");
     } catch (err) {
-      setError(t("Failed to register with Google: ") + err.message);
+      setError(t("Failed to register with Google. Try again."));
     }
   };
 
