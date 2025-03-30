@@ -7,8 +7,8 @@ import {
   where,
   getDocs,
   addDoc,
-  doc,
-  getDoc,
+  // doc,
+  // getDoc,
 } from "firebase/firestore";
 import { useParams, Link } from "react-router-dom";
 import {
@@ -60,23 +60,7 @@ const RecipeDetail = () => {
         ...doc.data(),
       }));
 
-      const commentsWithUpdatedUsernames = await Promise.all(
-        commentsData.map(async (comment) => {
-          const userRef = doc(db, "users", comment.userId);
-          const userDoc = await getDoc(userRef);
-          const userData = userDoc.exists() ? userDoc.data() : {};
-          return {
-            ...comment,
-            username:
-              comment.username ||
-              userData.displayName ||
-              userData.username ||
-              "Anonymous",
-          };
-        })
-      );
-
-      return commentsWithUpdatedUsernames.sort(
+      return commentsData.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
     } catch (err) {
@@ -305,6 +289,8 @@ const RecipeDetail = () => {
               {t("Edit Recipe")}
             </Button>
           )}
+
+          {/* Comments section visible to all visitors */}
           <h5>
             <FontAwesomeIcon icon={faComment} className="me-2" />
             {t("Comments")}
@@ -337,6 +323,8 @@ const RecipeDetail = () => {
               ))}
             </ListGroup>
           )}
+
+          {/* Comment submission form only for logged-in users */}
           {currentUser ? (
             <Form onSubmit={handleCommentSubmit}>
               <Form.Group className="mb-3">

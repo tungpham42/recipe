@@ -104,40 +104,39 @@ export const updateUsernameInComments = async (userId, newUsername) => {
   }
 };
 
-// Helper function to update username in comments
+// Optimized function to update username in comments
 export const updateCommentsUsername = async (userId, newUsername) => {
   try {
-    // Find all recipes by the user
-    const recipesQuery = query(
-      collection(db, "recipes"),
-      where("userId", "==", userId)
-    );
-    const recipesSnapshot = await getDocs(recipesQuery);
+    // Query all comments by the user across all recipes
+    const recipesRef = collection(db, "recipes");
+    const recipesSnapshot = await getDocs(recipesRef);
 
-    // Update comments for each recipe
-    const updatePromises = recipesSnapshot.docs.map(async (recipeDoc) => {
+    const updatePromises = [];
+
+    for (const recipeDoc of recipesSnapshot.docs) {
       const commentsQuery = query(
         collection(db, "recipes", recipeDoc.id, "comments"),
         where("userId", "==", userId)
       );
       const commentsSnapshot = await getDocs(commentsQuery);
 
-      return Promise.all(
-        commentsSnapshot.docs.map((commentDoc) =>
+      commentsSnapshot.docs.forEach((commentDoc) => {
+        updatePromises.push(
           updateDoc(
             doc(db, "recipes", recipeDoc.id, "comments", commentDoc.id),
-            {
-              username: newUsername,
-            }
+            { username: newUsername }
           )
-        )
-      );
-    });
+        );
+      });
+    }
 
     await Promise.all(updatePromises);
+
     console.log(
-      `Updated username to "${newUsername}" in comments for user ${userId}`
+      `Updated ${updatePromises.length} comments with username "${newUsername}" for user ${userId}`
     );
+
+    return updatePromises.length; // Return number of updated comments
   } catch (error) {
     console.error("Error updating comments username:", error);
     throw error;
