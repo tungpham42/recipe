@@ -26,6 +26,7 @@ import {
   faUser,
   faLock,
   faSave,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import Pagination from "../components/Pagination";
 
@@ -377,9 +378,18 @@ const Profile = () => {
       <Card className="p-4">
         <Card.Body>
           <div className="d-flex justify-content-between align-items-center mb-4">
-            <h3 className="mb-0">
+            <h3 className="mb-0 d-inline-flex justify-content-center align-items-center">
               <FontAwesomeIcon icon={faUser} className="me-2" />
               {t("My Recipes")}
+              <Button
+                size="sm"
+                as={Link}
+                to="/them-cong-thuc"
+                variant="success"
+                className="ms-3"
+              >
+                <FontAwesomeIcon icon={faPlus} />
+              </Button>
             </h3>
             <Form.Group className="ms-3" style={{ minWidth: "200px" }}>
               <Form.Select value={sortOption} onChange={handleSortChange}>
