@@ -371,7 +371,11 @@ const RecipeDetail = () => {
                   required
                 />
               </Form.Group>
-              <Button type="submit" variant="primary">
+              <Button
+                type="submit"
+                variant="primary"
+                disabled={!newComment || newComment.trim() === ""}
+              >
                 <FontAwesomeIcon icon={faComment} className="me-1" />
                 {t("Post Comment")}
               </Button>
